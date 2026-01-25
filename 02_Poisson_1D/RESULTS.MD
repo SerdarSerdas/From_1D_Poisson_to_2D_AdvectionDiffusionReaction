@@ -86,7 +86,7 @@ ML5 solutions (Fig. 1) show LSFEM flux **exact overlay** with reference vs SFEM'
 | **Reg** | ML10 | 1024&#124;1024&#124;**147** | 1024&#124;1024&#124;**147** |
 | **Pert** | ML10 | **2177**&#124;2076&#124;**152** | **2177**&#124;2076&#124;**152** |
 
-![Solver scaling](../figures/Fig_Poisson1D_Solver.png)
+![Solver scaling](figures/Fig_Poisson1D_Solver.png)
 
 **CG-AMG: 7-14× speedup, mesh-independent!**
 
