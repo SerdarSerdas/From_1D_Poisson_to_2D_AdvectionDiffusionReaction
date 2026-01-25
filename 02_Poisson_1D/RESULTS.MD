@@ -78,3 +78,21 @@ Both methods maintain convergence under perturbations (≤10% error degradation)
 **4. Visual Confirmation:**  
 ML5 solutions (Fig. 1) show LSFEM flux **exact overlay** with reference vs SFEM's characteristic.
 
+## ⚡ LSFEM Solver Performance
+
+| Grid | Mesh | **Boundary Layer** | **Interior Layer** |
+|------|------|:------------------:|:-----------------:| 
+|      |      | CG&#124;JAC&#124;**AMG** | CG&#124;JAC&#124;**AMG** |
+| **Reg** | ML10 | 1024&#124;1024&#124;**147** | 1024&#124;1024&#124;**147** |
+| **Pert** | ML10 | **2177**&#124;2076&#124;**152** | **2177**&#124;2076&#124;**152** |
+
+![Solver scaling](../figures/Fig_Poisson1D_Solver.png)
+
+**CG-AMG: 7-14× speedup, mesh-independent!**
+
+## 🔬 Key Findings
+
+✅ **Solution:** Both O(h²) optimal  
+✅ **Flux:** LSFEM **O(h²) superconvergence** (100-200× gain)  
+✅ **Solver:** CG-AMG **production-ready** (147 iters @ N=1024)  
+✅ **Robust:** Perturbed meshes ≤10% degradation 
