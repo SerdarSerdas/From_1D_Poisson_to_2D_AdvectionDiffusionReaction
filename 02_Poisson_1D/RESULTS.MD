@@ -60,6 +60,8 @@
 | SFEM   | 1.00  | 1.00  | 1.00  | 1.00  | 1.00   | ✅         |
 | **LSFEM** | 1.98 | 2.00  | 2.00  | 2.00  | 2.00  | ✅         |
 
+![Convergence Rates](figures/Fig_Poisson1D_Convergence.png)
+
 ## 🔬 **Key Scientific Findings**
 
 **1. Solution Accuracy ($u$):**  
@@ -76,4 +78,3 @@ Both methods maintain convergence under perturbations (≤10% error degradation)
 **4. Visual Confirmation:**  
 ML5 solutions (Fig. 1) show LSFEM flux **exact overlay** with reference vs SFEM's characteristic.
 
-![Convergence Rates](figures/Fig_Poisson1D_Convergence.png)
