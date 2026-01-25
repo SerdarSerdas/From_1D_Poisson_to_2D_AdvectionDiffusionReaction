@@ -153,7 +153,7 @@ $$
 
 **The money plot:** Uniform fails → **AMR efficiency dominates!**
 
-![Uniform vs Adaptive L2 errors (Case: Bouundary Layer)](Fig_Poisson1D_Convergence_AMR.png)
+![Uniform vs Adaptive L2 errors (Case: Bouundary Layer)](Fig_Poisson1D_AMR_Comparison.png)
 
 **Key takeaway:** 
 - **Uniform:** 10⁴ elements for target accuracy
