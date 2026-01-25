@@ -1,6 +1,6 @@
 ## 🖼️ Solutions at ML5 (32 elements, $\epsilon=10^{-3}$)
 
-![Solutions ML5](Fig_Poisson1D_Solutions_ML5.png)
+![Solutions ML5](figures/Fig_Poisson1D_Solutions_ML5.png)
 
 *LSFEM flux superconvergence: exact overlay vs SFEM O(h) oscillations*
 
