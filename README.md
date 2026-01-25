@@ -121,7 +121,7 @@ See [`01_Theory/README.md`](01_Theory/README.md) for:
 
 ## 🧩 Mesh Configurations
 
-![Mesh Hierarchies](00_ProblemDefinition/Fig_Mesh_1D_2D_RMR_PMR_2x3.png)
+![Mesh Hierarchies](Fig_Mesh_1D_2D_RMR_PMR_2x3.png)
 
 **Top row:** Regular meshes (1D, quadrilateral 2D, triangular 2D)  
 **Bottom row:** Perturbed meshes (α=0.2 random displacement) for robustness testing
