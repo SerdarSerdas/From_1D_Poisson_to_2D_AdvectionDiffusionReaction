@@ -31,6 +31,7 @@ q - u' &= 0,
 $$
 
 **Least-squares functional:**
+
 $$
 \mathcal{J}(u,q;f) = \|q' + f\|_0^2 + \|q - u'\|_0^2
 $$
