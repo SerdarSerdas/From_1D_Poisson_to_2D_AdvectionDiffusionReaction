@@ -3,7 +3,7 @@
 The steady ADR equation models scalar transport under simultaneous diffusion, advection, and reaction:
 
 $$
--\nabla \cdot (\nu \nabla u + \mathbf{a} u) + c\,u = f, \quad \text{in } \mathcal{B},
+-\nabla \cdot (\nu \nabla u + \mathbf{a} u) + c u = f, \quad \text{in } \mathcal{B},
 $$
 
 $$
@@ -21,10 +21,12 @@ $$
 ## 🎯 1D Benchmark Solutions
 
 **Boundary layer:**
-$$ u(x) = 1 - \dfrac{\sinh(x/\sqrt{\varepsilon}) + \sinh((1-x)/\sqrt{\varepsilon})}{\sinh(1/\sqrt{\varepsilon})} $$
+
+$$ u(x) = 1 - \dfrac{\sinh(x/\sqrt{\epsilon}) + \sinh((1-x)/\sqrt{\epsilon})}{\sinh(1/\sqrt{\epsilon})} $$
 
 **Interior layer:**
-$$ u(x) = 4\left(\arctan\!\Big(\dfrac{2(1/16-(x-1/2)^2)}{\pi\sqrt{\varepsilon}}\Big) + \tfrac{1}{2}\right)(1-x)x $$
+
+$$ u(x) = 4\left(\arctan \Big(\dfrac{2(1/16-(x-1/2)^2)}{\pi\sqrt{\epsilon}}\Big) + \tfrac{1}{2}\right)(1-x)x $$
 
 ## 🧩 Mesh Configurations
 
