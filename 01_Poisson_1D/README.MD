@@ -43,6 +43,7 @@ $$
 $$
 
 where
+
 $$
 \begin{aligned}
 \mathcal{A}((u,q);(v,r)) &= (q',r')_0 + (q - u',r - v')_0, \\
