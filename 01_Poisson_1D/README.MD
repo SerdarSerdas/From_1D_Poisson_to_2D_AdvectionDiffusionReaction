@@ -67,6 +67,12 @@ $$
 | SFEM   | 1.00  | 1.00  | 1.00  | 1.00  | 1.00  |
 | **LSFEM** | 1.98 | 2.00  | 2.00  | 2.00  | 2.00  |
 
+## 📊 Convergence Plots
+
+![Convergence](Fig_Poisson1D_Convergence.png)
+
+*LSFEM flux superconvergence dominates at fine meshes*
+
 ## 🔬 Key Findings
 
 - **Solution $u$:** Both methods optimal **O(h²)**
@@ -74,8 +80,24 @@ $$
 - **Superconvergence:** LSFEM flux **O(h²)** vs SFEM **O(h)**
 - **Robustness:** Both methods stable on perturbed meshes
 
-## 📊 Convergence Plots
+## ⚡ LSFEM Solver Performance ($P_1$, $\epsilon=10^{-3}$)
 
-![Convergence](Fig_Poisson1D_Convergence.png)
+| Grid     | Mesh | **Boundary Layer**         |              | **Interior Layer**        |              |
+|----------|------|:--------------------------:|----------------|:-------------------------:|----------------|
+|          |      | CG     | CG-JACOBI | **CG-AMG** | CG     | CG-JACOBI | **CG-AMG** |
+| **Regular** | ML5  | 32     | 32        | **10**     | 32     | 32        | **10**     |
+|          | ML10 | 1024   | 1024      | **147**    | 1024   | 1024      | **147**    |
+| **Perturbed** | ML5  | 66     | 64        | **10**     | 66     | 64        | **11**     |
+|          | ML10 | 2177   | 2076      | **152**    | 2177   | 2076      | **152**    |
 
-*LSFEM flux superconvergence dominates at fine meshes*
+## 🔬 Key Findings
+
+1. **Jacobi perfection:** CG-JACOBI = $N_\text{elements}$ exactly (32→1024 iters)
+2. **AMG excellence:** CG-AMG **near mesh-independent** (147-152 iters @ $N=1024$)
+3. **CG disaster:** Unpreconditioned scales **2.1× worse** on perturbed (2177 iters!)
+
+**AMG speedup:** **7-14×** vs Jacobi, **robust** to perturbations (≤4% degradation)
+
+## 📊 Solver Scaling
+
+![Solver iterations](Fig_Poisson1D_Solver.png)
