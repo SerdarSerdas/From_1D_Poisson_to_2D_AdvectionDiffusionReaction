@@ -74,5 +74,6 @@ Both SFEM and LSFEM achieve **textbook optimal O(h²)** convergence for $P_1$ el
 Both methods maintain convergence under perturbations (≤10% error degradation), confirming stability for adaptive mesh refinement applications.
 
 **4. Visual Confirmation:**  
-ML5 solutions (Fig. 1) show LSFEM flux **exact overlay** with reference vs SFEM's characteristic **O(h) Gibbs-like oscillations**.
+ML5 solutions (Fig. 1) show LSFEM flux **exact overlay** with reference vs SFEM's characteristic.
 
+![Convergence Rates](figures/Fig_Poisson1D_Convergence.png)
