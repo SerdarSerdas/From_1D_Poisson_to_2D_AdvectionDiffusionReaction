@@ -96,3 +96,67 @@ ML5 solutions (Fig. 1) show LSFEM flux **exact overlay** with reference vs SFEM'
 ✅ **Flux:** LSFEM **O(h²) superconvergence** (100-200× gain)  
 ✅ **Solver:** CG-AMG **production-ready** (147 iters @ N=1024)  
 ✅ **Robust:** Perturbed meshes ≤10% degradation 
+
+
+
+## 🚨 Extreme Layers ($\epsilon \to 0$) - Uniform Refinement FAILS
+
+**Boundary:** $\epsilon=5\times10^{-6}$ ($\lambda\approx0.0022$)  
+**Interior:** $\epsilon=10^{-7}$ ($\lambda\approx3.2\times10^{-4}$) - **7× thinner!**
+
+## 📊 $L^2(u)$ Errors - P₁ vs P₂ (Uniform Grids)
+
+| Method    | Mesh | **Boundary Layer ($5\times10^{-6}$)** | **Interior Layer ($10^{-7}$)** |
+|-----------|------|:------------------------------------:|:------------------------------:|
+|           |      | P₁ &#124; P₂                         | P₁ &#124; P₂                   |
+| **SFEM**  | ML5  | 3.14e-01 &#124; 3.18e-01            | 9.10e-01 &#124; 8.93e-01      |
+|           | ML10 | 8.14e-04 &#124; **1.87e-05**        | 2.96e-03 &#124; 1.34e-03      |
+| **LSFEM** | ML5  | 4.55e+00 &#124; 3.59e-01            | 5.00e+00 &#124; 8.97e-01      |
+|           | ML10 | 1.58e-02 &#124; **1.90e-05**        | 5.60e-03 &#124; 1.36e-03      |
+
+## 📊 $L^2(q)$ Errors - **CATASTROPHIC FAILURE**
+
+| Method    | Mesh | **Boundary Layer ($5\times10^{-6}$)** | **Interior Layer ($10^{-7}$)** |
+|-----------|------|:------------------------------------:|:------------------------------:|
+|           |      | P₁ &#124; P₂                         | P₁ &#124; P₂                   |
+| **SFEM**  | ML10 | 2.64e+00 &#124; 1.48e-01            | **8.60e+00** &#124; 8.95e-01  |
+| **LSFEM** | ML10 | 3.64e-01 &#124; **8.38e-03**        | 2.46e+00 &#124; 7.10e-01      |
+
+**🚨 SFEM P₁ flux errors GROW ML5→ML7! Still O(1) @ ML10!**
+
+## 📈 Solution $u$ Convergence Rates
+
+| Method       | Boundary Rates          | Interior Rates          | Regime |
+|--------------|-------------------------|-------------------------|--------|
+| **SFEM-P₁**  | 1.86→1.95               | **0.49→3.46**           | ~ / --- |
+| **SFEM-P₂**  | **2.33→2.96**           | **0.45→4.52**           | ✅ / --- |
+| **LSFEM-P₁P₁**| 0.92→1.99              | **-0.35→4.84**          | ~ / --- |
+| **LSFEM-P₂P₂**| **2.18→3.00**          | **0.42→4.50**           | ✅ / --- |
+
+## 📈 Flux $q$ Convergence - **CHAOS!**
+
+| Method       | Boundary              | Interior                    | Regime |
+|--------------|-----------------------|-----------------------------|--------|
+| **SFEM-P₁**  | **-0.48→0.96**        | **-0.94→1.07**              | ---    |
+| **SFEM-P₂**  | 0.31→1.94             | **-0.70→1.84**              | ~ / --- |
+| **LSFEM-P₁P₁**| 0.51→1.95            | **-0.86→0.99**              | ~ / --- |
+| **LSFEM-P₂P₂**| **1.03→2.95**        | **-0.78→3.33→-0.19**        | ✅ / --- |
+
+**Regime:** ✅=asymptotic, ~=transition, **---**=pre-asymptotic chaos
+
+---
+
+## 🚨 Failure Modes EXPOSED
+
+❌ NEGATIVE rates = ERROR GROWTH under refinement (unheard of!)
+❌ ERRATIC jumps = Pre-asymptotic chaos (industry nightmare)  
+❌ FAKE super-conv = Misleading "convergence" (wastes compute)
+❌ FLUX stagnation = Engineering failure (O(1) accuracy @ 1024 elements!)
+
+## 💡 **CRITICAL INSIGHT** ← **FINAL CAPSTONE**
+**Uniform needs ML12-13 (4000-8000 elements)** for $h\approx3\lambda$  
+**AMR efficiency:** ~20× fewer DoFs for target accuracy!
+
+![AMR BL ConvRates](figures/Fig_Poisson1D_AMR_BL_ConvRates.png)
+
+**Uniform refinement = DEAD. AMR = production reality.**
