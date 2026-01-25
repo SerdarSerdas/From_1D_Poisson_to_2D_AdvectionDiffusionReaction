@@ -1,164 +1,371 @@
-# 1D Poisson Equation ($\nu=1$)
+# 1D Poisson Equation: Mathematical Formulation
+
+> **Complete derivation of SFEM and LSFEM formulations** for the 1D Poisson equation with Dirichlet boundary conditions. This document provides the mathematical foundation for all numerical results presented in [README.md](README.md).
+
+---
 
 ## Strong Form
 
-$$
-\begin{aligned}
--u'' &= f &&\text{in } \mathcal{B}=(0,1), \\
-u &= 0 &&\text{on } \partial\mathcal{B}_D=\{0,1\}.
-\end{aligned}
-$$
+The one-dimensional Poisson equation with homogeneous Dirichlet boundary conditions is:
 
-## Methods
+**Find** $u: \mathcal{B} = (0,1) \to \mathbb{R}$ **such that:**
 
-**SFEM:** $(u_h',v_h')=(f,v_h)$, $u_h\in V_h\subset H^1_0$
+$$-u'' = f \quad \text{in } \mathcal{B} = (0,1)$$
 
-**LSFEM:** $\mathbf{q}=u'$, $-q'=f$, $\mathcal{J}=\|q'+f\|_0^2+\|q-u'\|_0^2$
+$$u = 0 \quad \text{on } \partial\mathcal{B}_D = \{0, 1\}$$
 
-## 🖼️ Solutions (ML5, 32 elements, $\epsilon=10^{-3}$)
+where:
+- $u(x)$ is the unknown scalar field (temperature, displacement, potential, etc.)
+- $f(x)$ is the prescribed source term
+- Prime notation: $u' = \frac{du}{dx}$, $u'' = \frac{d^2u}{dx^2}$
 
-![Solutions ML5](Fig_Poisson1D_Solutions_ML5.png)
+### Physical Interpretation
 
-*LSFEM flux superconvergence: exact overlay vs SFEM O(h) oscillations*
+The Poisson equation models steady-state diffusion processes:
+- **Heat conduction:** $u$ = temperature, $f$ = heat source density
+- **Electrostatics:** $u$ = electric potential, $f$ = charge density
+- **Elasticity:** $u$ = displacement, $f$ = body force
 
-## 📊 $L^2(u)$ Errors ($P_1$, $\epsilon=10^{-3}$)
+---
 
-| Method | Mesh | **Boundary Layer ($\epsilon=10^{-3}$)** | **Interior Layer ($\epsilon=10^{-3}$)** |
-|--------|------|-----------------------------------------|-----------------------------------------|
-|        |      | Regular &#124; Perturbed                | Regular &#124; Perturbed                |
-| **SFEM** | ML5  | 1.50e-02 &#124; 1.35e-02             | 4.01e-03 &#124; 4.91e-03             |
-|        | ML6  | 3.91e-03 &#124; 4.46e-03             | 1.01e-03 &#124; 1.18e-03             |
-|        | ML7  | 9.87e-04 &#124; 1.19e-03             | 2.52e-04 &#124; 2.83e-04             |
-| **LSFEM** | ML5  | 7.47e-02 &#124; 7.15e-02             | 7.43e-03 &#124; 8.69e-03             |
-|        | ML10 | 7.45e-05 &#124; 8.23e-05             | 7.34e-06 &#124; 8.00e-06             |
+## Test Problems
 
-## 📊 $L^2(q)$ Errors ($q=u'$, $P_1$, $\epsilon=10^{-3}$)
+### 1. Boundary Layer Configuration
 
-| Method | Mesh | **Boundary Layer ($\epsilon=10^{-3}$)** | **Interior Layer ($\epsilon=10^{-3}$)** |
-|--------|------|-----------------------------------------|-----------------------------------------|
-|        |      | Regular &#124; Perturbed                | Regular &#124; Perturbed                |
-| **SFEM** | ML5  | 1.53e+00 &#124; 1.44e+00             | 4.06e-01 &#124; 4.37e-01             |
-|        | ML10 | 5.01e-02 &#124; 5.28e-02              | 1.27e-02 &#124; 1.32e-02              |
-| **LSFEM** | ML5  | 4.74e-01 &#124; 4.26e-01              | 6.25e-02 &#124; 7.64e-02              |
-|        | ML10 | **4.89e-04** &#124; 5.75e-04          | **6.20e-05** &#124; 6.97e-05          |
+**Governing equation:**
 
+$$-u'' = f, \quad u(0) = 0, \quad u(1) = 0$$
 
-## 📈 Convergence Rates (Regular Grid)
+**Analytical solution:**
 
-**Solution $u$:** Both methods **O(h²)** optimal
+$$u(x) = 1 - \frac{\sinh(x/\sqrt{\epsilon}) + \sinh((1-x)/\sqrt{\epsilon})}{\sinh(1/\sqrt{\epsilon})}$$
 
-| Method | ML5→6 | ML6→7 | ML7→8 | ML8→9 | ML9→10 |
-|--------|-------|-------|-------|-------|--------|
-| **Boundary Layer** | | | | | |
-| SFEM   | 1.94  | 1.98  | 2.00  | 2.00  | 2.00  |
-| LSFEM  | 1.98  | 1.99  | 2.00  | 2.00  | 2.00  |
-| **Interior Layer** | | | | | |
-| SFEM   | 1.99  | 2.00  | 2.00  | 2.00  | 2.00  |
-| LSFEM  | 1.99  | 2.00  | 2.00  | 2.00  | 2.00  |
+**Layer structure:**
+- Boundary layer at $x=0$ and $x=1$
+- $f = -u''$ computed from analytical solution
 
-**Flux $q$:** **LSFEM O(h²) superconvergence** vs **SFEM O(h)**
+**Perturbation parameter:** ε = 10⁻³, 5×10⁻⁶ (moderate to extreme)
 
-| Method | ML5→6 | ML6→7 | ML7→8 | ML8→9 | ML9→10 |
-|--------|-------|-------|-------|-------|--------|
-| **Boundary Layer** | | | | | |
-| SFEM   | 0.95  | 0.99  | 1.00  | 1.00  | 1.00  |
-| **LSFEM** | 1.94 | 1.98  | 2.00  | 2.00  | 2.00  |
-| **Interior Layer** | | | | | |
-| SFEM   | 1.00  | 1.00  | 1.00  | 1.00  | 1.00  |
-| **LSFEM** | 1.98 | 2.00  | 2.00  | 2.00  | 2.00  |
+### 2. Interior Layer Configuration
 
-## 📊 Convergence Plots
+**Governing equation:**
 
-![Convergence](Fig_Poisson1D_Convergence.png)
+$$-u'' = f(x)$$
 
-*LSFEM flux superconvergence dominates at fine meshes*
+**Analytical solution:**
 
-## 🔬 Key Findings
+$$u(x) = 4\left(\arctan\left(\frac{2(1/16-(x-1/2)^2)}{\pi\sqrt{\epsilon}}\right) + \frac{1}{2}\right)(1-x)x$$
 
-- **Solution $u$:** Both methods optimal **O(h²)**
-- **Flux $q$:** **LSFEM 10⁵× (boundary)/205× (interior) more accurate**
-- **Superconvergence:** LSFEM flux **O(h²)** vs SFEM **O(h)**
-- **Robustness:** Both methods stable on perturbed meshes
+**Layer structure:**
+- Interior shock at $x = 0.25$ and $x=0.75$ 
+- Source term: $f = -u''$ computed from analytical solution
 
-## ⚡ LSFEM Solver Performance ($P_1$, $\epsilon=10^{-3}$)
+**Perturbation parameter:** ε = 10⁻³, 10⁻⁷ (moderate to extreme)
 
-| Grid     | Mesh | **Boundary Layer**         |              | **Interior Layer**        |              |
-|----------|------|:--------------------------:|----------------|:-------------------------:|----------------|
-|          |      | CG     | CG-JACOBI | **CG-AMG** | CG     | CG-JACOBI | **CG-AMG** |
-| **Regular** | ML5  | 32     | 32        | **10**     | 32     | 32        | **10**     |
-|          | ML10 | 1024   | 1024      | **147**    | 1024   | 1024      | **147**    |
-| **Perturbed** | ML5  | 66     | 64        | **10**     | 66     | 64        | **11**     |
-|          | ML10 | 2177   | 2076      | **152**    | 2177   | 2076      | **152**    |
+---
 
-## 🔬 Key Findings
+## Standard Galerkin FEM (SFEM)
 
-1. **Jacobi perfection:** CG-JACOBI = $N_\text{elements}$ exactly (32→1024 iters)
-2. **AMG excellence:** CG-AMG **near mesh-independent** (147-152 iters @ $N=1024$)
-3. **CG disaster:** Unpreconditioned scales **2.1× worse** on perturbed (2177 iters!)
+### Weak Formulation
 
-**AMG speedup:** **7-14×** vs Jacobi, **robust** to perturbations (≤4% degradation)
+Multiply the strong form by a test function $v \in H^1_0(\mathcal{B})$ and integrate by parts:
 
-## 📊 Solver Scaling
+$$\int_\mathcal{B} u' v' dv = \int_\mathcal{B} f v dv$$
 
-![Solver iterations](Fig_Poisson1D_Solver.png)
+**Variational problem:** Find $u \in H^1_0(\mathcal{B})$ such that
 
+$$(u', v') = (f, v) \quad \forall v \in H^1_0(\mathcal{B})$$
 
-## 🎯 Adaptive Mesh Refinement ($\epsilon \to 0$)
+where the inner product is defined as:
+$$(w, v) = \int_\mathcal{B} w(x) v(x) dv$$
 
-**Extreme layers:** Boundary $\epsilon=5\times10^{-6}$ ($\lambda\approx0.0022$), Interior $\epsilon=10^{-7}$ ($\lambda\approx3.2\times10^{-4}$)
+### Discrete Formulation
 
-> Uniform refinement **fails catastrophically** for $\lambda/h \ll 1$. AMR essential!
+Introduce a finite-dimensional subspace $V_h \subset H^1_0(\mathcal{B})$ spanned by piecewise polynomial basis functions $\{\phi_i(x)\}_{i=1}^N$:
 
-## 📊 $L^2(u)$ Errors ($P_1/P_2$, regular grids)
+$$u_h(x) = \sum_{i=1}^N u_i \phi_i(x)$$
 
-| Method     | Mesh | **Boundary Layer** ($\epsilon=5\times10^{-6}$) | **Interior Layer** ($\epsilon=10^{-7}$) |
-|------------|------|-----------------------------------------------|-----------------------------------------|
-|            |      | P₁          │ P₂       | P₁          │ P₂       |
-| **SFEM**   | ML5  | 3.14e-01 &#124; 3.18e-01 | 9.10e-01 &#124; 8.93e-01 |
-|            | ML10 | 8.14e-04 &#124; 1.87e-05 | 2.96e-03 &#124; 1.34e-03 |
-| **LSFEM**  | ML5  | 4.55e+00 &#124; 3.59e-01 | 5.00e+00 &#124; 8.97e-01 |
-|            | ML10 | 1.58e-02 &#124; 1.90e-05 | 5.60e-03 &#124; 1.36e-03 |
+**Galerkin approximation:** Find $u_h \in V_h$ such that
 
-## 📊 $L^2(q)$ Errors - **Catastrophic Failure**
+$$(u'_h, v'_h) = (f, v_h) \quad \forall v_h \in V_h$$
 
-| Method     | Mesh | **Boundary Layer** ($\epsilon=5\times10^{-6}$) | **Interior Layer** ($\epsilon=10^{-7}$) |
-|------------|------|-----------------------------------------------|-----------------------------------------|
-|            |      | P₁          │ P₂       | P₁           │ P₂       |
-| **SFEM**   | ML10 | 2.64e+00 &#124; 1.48e-01 | **8.60e+00** &#124; 8.95e-01 |
-| **LSFEM**  | ML10 | 3.64e-01 &#124; **8.38e-03** | 2.46e+00 &#124; 7.10e-01 |
+Substituting the discrete representation and testing with each basis function yields the **linear system:**
 
-**Flux disaster:** SFEM P₁ errors **grow** ML5→ML7! Order-one accuracy @ ML10.
+```
+Ku = f
+```
 
-## 📈 Convergence Rates - **Chaos Revealed**
+where:
+- **Stiffness matrix:** $K_{ij} = (\phi'_j, \phi'_i) = \int_0^1 \phi'_j(x) \phi'_i(x) \, dx$
+- **Load vector:** $f_i = (f, \phi_i) = \int_0^1 f(x) \phi_i(x) \, dx$
+- **Solution vector:** $\mathbf{u} = [u_1, u_2, \ldots, u_N]^T$
 
-### Solution $u$ Rates
-| Method      | Boundary Layer Rates          | Interior Layer Rates          | Regime    |
-|-------------|-------------------------------|-------------------------------|-----------|
-| **SFEM-P₁** | 1.86 → 1.95                   | 0.49 → **3.46**               | **---**   |
-| **SFEM-P₂** | 2.33 → **2.96**               | 0.45 → **4.52**               | **---**   |
-| **LSFEM-P₁** | 0.92 → **1.99**              | -0.35 → **4.84**              | **---**   |
-| **LSFEM-P₂** | 2.18 → **3.00**              | 0.42 → **4.50**               | **---**   |
+### Properties
 
-### Flux $q$ Rates - **Complete Breakdown**
-| Method      | Boundary Layer              | Interior Layer               | Regime |
-|-------------|-----------------------------|------------------------------|--------|
-| **SFEM-P₁** | **-0.48** → 0.96            | **-0.94** → 1.07             | **---** |
-| **SFEM-P₂** | 0.31 → **1.94**             | **-0.70** → 1.84             | **---** |
-| **LSFEM-P₁** | 0.51 → **1.95**            | **-0.86** → 0.99             | **---** |
-| **LSFEM-P₂** | 1.03 → **2.95**            | **-0.78** → **3.33** → -0.19 | **---** |
+**Matrix structure:**
+- **Symmetric:** $K_{ij} = K_{ji}$ (follows from inner product symmetry)
+- **Positive definite:** $\mathbf{u}^T K \mathbf{u} = \|u'_h\|^2_0 > 0$ for $\mathbf{u} \neq \mathbf{0}$
+- **Sparse:** Tridiagonal for 1D uniform mesh with P₁ elements
+- **Band structure:** Bandwidth = $2p+1$ for P_p elements
 
-**Regime:** ✅=asymptotic, ~ =transitioning, **---**=pre-asymptotic (unreliable)
+**Flux recovery:**
+The flux $q = -u'$ is obtained through **post-processing:**
 
-## 🎯 Uniform vs Adaptive Mesh Refinement
+$$q_h(x) = -u'_h(x) = -\sum_{i=1}^N u_i \phi'_i(x)$$
 
-**The money plot:** Uniform fails → **AMR efficiency dominates!**
+This derivative is:
+- **Discontinuous** across element boundaries (for C⁰ elements)
+- **Lower accuracy:** Achieves only O(h^p) convergence for P_p elements
+- **Not variationally consistent:** No residual orthogonality property
 
-**Case: Boundary Layer**
+---
 
-![Uniform vs Adaptive L2 errors (Case: Bouundary Layer)](Fig_Poisson1D_AMR_Comparison.png)
+## Least-Squares FEM (LSFEM)
 
-**Key takeaway:** 
-- **Uniform:** 10⁴ elements for target accuracy
-- **AMR (Dörfler):** ~500 elements (20× efficiency!)
-- **LSFEM flux superconvergence preserved** under adaptivity
+### First-Order System Reformulation
 
+Introduce the **flux as an independent variable:**
+
+$$q = -u'$$
+
+The second-order Poisson equation becomes a **first-order system:**
+
+$$q + u' = 0$$
+
+$$-q' = f$$
+
+Equivalently:
+$$-q' - f = 0, \quad q - u' = 0$$
+
+### Least-Squares Functional
+
+Define the **L² least-squares functional:**
+
+$$\mathcal{J}(u, q; f) = \frac{1}{2}\|-q' - f\|_0^2 + \frac{1}{2}\|q - u'\|_0^2$$
+
+Expanding the norms:
+
+$$\mathcal{J}(u, q; f) = \frac{1}{2}\int_0^1 (-q' - f)^2 \, dx + \frac{1}{2}\int_0^1 (q - u')^2 \, dx$$
+
+**Physical interpretation:**
+- First term: Residual of equilibrium equation ($-q' = f$)
+- Second term: Residual of constitutive equation ($q = -u'$)
+- Minimization: Seeks best simultaneous satisfaction of both equations in L² sense
+
+### Variational Formulation
+
+The **continuous minimization problem** is:
+
+**Find** $(u, q) \in H^1_0(\mathcal{B}) \times L^2(\mathcal{B})$ **such that:**
+
+$$\mathcal{J}(u, q; f) = \min_{(v, r) \in H^1_0 \times L^2} \mathcal{J}(v, r; f)$$
+
+Taking the first variation (Euler-Lagrange equations):
+
+$$\mathcal{A}((u, q); (v, r)) = \mathcal{F}(v, r) \quad \forall (v, r) \in H^1_0 \times L^2$$
+
+where the **bilinear form** is:
+
+$$\mathcal{A}((u, q); (v, r)) = (-q', -r') + (q - u', r - v')$$
+
+and the **linear functional** is:
+
+$$\mathcal{F}(v, r) = (f, -r')$$
+
+Expanding:
+
+$$\mathcal{A}((u, q); (v, r)) = \int_0^1 q' r' \, dx + \int_0^1 (q - u')(r - v') \, dx$$
+
+$$\mathcal{F}(v, r) = -\int_0^1 f r' \, dx$$
+
+### Discrete Formulation
+
+Introduce finite element spaces:
+- $V_h \subset H^1_0$ for the scalar field $u$
+- $Q_h \subset L^2$ for the flux field $q$
+
+For **equal-order approximation** (P₁-P₁ or P₂-P₂):
+
+$$u_h(x) = \sum_{i=1}^N u_i \phi_i(x), \quad q_h(x) = \sum_{i=1}^N q_i \phi_i(x)$$
+
+**Discrete minimization:** Find $(u_h, q_h) \in V_h \times Q_h$ such that
+
+$$\mathcal{A}((u_h, q_h); (v_h, r_h)) = \mathcal{F}(v_h, r_h) \quad \forall (v_h, r_h) \in V_h \times Q_h$$
+
+Testing with each basis function yields the **block linear system:**
+
+```
+┌              ┐ ┌   ┐   ┌      ┐
+│  M    -K^T   │ │ q │   │  Mf  │
+│              │ │   │ = │      │
+│ -K     M     │ │ u │   │  0   │
+└              ┘ └   ┘   └      ┘
+```
+
+where:
+- **Mass matrix:** $M_{ij} = (\phi_i, \phi_j) = \int_0^1 \phi_i(x) \phi_j(x) \, dx$
+- **Stiffness matrix:** $K_{ij} = (\phi'_i, \phi'_j) = \int_0^1 \phi'_i(x) \phi'_j(x) \, dx$
+- **Load vector:** $(Mf)_i = \int_0^1 f(x) \phi_i(x) \, dx$
+- **Solution vectors:** $\mathbf{q} = [q_1, \ldots, q_N]^T$, $\mathbf{u} = [u_1, \ldots, u_N]^T$
+
+### Properties
+
+**System matrix structure:**
+- **Symmetric:** Block structure with $M^T = M$, $K^T = K$
+- **Positive definite:** $\mathcal{A}((u,q); (u,q)) = \|q'\|^2_0 + \|q-u'\|^2_0 > 0$
+- **Doubled dimension:** 2N unknowns vs N for SFEM
+- **No saddle-point:** Unlike mixed methods, no zero diagonal blocks
+
+**Advantages over SFEM:**
+1. **Flux is primary variable:** $q_h$ solved variationally, not post-processed
+2. **Superconvergence:** $\|q - q_h\|_0 = O(h^{p+1})$ vs SFEM's $O(h^p)$
+3. **Always SPD:** No loss of positive definiteness for any problem parameters
+4. **Natural error estimator:** $\eta^2_K = \|q'_h + f\|^2_{0,K} + \|q_h - u'_h\|^2_{0,K}$
+
+**Trade-offs:**
+- 2× DOFs (but CG-AMG keeps iterations bounded ~150)
+- More complex implementation (block system, flux boundary conditions)
+
+---
+
+## Finite Element Spaces
+
+### P₁ Elements (Linear)
+
+**Basis functions on reference element** $\hat{K} = [0, h]$:
+
+$$\hat{\phi}_1(\xi) = 1 - \frac{\xi}{h}, \quad \hat{\phi}_2(\xi) = \frac{\xi}{h}$$
+
+**Properties:**
+- C⁰ continuity (continuous, but derivatives discontinuous)
+- 2 DOFs per element
+- Piecewise linear approximation
+
+**Convergence:**
+- Solution: $\|u - u_h\|_0 = O(h^2)$, $\|u - u_h\|_1 = O(h)$
+- SFEM flux: $\|u' - u'_h\|_0 = O(h)$
+- LSFEM flux: $\|q - q_h\|_0 = O(h^2)$ ✨ (superconvergence!)
+
+### P₂ Elements (Quadratic)
+
+**Basis functions on reference element** $\hat{K} = [0, h]$ with midpoint node at $h/2$:
+
+$$\hat{\phi}_1(\xi) = \frac{(h-\xi)(h-2\xi)}{h^2}, \quad \hat{\phi}_2(\xi) = \frac{4\xi(h-\xi)}{h^2}, \quad \hat{\phi}_3(\xi) = \frac{\xi(2\xi-h)}{h^2}$$
+
+**Properties:**
+- C⁰ continuity
+- 3 DOFs per element (2 vertices + 1 midpoint)
+- Piecewise quadratic approximation
+
+**Convergence:**
+- Solution: $\|u - u_h\|_0 = O(h^3)$, $\|u - u_h\|_1 = O(h^2)$
+- SFEM flux: $\|u' - u'_h\|_0 = O(h^2)$
+- LSFEM flux: $\|q - q_h\|_0 = O(h^3)$ ✨ (superconvergence!)
+
+**Advantage for thin layers:**
+- Extended asymptotic regime: P₂ achieves cubic convergence where P₁ shows pre-asymptotic chaos
+- Better resolution of sharp gradients with fewer DOFs
+
+---
+
+## Boundary Conditions
+
+### Homogeneous Dirichlet (Essential)
+
+**Strong form:** $u(0) = 0$, $u(1) = 0$
+
+**Implementation:**
+- **SFEM:** Eliminate boundary DOFs from system (nodes at $x=0$ and $x=1$)
+- **LSFEM:** Eliminate boundary DOFs for $u$ only; flux $q$ has natural boundary conditions
+
+**Function space:** $H^1_0(\mathcal{B}) = \{v \in H^1 : v(0) = v(1) = 0\}$
+
+### Inhomogeneous Dirichlet
+
+**Strong form:** $u(0) = g_0$, $u(1) = g_1$
+
+**Implementation:**
+- **Lift function:** $u = u_0 + \tilde{u}$ where $u_0$ satisfies BCs, $\tilde{u} \in H^1_0$
+- **Example lift:** $u_0(x) = g_0(1-x) + g_1 x$ (linear interpolation)
+- Solve for $\tilde{u}$ with homogeneous BCs and modified RHS
+
+### Neumann (Natural)
+
+**Strong form:** $-u'(0) = g_N^0$, $-u'(1) = g_N^1$
+
+**SFEM weak form:**
+$$(u', v') = (f, v) + g_N^1 v(1) - g_N^0 v(0)$$
+
+**LSFEM treatment:**
+- Flux $q$ has essential BC: $q(0) = g_N^0$, $q(1) = g_N^1$
+- More natural in first-order formulation
+
+---
+
+## Error Norms
+
+**L² norm (solution accuracy):**
+$$\|u - u_h\|_0 = \left(\int_0^1 (u - u_h)^2 \, dx\right)^{1/2}$$
+
+**H¹ seminorm (derivative accuracy):**
+$$|u - u_h|_1 = \left(\int_0^1 (u' - u'_h)^2 \, dx\right)^{1/2}$$
+
+**Flux L² norm (LSFEM primary metric):**
+$$\|q - q_h\|_0 = \left(\int_0^1 (q - q_h)^2 \, dx\right)^{1/2}$$
+
+**Numerical integration:**
+All integrals computed using Gaussian quadrature with $p+1$ points for P_p elements (exact integration of polynomial integrands).
+
+---
+
+## Convergence Rate Calculation
+
+**Empirical convergence rate** between consecutive mesh levels:
+
+$$r = \log_2\left(\frac{E_{\text{ML}(k)}}{E_{\text{ML}(k+1)}}\right)$$
+
+where $E$ is the error norm ($\|u-u_h\|_0$ or $\|q-q_h\|_0$).
+
+**Interpretation:**
+- $r \approx 2$: O(h²) convergence (optimal for P₁)
+- $r \approx 3$: O(h³) convergence (optimal for P₂)
+- $r < 0$: Error growth (pre-asymptotic regime!)
+- Erratic $r$: Pre-asymptotic chaos, mesh too coarse
+
+**Asymptotic regime criteria:**
+- Convergence rates stabilize within ±0.05 over 3+ consecutive refinements
+- Typically requires $h/\lambda < 0.1$ for singular perturbations
+
+---
+
+## Implementation Notes
+
+**Assembly:**
+- Element-by-element loop over mesh
+- Map to reference element, apply quadrature
+- Add contributions to global matrices
+
+**SFEM system size:** N × N (N = number of interior nodes)
+
+**LSFEM system size:** 2N × 2N (block structure)
+
+**Memory:** SFEM < LSFEM, but both sparse (nnz ~ O(N))
+
+**Solver choice:**
+- SFEM: CG with incomplete Cholesky often sufficient
+- LSFEM: CG-AMG mandatory for production (7-14× speedup)
+
+---
+
+## References
+
+- **Brenner & Scott (2008).** *The Mathematical Theory of Finite Element Methods.* [DOI:10.1007/978-0-387-75934-0](https://doi.org/10.1007/978-0-387-75934-0)
+- **Bochev & Gunzburger (2009).** *Least-Squares Finite Element Methods.* [DOI:10.1007/b13382](https://doi.org/10.1007/b13382)
+
+---
+
+**See also:**
+- [Main Results](README.md) — Comprehensive numerical analysis
+- [Theory Documentation](../01_Theory/README.md) — General ADR framework
+
+**Last updated:** January 2025
