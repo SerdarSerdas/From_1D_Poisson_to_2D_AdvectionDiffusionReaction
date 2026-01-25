@@ -153,6 +153,8 @@ $$
 
 **The money plot:** Uniform fails → **AMR efficiency dominates!**
 
+**Case: Boundary Layer**
+
 ![Uniform vs Adaptive L2 errors (Case: Bouundary Layer)](Fig_Poisson1D_AMR_Comparison.png)
 
 **Key takeaway:** 
