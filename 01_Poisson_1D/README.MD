@@ -11,7 +11,8 @@ $$
 
 ## SFEM (Standard Galerkin)
 
-Find $u_h \in V_h \subset H^1_0(\mathcal{B})$ such that:
+Find 
+$u_h \in V_h \subset H^1_0(\mathcal{B})$ such that:
 
 $$
 (u_h', v_h') = (f, v_h) \quad \forall v_h \in V_h
