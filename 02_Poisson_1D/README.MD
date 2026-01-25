@@ -368,4 +368,6 @@ where $E$ is the error norm ($\|u-u_h\|_0$ or $\|q-q_h\|_0$).
 - [Main Results](README.md) — Comprehensive numerical analysis
 - [Theory Documentation](../01_Theory/README.md) — General ADR framework
 
-**Last updated:** January 2025
+**Document version**: 1.0
+**Last updated:** January 2026
+**Maintainer:** Dr.-Ing. Serdar Serdas
