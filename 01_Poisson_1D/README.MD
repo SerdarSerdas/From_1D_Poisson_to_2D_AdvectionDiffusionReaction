@@ -149,5 +149,14 @@ $$
 
 **Regime:** ✅=asymptotic, ~ =transitioning, **---**=pre-asymptotic (unreliable)
 
-## 🚨 Critical Failure Modes
+## 🎯 Uniform vs Adaptive Mesh Refinement
+
+**The money plot:** Uniform fails → **AMR efficiency dominates!**
+
+![Uniform vs Adaptive L2 errors (Case: Bouundary Layer)](Fig_Poisson1D_Convergence_AMR.png)
+
+**Key takeaway:** 
+- **Uniform:** 10⁴ elements for target accuracy
+- **AMR (Dörfler):** ~500 elements (20× efficiency!)
+- **LSFEM flux superconvergence preserved** under adaptivity
 
