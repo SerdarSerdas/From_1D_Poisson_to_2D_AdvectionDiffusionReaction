@@ -608,8 +608,6 @@ $$
 
 ### Software Implementations
 
-- **FEniCS Project**: [https://fenicsproject.org/](https://fenicsproject.org/)
-- **deal.II**: [https://www.dealii.org/](https://www.dealii.org/)
 - **PyAMG**: [https://github.com/pyamg/pyamg](https://github.com/pyamg/pyamg)
 
 ### Related Work
@@ -621,5 +619,5 @@ $$
 ---
 
 **Document version:** 1.0  
-**Last updated:** January 2025  
-**Maintainer:** Serdar Serdas
+**Last updated:** January 2026  
+**Maintainer:** Dr.-Ing. Serdar Serdas
