@@ -17,7 +17,7 @@ $$
 
 ## 🖼️ Solutions (ML5, 32 elements, $\epsilon=10^{-3}$)
 
-![Solutions ML5](Fig_Poisson1D_Solutions_ML5.pdf)
+![Solutions ML5](Fig_Poisson1D_Solutions_ML5.png)
 
 *LSFEM flux superconvergence: exact overlay vs SFEM O(h) oscillations*
 
@@ -84,6 +84,6 @@ $$
 
 ## 📊 Convergence Plots
 
-![Convergence](Fig_Poisson1D_Convergence.pdf)
+![Convergence](Fig_Poisson1D_Convergence.png)
 
 *LSFEM flux superconvergence dominates at fine meshes*
