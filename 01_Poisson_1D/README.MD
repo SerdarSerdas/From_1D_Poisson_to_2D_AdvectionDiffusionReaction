@@ -101,3 +101,53 @@ $$
 ## 📊 Solver Scaling
 
 ![Solver iterations](Fig_Poisson1D_Solver.png)
+
+
+## 🎯 Adaptive Mesh Refinement ($\epsilon \to 0$)
+
+**Extreme layers:** Boundary $\epsilon=5\times10^{-6}$ ($\lambda\approx0.0022$), Interior $\epsilon=10^{-7}$ ($\lambda\approx3.2\times10^{-4}$)
+
+> Uniform refinement **fails catastrophically** for $\lambda/h \ll 1$. AMR essential!
+
+## 📊 $L^2(u)$ Errors ($P_1/P_2$, regular grids)
+
+| Method     | Mesh | **Boundary Layer** ($\epsilon=5\times10^{-6}$) | **Interior Layer** ($\epsilon=10^{-7}$) |
+|------------|------|-----------------------------------------------|-----------------------------------------|
+|            |      | P₁          │ P₂       | P₁          │ P₂       |
+| **SFEM**   | ML5  | 3.14e-01 &#124; 3.18e-01 | 9.10e-01 &#124; 8.93e-01 |
+|            | ML10 | 8.14e-04 &#124; 1.87e-05 | 2.96e-03 &#124; 1.34e-03 |
+| **LSFEM**  | ML5  | 4.55e+00 &#124; 3.59e-01 | 5.00e+00 &#124; 8.97e-01 |
+|            | ML10 | 1.58e-02 &#124; 1.90e-05 | 5.60e-03 &#124; 1.36e-03 |
+
+## 📊 $L^2(q)$ Errors - **Catastrophic Failure**
+
+| Method     | Mesh | **Boundary Layer** ($\epsilon=5\times10^{-6}$) | **Interior Layer** ($\epsilon=10^{-7}$) |
+|------------|------|-----------------------------------------------|-----------------------------------------|
+|            |      | P₁          │ P₂       | P₁           │ P₂       |
+| **SFEM**   | ML10 | 2.64e+00 &#124; 1.48e-01 | **8.60e+00** &#124; 8.95e-01 |
+| **LSFEM**  | ML10 | 3.64e-01 &#124; **8.38e-03** | 2.46e+00 &#124; 7.10e-01 |
+
+**Flux disaster:** SFEM P₁ errors **grow** ML5→ML7! Order-one accuracy @ ML10.
+
+## 📈 Convergence Rates - **Chaos Revealed**
+
+### Solution $u$ Rates
+| Method      | Boundary Layer Rates          | Interior Layer Rates          | Regime    |
+|-------------|-------------------------------|-------------------------------|-----------|
+| **SFEM-P₁** | 1.86 → 1.95                   | 0.49 → **3.46**               | **---**   |
+| **SFEM-P₂** | 2.33 → **2.96**               | 0.45 → **4.52**               | **---**   |
+| **LSFEM-P₁** | 0.92 → **1.99**              | -0.35 → **4.84**              | **---**   |
+| **LSFEM-P₂** | 2.18 → **3.00**              | 0.42 → **4.50**               | **---**   |
+
+### Flux $q$ Rates - **Complete Breakdown**
+| Method      | Boundary Layer              | Interior Layer               | Regime |
+|-------------|-----------------------------|------------------------------|--------|
+| **SFEM-P₁** | **-0.48** → 0.96            | **-0.94** → 1.07             | **---** |
+| **SFEM-P₂** | 0.31 → **1.94**             | **-0.70** → 1.84             | **---** |
+| **LSFEM-P₁** | 0.51 → **1.95**            | **-0.86** → 0.99             | **---** |
+| **LSFEM-P₂** | 1.03 → **2.95**            | **-0.78** → **3.33** → -0.19 | **---** |
+
+**Regime:** ✅=asymptotic, ~ =transitioning, **---**=pre-asymptotic (unreliable)
+
+## 🚨 Critical Failure Modes
+
