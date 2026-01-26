@@ -126,3 +126,14 @@ SFEM maintains first-order convergence. Standard LSFEM shows irregular and deter
 **Table 2: Convergence Rates for `u` (Regular Grids)**
 
 
+Solver Performance
+The symmetric positive definite structure of LSFEM systems enables efficient solution via the conjugate gradient (CG) method with algebraic multigrid (AMG) preconditioning. Table 5 presents iteration counts for LSFEM and wLSFEM across different preconditioners.
+Diffusion-dominated regime (c=10−4c = 10^{-4}
+c=10−4):
+
+Without preconditioning, both methods exhibit iteration counts that scale linearly with problem size (CG: 32→1024 for LSFEM, 153→32402 for wLSFEM from ML5→ML10). AMG preconditioning dramatically improves efficiency: LSFEM requires 10→147 iterations, while wLSFEM achieves near mesh-independent convergence with only 5→25 iterations—representing up to a 1000× speedup over unpreconditioned CG at the finest mesh level.
+Reaction-dominated regime (c=104c = 10^{4}
+c=104):
+
+The performance characteristics reverse. Standard LSFEM becomes poorly conditioned, requiring 173→24864 unpreconditioned iterations. In contrast, wLSFEM demonstrates superior conditioning with only 39→10801 iterations—already 2× better without preconditioning. With AMG, wLSFEM achieves remarkable efficiency: merely 1→18 iterations across all mesh levels. LSFEM-AMG requires 21→150 iterations, showing wLSFEM is 8× more efficient at the finest level.
+Conclusion: The weighted formulation not only restores convergence accuracy but also significantly improves system conditioning, making wLSFEM the preferred choice for general-purpose applications, particularly in reaction-dominated regimes.
