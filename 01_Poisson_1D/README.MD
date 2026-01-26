@@ -19,9 +19,9 @@ $$(u^\prime_h, v^\prime_h)_0 = (f, v_h)_0 \quad \forall v_h \in V_h$$
 
 ### Bilinear and Linear Forms
 
-$$a(u_h, v_h) = (u^\prime_h, v^\prime_h)_0 = \int_{\cal B} u^\prime_h v^\prime_h \, dx$$
+$$a(u_h, v_h) = (u^\prime_h, v^\prime_h)_0 = \int_{\cal B} u^\prime_h v^\prime_h dx$$
 
-$$\ell(v_h) = (f, v_h)_0 = \int_{\cal B} f v_h \, dx$$
+$$\ell(v_h) = (f, v_h)_0 = \int_{\cal B} f v_h dx$$
 
 ## 3. Least Squares FEM (LSFEM)
 
