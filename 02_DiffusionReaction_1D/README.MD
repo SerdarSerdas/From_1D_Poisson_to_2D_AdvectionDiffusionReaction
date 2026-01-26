@@ -39,9 +39,9 @@ $${\cal A}((u_h,q_h);(v_h,r_h)) = {\cal F}(v_h,r_h), \quad \forall (v_h,r_h) \in
 
 with
 
-$${\cal A}((u,q);(v,r)) = (q', r')_0 + (q - u', r - v')_0 + c^2(u, v)_0$$
+$${\cal A}((u,q);(v,r)) = w^2_1 (-q^\prime + c u , -r^\prime + c v)_0 + (q - u^\prime, r - v^\prime)_0$$
 
-$${\cal F}(v,r) = -(f, r')_0 + c(f, v)_0$$
+$${\cal F}(v,r) = w^2_1 (f, -r^\prime + c v)_0$$
 
 
 ## 4. Numerical Results
