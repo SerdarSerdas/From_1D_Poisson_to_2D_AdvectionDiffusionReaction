@@ -96,6 +96,7 @@ A critical distinction emerges. SFEM and wLSFEM maintain optimal convergence wit
 **Flux Variable $q$ — Boundary Layer** 
 
 Diffusion-dominated regime $(c = 10^{-4})$:
+
 SFEM exhibits standard first-order convergence $(\cal{O}(h), rate \approx 1.00)$ for flux recovery. Both LSFEM and wLSFEM demonstrate superconvergence, achieving second-order rates $(\approx 2.00)$ — a full order of magnitude improvement over SFEM.
 
 Reaction-dominated regime $(c = 10^{4})$:
