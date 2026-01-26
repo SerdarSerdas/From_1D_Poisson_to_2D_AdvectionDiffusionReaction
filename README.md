@@ -33,18 +33,21 @@ LSFEM reformulates PDEs as first-order systems and minimizes the L² residual no
 This repository provides **the first comprehensive 1D/2D comparison** of Standard Galerkin FEM (SFEM) versus Adaptive Least-Squares FEM (LSFEM) across:
 
 **Problem hierarchy:**
-```
-Poisson (ν=1, 𝐚=0, c=0)  ──→  Diffusion-Reaction (ν=1, 𝐚=0, c≠0)  ──→  Advection-Diffusion (ν≪1, 𝐚≠0, c=0)  ──→  Advection-Diffusion-Reaction (ν≪1, 𝐚≠0, c>0)
-```
+
+- Poisson (ν=1, 𝐚=0, c=0)
+- Diffusion-Reaction (ν=1, 𝐚=0, c≠0)
+- Advection-Diffusion (ν≪1, 𝐚≠0, c=0)
+- Advection-Diffusion-Reaction (ν≪1, 𝐚≠0, c>0)
+
 
 **Three dimensions of analysis:**
-1. **Discretization**: P₁ vs P₂ elements on regular and perturbed meshes
+1. **Discretization**: $P_1$ vs $P_2$ elements on regular and perturbed meshes
 2. **Solution strategies**: Unpreconditioned CG, CG-Jacobi, CG-AMG
 3. **Mesh adaptivity**: Uniform refinement vs Dörfler and $\alpha$-Bulk marking strategy
 
 **Extreme test regimes:**
-- Singular perturbations: ε = 10⁻³ → 10⁻⁷ (boundary/interior layers)
-- High Péclet numbers: Pe = |𝐚|h/(2ν) ≫ 1
+- Singular perturbations: $\epsilon = 10^{-3} → \epsilon = 5 \cdot 10^{-6}$ (boundary layer), $\epsilon = 10^{-7}$ (interior layer)
+- High Péclet numbers: $Pe = \parallel \mathbf{a}\parallel h / (2 \nu) ≫ 1$ Pe = |𝐚|h/(2ν) ≫ 1
 - Geometric complexity: 1D intervals, 2D quadrilaterals, 2D triangles
 
 
