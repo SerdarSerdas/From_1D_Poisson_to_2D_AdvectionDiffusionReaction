@@ -46,3 +46,6 @@ with
 $${\cal A}((u,q);(v,r)) = (-q^\prime, -r^\prime)_0 + (q - u', r - v')_0$$
 
 $${\cal F}(v,r) = (f, r')_0$$
+
+
+## 4. Numerical Results
