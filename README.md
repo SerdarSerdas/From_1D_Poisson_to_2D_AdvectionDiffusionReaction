@@ -113,17 +113,6 @@ $$
 
 ---
 
-### For Complete Theory
-
-See [`01_Theory/README.md`](01_Theory/README.md) for:
-- Detailed weak formulations and discretizations
-- Error estimates and convergence theory
-- Singular perturbation analysis (boundary/interior layers)
-- Adaptive mesh refinement algorithms (Dörfler marking)
-- Comprehensive literature review and references
-
----
-
 ## 🧩 Mesh Configurations
 
 ![Mesh Hierarchies](Fig_Mesh_1D_2D_RMR_PMR_2x3.png)
