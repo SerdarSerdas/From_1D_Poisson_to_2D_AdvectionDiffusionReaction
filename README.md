@@ -187,12 +187,6 @@ All results are fully reproducible with documented parameters:
 
 ## 🚀 Future Work
 
-**Immediate priorities:**
-- [ ] 1D Advection-Diffusion results (convection-dominated regime)
-- [ ] 2D Poisson on quadrilateral and triangular meshes
-- [ ] Full 2D ADR with cross-wind diffusion challenges
-
-**Research directions:**
 - [ ] **Convection dominance:** High Péclet number analysis (Pe > 100)
 - [ ] **Nonlinear problems:** Incompressible Navier-Stokes (Newtonian and Non-Newtonian fluids)
 - [ ] **Time-dependent:** Parabolic ADR and Navier-Stokes with time adaptivity
