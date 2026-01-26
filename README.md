@@ -115,6 +115,8 @@ $$
 
 ## 🧩 Mesh Configurations
 
+Two different grid types (regular and perturbed) for 1D and 2D (quadrilaterals/triangular) are used which are shown in the following figure. In the case of regular grids, the next levels are obtained by applying a recursive uniform refinements starting from coarsest grid which consists of just one element. The perturbed (irregular) grids however, are obtained after construction of regular grids of each level, by applying a perturbation filter ($\alpha = 0.2$) based on the grid size h.
+
 ![Mesh Hierarchies](Fig_Mesh_1D_2D_RMR_PMR_2x3.png)
 
 **Top row:** Regular meshes (1D, quadrilateral 2D, triangular 2D)  
