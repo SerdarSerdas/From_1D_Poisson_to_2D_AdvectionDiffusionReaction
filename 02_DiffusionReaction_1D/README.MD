@@ -21,9 +21,14 @@ $$(u^\prime_h, v^\prime_h)_0 + c(u_h, v_h)_0 = (f, v_h)_0 \quad \forall v_h \in 
 
 ### First-Order System
 
-Define the diffusive flux $q = u'$:
+Define the diffusive flux $q = u^\prime$:
 
-$$q - u' = 0, \qquad -q' + cu = f$$
+$$-q^\prime + cu = f, \qquad q - u^\prime = 0$$
+
+### Functional
+
+$${\cal J}(u,q;f) = \frac{1}{2} \parallel w_1 (-q^\prime + cu - f) \parallel^2_0 + \frac{1}{2} \parallel (-q' - u^\prime) \parallel^2_0$$
+
 
 ### Variational Formulation
 
