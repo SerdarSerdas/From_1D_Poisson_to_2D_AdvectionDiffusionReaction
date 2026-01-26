@@ -101,6 +101,7 @@ $$
 u(x) = 1 - \frac{\sinh(x/\sqrt{\epsilon}) + \sinh((1-x)/\sqrt{\epsilon})}{\sinh(1/\sqrt{\epsilon})}
 $$
 
+![Poisson1D_BVP_BL](Fig_Poisson1D_BoundaryLayer.png)
 
 **Interior layer** (localized shock):
 
