@@ -20,12 +20,12 @@ The standard/classical Galerkin finite element method (SFEM) is the workhorse fo
 
 ### The Solution: Least-Squares FEM (LSFEM)
 
-LSFEM reformulates PDEs as first-order systems and minimizes the L² residual norm. This elegant approach delivers:
+LSFEM reformulates PDEs as first-order systems and minimizes the $L^2$ residual norm. This elegant approach delivers:
 
-✅ **Equal-order interpolation** — Use P₁-P₁ or P₂-P₂ freely; no inf-sup constraints  
+✅ **Equal-order interpolation** — Use $P_1-P_1$ or $P_2-P_2$ freely; no inf-sup constraints  
 ✅ **Symmetric positive definite matrices** — Always well-conditioned systems  
 ✅ **Natural error estimators** — Residual norms directly guide adaptive refinement  
-✅ **Flux superconvergence** — O(h^(p+1)) for gradients vs O(h^p) in standard FEM  
+✅ **Flux superconvergence** — ${\cal O}(h^{p+1})$ for gradients vs ${\cal O}(h^{p})$ in standard FEM  
 
 
 ### What We Investigate
@@ -47,21 +47,23 @@ This repository provides **the first comprehensive 1D/2D comparison** of Standar
 
 **Extreme test regimes:**
 - Singular perturbations: $\epsilon = 10^{-3} → \epsilon = 5 \cdot 10^{-6}$ (boundary layer), $\epsilon = 10^{-7}$ (interior layer)
-- High Péclet numbers: $Pe = \parallel \mathbf{a}\parallel h / (2 \nu) ≫ 1$ Pe = |𝐚|h/(2ν) ≫ 1
+- High Péclet numbers: $Pe = \parallel 𝐚 \parallel h / (2 \nu) ≫ 1$
 - Geometric complexity: 1D intervals, 2D quadrilaterals, 2D triangles
 
 
 ### Key Research Questions
 
-1. **What is the influence of the weighting factor?**
+1. **What is the influence/contribution of the weighting factor w.r.t. the accurracy and solver performance?**
 
 2. **When does LSFEM's superconvergence break down?**  
  
 3. **How efficient is adaptive mesh refinement?**  
  
-4. **Which preconditioner is optimal?**  
+4. **Which preconditioner is optimal?**
+
+5. **Which first-order system performance better**
  
-5. **Does adaptivity preserve superconvergence?**  
+6. **Does adaptivity preserve superconvergence?**  
  
 ---
 
