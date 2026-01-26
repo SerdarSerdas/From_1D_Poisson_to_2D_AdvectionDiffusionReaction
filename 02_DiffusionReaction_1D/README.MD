@@ -27,7 +27,7 @@ $$-q^\prime + cu = f, \qquad q - u^\prime = 0$$
 
 ### Functional
 
-$${\cal J}(u,q;f) = \frac{1}{2} \parallel w_1 (-q^\prime + cu - f) \parallel^2_0 + \frac{1}{2} \parallel (q - u^\prime) \parallel^2_0$$
+$${\cal J}(u,q;f) = \frac{1}{2} \parallel w_1 (-q^\prime + cu - f) \parallel^2_0 + \frac{1}{2} \parallel q - u^\prime \parallel^2_0$$
 
 **Weighting analyzed:**
 - **LSFEM**: $w_1 = 1$ (unweighted)
