@@ -27,8 +27,9 @@ $$-q^\prime + cu = f, \qquad q - u^\prime = 0$$
 
 ### Functional
 
-$${\cal J}(u,q;f) = \frac{1}{2} \parallel w_1 (-q^\prime + cu - f) \parallel^2_0 + \frac{1}{2} \parallel (-q' - u^\prime) \parallel^2_0$$
+$${\cal J}(u,q;f) = \frac{1}{2} \parallel w_1 (-q^\prime + cu - f) \parallel^2_0 + \frac{1}{2} \parallel (q^\prime - u^\prime) \parallel^2_0$$
 
+where $w_1$ is the weighting factor. We perform the computations with $w_1 = 1$ (LSFEM) and $w_1 = 1/\sqrt{c}$ (wLSFEM).
 
 ### Variational Formulation
 
