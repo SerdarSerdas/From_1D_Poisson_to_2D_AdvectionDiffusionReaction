@@ -65,8 +65,45 @@ We consider the **boundary layer problem** and the **interior layer problem** wi
 ### 🎯 Solution Accuracy: `$L^2$(u)` Errors
 
 
+### Convergence Rate Analysis
+
+The convergence rates are computed as the logarithmic ratio of successive $L^2$ errors between consecutive mesh refinement levels.
+
+
+**Solution Variable ($u$)**
+
+Diffusion-dominated regime (c=10^{-4}): 
+All three methods achieve optimal second-order convergence ($\mathcal{O}(h^2)$), with rates asymptotically approaching 2.00 as expected for $P_1$ elements.
+
+**Table 3: Convergence Rates for Solution $u$**
+
+| Method | ML5→6 | ML6→7 | ML7→8 | ML8→9 | ML9→10 | Asymptotic |
+|--------|-------|-------|-------|-------|--------|------------|
+| **Boundary Layer ($c=10^{-4}$)** |
+| SFEM   | 1.94  | 1.98  | 2.00  | 2.00  | 2.00   | ✅ |
+| LSFEM  | 1.98  | 1.99  | 2.00  | 2.00  | 2.00   | ✅ |
+| wLSFEM | 1.94  | 1.99  | 2.00  | 2.00  | 2.00   | ✅ |
+| **Interior Layer ($c=10^{4}$)** |
+| SFEM   | 2.06  | 2.03  | 2.01  | 2.00  | 2.00   | ✅ |
+| LSFEM  | 0.97  | 0.80  | 0.84  | 0.98  | 1.18   | ❌ (Degraded) |
+| wLSFEM | 2.06  | 2.03  | 2.01  | 2.00  | 2.00   | ✅ |
 
 > **🔍 Observation**: LSFEM errors **stop decreasing** at high reaction (`c=10⁴`), while **wLSFEM maintains optimal convergence**.
+
+**Table 4: Convergence Rates for Flux $q$**
+
+| Method | ML5→6 | ML6→7 | ML7→8 | ML8→9 | ML9→10 | Asymptotic |
+|--------|-------|-------|-------|-------|--------|------------|
+| **Boundary Layer ($c=10^{-4}$)** |
+| SFEM   | 0.95  | 0.99  | 1.00  | 1.00  | 1.00   | ✅ |
+| LSFEM  | 1.94  | 1.98  | 2.00  | 2.00  | 2.00   | ✅ |
+| wLSFEM | 1.94  | 1.98  | 2.00  | 2.00  | 2.00   | ✅ |
+| **Interior Layer ($c=10^{4}$)** |
+| SFEM   | 0.98  | 1.00  | 1.00  | 1.00  | 1.00   | ✅ |
+| LSFEM  | 1.19  | 1.12  | 1.20  | 1.33  | 1.51   | ❌ (Degraded) |
+| wLSFEM | 1.97  | 2.00  | 2.00  | 2.00  | 2.00   | ✅ |
+
+
 
 ---
 
