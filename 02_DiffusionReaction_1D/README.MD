@@ -100,7 +100,9 @@ Diffusion-dominated regime $(c = 10^{-4})$:
 SFEM exhibits standard first-order convergence $(\cal{O}(h), rate \approx 1.00)$ for flux recovery. Both LSFEM and wLSFEM demonstrate superconvergence, achieving second-order rates $(\approx 2.00)$ — a full order of magnitude improvement over SFEM.
 
 Reaction-dominated regime $(c = 10^{4})$:
-SFEM maintains first-order convergence. Standard LSFEM shows irregular and deteriorating behavior (rates 1.12–1.51), losing its superconvergent property. wLSFEM preserves second-order superconvergence $(rate \approx 2.00)$, demonstrating robust flux accuracy independent of the reaction coefficient magnitude. Key Finding: Weighted LSFEM is essential for maintaining optimal convergence and flux superconvergence in reaction-dominated problems, while standard LSFEM is only suitable for diffusion-dominated regimes.
+SFEM maintains first-order convergence. Standard LSFEM shows irregular and deteriorating behavior (rates 1.12–1.51), losing its superconvergent property. wLSFEM preserves second-order superconvergence $(rate \approx 2.00)$, demonstrating robust flux accuracy independent of the reaction coefficient magnitude. 
+
+*Key Finding:* Weighted LSFEM is essential for maintaining optimal convergence and flux superconvergence in reaction-dominated problems, while standard LSFEM is only suitable for diffusion-dominated regimes.
 
 **Table 4: Convergence Rates for Flux $q$**
 
@@ -110,7 +112,7 @@ SFEM maintains first-order convergence. Standard LSFEM shows irregular and deter
 | SFEM   | 0.95  | 0.99  | 1.00  | 1.00  | 1.00   | ✅ |
 | LSFEM  | 1.94  | 1.98  | 2.00  | 2.00  | 2.00   | ✅ |
 | wLSFEM | 1.94  | 1.98  | 2.00  | 2.00  | 2.00   | ✅ |
-| **Reaction-doominated ($c=10^{4}$)** |
+| **Reaction-dominated ($c=10^{4}$)** |
 | SFEM   | 0.98  | 1.00  | 1.00  | 1.00  | 1.00   | ✅ |
 | LSFEM  | 1.19  | 1.12  | 1.20  | 1.33  | 1.51   | ❌ (Degraded) |
 | wLSFEM | 1.97  | 2.00  | 2.00  | 2.00  | 2.00   | ✅ |
