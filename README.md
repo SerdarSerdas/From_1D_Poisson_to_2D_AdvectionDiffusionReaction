@@ -109,8 +109,7 @@ $$
 u(x) = 4\left(\arctan\left(\frac{2(1/16-(x-1/2)^2)}{\pi\sqrt{\epsilon}}\right) + \frac{1}{2}\right)(1-x)x
 $$
 
-
-**Challenge:** For $\epsilon = 10^{-7}$, $\lambda \approx 3 \times 10^{-4}$ → uniform mesh needs $h < 10^{-5}$ (100,000+ elements!)
+![Poisson1D_BVP_IL](Fig_Poisson1D_BVP_InteriorLayer.png)
 
 ---
 
