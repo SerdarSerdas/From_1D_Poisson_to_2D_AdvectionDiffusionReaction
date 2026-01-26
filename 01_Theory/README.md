@@ -621,3 +621,353 @@ $$
 **Document version:** 1.0  
 **Last updated:** January 2026  
 **Maintainer:** Dr.-Ing. Serdar Serdas
+
+
+
+
+# The Least-Squares Finite Element Method (LSFEM)
+
+> **Purpose:** This document presents the foundational framework for least-squares finite element methods applied to linear PDEs. It establishes the mathematical principles underlying all LSFEM formulations used throughout this repository.
+
+**Navigation:** [Main README](../README.md) | [Introduction](README.md) | [Poisson Results](../1D_Poisson/README.md)
+
+---
+
+## Table of Contents
+
+1. [Notation](#1-notation)
+2. [Continuous Least-Squares Principle](#2-continuous-least-squares-principle)
+3. [Discrete Least-Squares Principle](#3-discrete-least-squares-principle)
+
+---
+
+## 1. Notation
+
+### Domain and Boundary
+
+- **Domain:** $\Omega \subset \mathbb{R}^d$ is an open bounded domain with piecewise smooth boundary $\Gamma$
+- **Space dimension:** $d = 1, 2, 3$
+- **Boundary segments:** $\Gamma_D$ (Dirichlet), $\Gamma_N$ (Neumann) where $\Gamma = \Gamma_D \cup \Gamma_N$
+
+### Differential Operators
+
+- **Gradient:** $\nabla$
+- **Divergence:** $\nabla \cdot$
+- **Laplacian:** $\Delta$
+- **Curl (2D):**
+  - Applied to scalar: $\nabla \times u = \begin{bmatrix} \frac{\partial u}{\partial y} \\ -\frac{\partial u}{\partial x} \end{bmatrix}$
+  - Applied to vector: $\nabla \times \mathbf{u} = \frac{\partial u_2}{\partial x} - \frac{\partial u_1}{\partial y}$
+
+### Function Spaces
+
+**L² Space:**
+
+$$L^2(\Omega) = \left\{ u : \Omega \to \mathbb{R} \mid \int_\Omega |u|^2 \, d\Omega < \infty \right\}$$
+
+with inner product and norm:
+
+$$(u, v)_0 = \int_\Omega uv \, d\Omega, \qquad \|u\|_0 = \left( \int_\Omega |u|^2 \, d\Omega \right)^{1/2}$$
+
+**Zero-mean subspace:**
+
+$$L^2_0(\Omega) = \left\{ q \in L^2(\Omega) \mid \int_\Omega q \, d\Omega = 0 \right\}$$
+
+**Sobolev Space H¹:**
+
+$$H^1(\Omega) = \{ q \in L^2(\Omega) \mid \nabla q \in L^2(\Omega) \}$$
+
+with inner product and norm:
+
+$$(p, q)_1 = (p, q)_0 + (\nabla p, \nabla q)_0$$
+
+$$\|q\|_1^2 = \|q\|_0^2 + \|\nabla q\|_0^2$$
+
+**H¹ with boundary conditions:**
+
+$$H^1_{g,D}(\Omega) = \{ q \in H^1(\Omega) \mid q = g_D \text{ on } \Gamma_D \}$$
+
+$$H^1_0(\Omega) = \{ q \in H^1(\Omega) \mid q = 0 \text{ on } \Gamma_D \}$$
+
+**H(div) Space:**
+
+$$H(\text{div}, \Omega) = \{ \mathbf{v} \in [L^2(\Omega)]^d \mid \nabla \cdot \mathbf{v} \in L^2(\Omega) \}$$
+
+with norm:
+
+$$\|\mathbf{v}\|_{\text{div}}^2 = \|\mathbf{v}\|_0^2 + \|\nabla \cdot \mathbf{v}\|_0^2$$
+
+**H(curl) Space:**
+
+$$H(\text{curl}, \Omega) = \{ \mathbf{v} \in [L^2(\Omega)]^d \mid \nabla \times \mathbf{v} \in L^2(\Omega) \}$$
+
+with norm:
+
+$$\|\mathbf{v}\|_{\text{curl}}^2 = \|\mathbf{v}\|_0^2 + \|\nabla \times \mathbf{v}\|_0^2$$
+
+---
+
+## 2. Continuous Least-Squares Principle
+
+### 2.1 Abstract Boundary Value Problem
+
+Consider the abstract problem:
+
+$$\begin{cases} Lu = f & \text{in } \Omega \\ Ru = g & \text{on } \Gamma \end{cases}$$
+
+where:
+- $L$ is a linear first-order differential operator acting on functions in $\Omega$
+- $R$ is a linear operator acting on functions on the boundary $\Gamma$
+- $f$ and $g$ are data functions
+
+### 2.2 Fundamental Assumptions
+
+**A.1 (Homeomorphism):** There exist Hilbert spaces $X = X(\Omega)$, $Y = Y(\Omega)$, $Z = Z(\Gamma)$ such that the mapping
+
+$$u \mapsto (Lu, Ru)$$
+
+is a homeomorphism $X \to Y \times Z$.
+
+**A.2 (Fredholm Property):** The operator $(Lu, Ru)$ is of Fredholm type (closed range, finite-dimensional kernel and co-range).
+
+**Consequence:** These assumptions imply the existence of constants $C_1, C_2 > 0$ independent of $u$ such that:
+
+$$C_2 \|u\|_X \leq \|Lu\|_Y + \|Ru\|_Z \leq C_1 \|u\|_X$$
+
+This inequality defines the **proper balance between solution "energy" and residual "energy"** — the foundation of least-squares principles.
+
+### 2.3 Least-Squares Functional
+
+Define the **L² least-squares functional:**
+
+$$\mathcal{J}(u; f, g) = \|Lu - f\|_Y^2 + \|Ru - g\|_Z^2$$
+
+**Continuous Least-Squares Principle (CLSP):**
+
+Find $u \in X$ such that
+
+$$u = \arg\min_{v \in X} \mathcal{J}(v; f, g)$$
+
+### 2.4 Variational Formulation
+
+The minimizer of $\mathcal{J}$ satisfies the **Euler-Lagrange equations:**
+
+Find $u \in X$ such that
+
+$$A(u; v) = F(v) \quad \forall v \in X$$
+
+where the **bilinear form** $A: X \times X \to \mathbb{R}$ and **linear functional** $F: X \to \mathbb{R}$ are:
+
+$$A(u; v) = \langle Lu, Lv \rangle_Y + \langle Ru, Rv \rangle_Z$$
+
+$$F(v) = \langle f, Lv \rangle_Y + \langle g, Rv \rangle_Z$$
+
+### 2.5 Operator Form
+
+For sufficiently smooth $u$ and $f$, the variational problem is equivalent to:
+
+Find $u \in X$ such that
+
+$$\langle L^*Lu, v \rangle_Y + \langle R^*Ru, v \rangle_Z = \langle L^*f, v \rangle_Y + \langle R^*g, v \rangle_Z \quad \forall v \in X$$
+
+where $L^*$ and $R^*$ are the **formal adjoints** of $L$ and $R$.
+
+**Key Properties of Least-Squares Operators:**
+- **Formal normal operators** $L^*L$ and $R^*R$ are **self-adjoint**
+- **Nonnegative definite** (positive for non-trivial solutions)
+- Original continuum operator may not have these properties!
+
+### 2.6 Boundary Condition Treatment
+
+Two approaches for implementing boundary conditions:
+
+**Option 1 - Weak enforcement:** Include $\|Ru - g\|_Z^2$ directly in the functional
+
+**Option 2 - Strong enforcement:** Restrict solution space to
+
+$$X_g(\Omega) = \{ u \in X(\Omega) \mid Ru(x) = g(x) \, \forall x \in \Gamma \}$$
+
+so that boundary residual is automatically zero.
+
+**In this work:**
+- **Neumann BCs:** Weak enforcement (Option 1)
+- **Dirichlet BCs:** Strong enforcement (Option 2)
+
+---
+
+## 3. Discrete Least-Squares Principle
+
+### 3.1 Finite Element Discretization
+
+Restrict the continuous problem to a **finite-dimensional subspace** $X_h \subset X$.
+
+**Discrete Variational Problem:**
+
+Find $u_h \in X_h$ such that
+
+$$A_h(u_h; v_h) = F_h(v_h) \quad \forall v_h \in X_h$$
+
+where $A_h$ and $F_h$ are the discrete versions of the bilinear form and linear functional.
+
+Let $\{\phi_i^h\}_{i=1}^N$ denote a basis for $X_h$, so that:
+
+$$u_h = \sum_{i=1}^N U_i \phi_i^h$$
+
+Substituting into the variational problem yields the **linear system:**
+
+$$\mathbf{A}\mathbf{U} = \mathbf{F}$$
+
+where:
+- **System matrix:** $A_{ij} = A_h(\phi_j^h, \phi_i^h) = ((\phi_j^h, \phi_i^h))_E$
+- **Load vector:** $F_i = F_h(\phi_i^h)$
+- **Solution vector:** $\mathbf{U} = [U_1, U_2, \ldots, U_N]^T$
+
+**Energy inner product:**
+
+$$((\cdot, \cdot))_E : X \times X \to \mathbb{R}$$
+
+**Energy norm:**
+
+$$\|\cdot\|_E = \mathcal{J}(\cdot; 0, 0)^{1/2} : X \to \mathbb{R}$$
+
+---
+
+### 3.2 Optimality Conditions
+
+The discrete least-squares formulation possesses remarkable properties that lead to computational advantages:
+
+#### Property 1: Unique Solution
+
+Since $\mathcal{J}$ is:
+- **Consistent:** $\mathcal{J}(u; f, g) = 0$ for exact solutions
+- **Convex:** Quadratic functional
+- **Positive:** $\mathcal{J}(u; 0, 0) > 0$ for $u \neq 0$
+
+The discrete problem has a **unique solution** $u_h \in X_h$.
+
+#### Property 2: Best Approximation
+
+For conforming finite elements ($X_h \subset X$), the discrete solution $u_h$ is the **orthogonal projection** of the exact solution $u$ with respect to the energy inner product:
+
+$$\|u - u_h\|_E = \inf_{v_h \in X_h} \|u - v_h\|_E$$
+
+This is the **best possible approximation** in the energy norm from the space $X_h$.
+
+#### Property 3: Symmetric Positive Definite Matrix
+
+From the positivity of $\mathcal{J}$, the system matrix $\mathbf{A}$ is:
+
+1. **Symmetric:** $A_{ij} = A_{ji}$
+2. **Positive definite:** $\mathbf{U}^T \mathbf{A} \mathbf{U} > 0$ for $\mathbf{U} \neq \mathbf{0}$
+
+**Consequence:** The linear system $\mathbf{A}\mathbf{U} = \mathbf{F}$ can be solved efficiently using:
+- **Conjugate Gradient (CG) method** — optimal Krylov method for SPD systems
+- **Preconditioned CG (PCG)** — accelerated with SSOR, Jacobi, or multigrid
+- **Direct methods** — Cholesky factorization (for small systems)
+
+---
+
+### 3.3 Practicality Conditions
+
+Beyond optimality, a practical LSFEM must satisfy computational efficiency criteria:
+
+#### Condition 1: Easy Basis Construction
+
+Finite element bases for $X_h$ should be easily constructed using standard elements.
+
+#### Condition 2: Easy Assembly
+
+The linear system should be computable without excessive difficulty.
+
+#### Condition 3: Good Conditioning
+
+The condition number of $\mathbf{A}$ should not grow faster than standard FEM as $h \to 0$.
+
+### 3.4 Standard L² LSFEM Framework
+
+To achieve **both optimality and practicality**, the standard approach follows:
+
+**Step 1:** Write the PDE system in **first-order form**
+
+**Step 2:** Set the solution space $X$ as a product of **H¹ spaces**
+
+**Step 3:** Set the residual spaces $Y$ and $Z$ as products of **L² spaces**
+
+**Step 4:** Discretize with **C⁰ (continuous) finite elements**
+
+**Why this works:**
+- ✅ **H¹ spaces:** Easy to discretize with standard Lagrange elements
+- ✅ **L² norms:** Easy to compute (simple numerical integration)
+- ✅ **C⁰ elements:** Readily available, well-understood
+- ✅ **Condition number:** Grows as $O(h^{-2})$ — same as standard FEM
+
+#### When Standard Framework Fails
+
+If the balance estimate
+
+$$C_2 \|u\|_X \leq \|Lu\|_Y + \|Ru\|_Z$$
+
+cannot be shown with $X = H^1$, $Y = Z = L^2$, modifications may be needed:
+
+**Option A - Weaker/Stronger Norms:**
+- Use $H^{1/2}$ or $H^{-1}$ spaces for certain variables
+- Replace impractical norms with **weighted L² norms** in discrete problem
+
+**Option B - System Reformulation:**
+- Add **auxiliary variables** (e.g., fluxes, vorticity)
+- Augment with **curl constraints** or **compatibility conditions**
+
+**Option C - Non-conforming Discretization:**
+- Use discontinuous Galerkin (DG) or mixed elements
+
+**In this repository:** We primarily use the standard L² framework with occasional weighted norms for advection-dominated problems.
+
+---
+
+## Summary: Key Principles of LSFEM
+
+### Advantages Over Standard Galerkin FEM
+
+| Feature | LSFEM | Standard Galerkin |
+|---------|-------|-------------------|
+| **System matrix** | Always SPD | SPD only for elliptic problems |
+| **Mixed formulations** | No LBB condition | Requires inf-sup stability |
+| **Element choice** | Equal-order for all variables | Restricted pairs (e.g., Taylor-Hood) |
+| **Error estimator** | Natural (residual = functional) | Requires post-processing |
+| **Iterative solvers** | CG always applicable | GMRES needed for non-SPD |
+
+### The LSFEM Recipe
+
+1. **Reformulate** PDE as first-order system (introduce fluxes/auxiliary variables)
+2. **Define** $\mathcal{J} = \sum \|$residuals$\|_{L^2}^2$
+3. **Minimize** over $X_h \subset H^1$ using C⁰ elements
+4. **Solve** resulting SPD system with CG or multigrid-preconditioned CG
+
+### Critical Success Factors
+
+- ✅ **First-order formulation:** Enables C⁰ elements (practical implementation)
+- ✅ **Proper norms:** L² residual norms ensure easy assembly
+- ✅ **Balance estimate:** Guarantees optimal convergence in energy norm
+- ✅ **SPD structure:** Unlocks efficient Krylov/multigrid solvers
+
+---
+
+## Further Reading
+
+**For specific applications:**
+- [Poisson Equation](../1D_Poisson/01_Problem_Formulation.md) — Grad-div and grad-div-curl formulations
+- [Advection-Diffusion](03_ADR_Formulations.md) — Diffusive vs total flux systems
+- [Navier-Stokes](04_Navier_Stokes.md) — Vorticity-velocity-pressure (V-V-P) formulation
+
+**For theoretical foundations:**
+- Bochev & Gunzburger (2009). *Least-Squares Finite Element Methods.* Springer. [DOI:10.1007/b13382](https://doi.org/10.1007/b13382)
+- Jiang (1998). *The Least-Squares Finite Element Method.* Springer. [DOI:10.1007/978-3-662-03740-9](https://doi.org/10.1007/978-3-662-03740-9)
+
+**For implementation details:**
+- [Main README: Solver Performance](../README.md#solver-efficiency)
+- [AMR Algorithms](05_AMR_Algorithms.md)
+
+---
+
+**Document version:** 1.0  
+**Last updated:** January 2025  
+**Based on:** Nickaeen (2014), *Efficient FEM and Multigrid Solvers for the Least-Squares Method*
