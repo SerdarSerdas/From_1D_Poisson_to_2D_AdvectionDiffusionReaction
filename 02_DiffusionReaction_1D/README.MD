@@ -70,10 +70,13 @@ We consider the **boundary layer problem** and the **interior layer problem** wi
 The convergence rates are computed as the logarithmic ratio of successive $L^2$ errors between consecutive mesh refinement levels.
 
 
-**Solution Variable ($u$)**
+**Solution Variable $u$ — Boundary Layer**
 
-Diffusion-dominated regime ($c=10^{-4}$): 
+Diffusion-dominated regime $(c=10^{-4})$: 
 All three methods achieve optimal second-order convergence $({\cal O}(h^2))$, with rates asymptotically approaching 2.00 as expected for $P_1$ elements.
+
+Reaction-dominated regime $(c = 10^{4})$:
+A critical distinction emerges. SFEM and wLSFEM maintain optimal convergence with rates consistently near 2.00. However, standard LSFEM experiences severe degradation, with rates collapsing to 0.80–1.18. This demonstrates that the unweighted least-squares functional fails when reaction terms dominate. The weighted formulation (wLSFEM) successfully restores optimal convergence across all regimes.
 
 **Table 3: Convergence Rates for Solution $u$**
 
@@ -89,6 +92,14 @@ All three methods achieve optimal second-order convergence $({\cal O}(h^2))$, wi
 | wLSFEM | 2.06  | 2.03  | 2.01  | 2.00  | 2.00   | ✅ |
 
 > **🔍 Observation**: LSFEM errors **stop decreasing** at high reaction (`c=10⁴`), while **wLSFEM maintains optimal convergence**.
+
+**Flux Variable $q$ — Boundary Layer** 
+
+Diffusion-dominated regime $(c = 10^{-4})$:
+SFEM exhibits standard first-order convergence $(\cal{O}(h), rate \approx 1.00)$ for flux recovery. Both LSFEM and wLSFEM demonstrate superconvergence, achieving second-order rates $(\approx 2.00)$ — a full order of magnitude improvement over SFEM.
+
+Reaction-dominated regime $(c = 10^{4})$:
+SFEM maintains first-order convergence. Standard LSFEM shows irregular and deteriorating behavior (rates 1.12–1.51), losing its superconvergent property. wLSFEM preserves second-order superconvergence $(rate \approx 2.00)$, demonstrating robust flux accuracy independent of the reaction coefficient magnitude. Key Finding: Weighted LSFEM is essential for maintaining optimal convergence and flux superconvergence in reaction-dominated problems, while standard LSFEM is only suitable for diffusion-dominated regimes.
 
 **Table 4: Convergence Rates for Flux $q$**
 
