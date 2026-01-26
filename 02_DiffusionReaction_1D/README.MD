@@ -79,11 +79,11 @@ All three methods achieve optimal second-order convergence $({\cal O}(h^2))$, wi
 
 | Method | ML5→6 | ML6→7 | ML7→8 | ML8→9 | ML9→10 | Asymptotic |
 |--------|-------|-------|-------|-------|--------|------------|
-| **Boundary Layer ($c=10^{-4}$)** |
+| **Diffusion-dominated ($c=10^{-4}$)** |
 | SFEM   | 1.94  | 1.98  | 2.00  | 2.00  | 2.00   | ✅ |
 | LSFEM  | 1.98  | 1.99  | 2.00  | 2.00  | 2.00   | ✅ |
 | wLSFEM | 1.94  | 1.99  | 2.00  | 2.00  | 2.00   | ✅ |
-| **Interior Layer ($c=10^{4}$)** |
+| **Reaction-dominated ($c=10^{4}$)** |
 | SFEM   | 2.06  | 2.03  | 2.01  | 2.00  | 2.00   | ✅ |
 | LSFEM  | 0.97  | 0.80  | 0.84  | 0.98  | 1.18   | ❌ (Degraded) |
 | wLSFEM | 2.06  | 2.03  | 2.01  | 2.00  | 2.00   | ✅ |
@@ -94,11 +94,11 @@ All three methods achieve optimal second-order convergence $({\cal O}(h^2))$, wi
 
 | Method | ML5→6 | ML6→7 | ML7→8 | ML8→9 | ML9→10 | Asymptotic |
 |--------|-------|-------|-------|-------|--------|------------|
-| **Boundary Layer ($c=10^{-4}$)** |
+| **Diffusion-dominated ($c=10^{-4}$)** |
 | SFEM   | 0.95  | 0.99  | 1.00  | 1.00  | 1.00   | ✅ |
 | LSFEM  | 1.94  | 1.98  | 2.00  | 2.00  | 2.00   | ✅ |
 | wLSFEM | 1.94  | 1.98  | 2.00  | 2.00  | 2.00   | ✅ |
-| **Interior Layer ($c=10^{4}$)** |
+| **Reaction-doominated ($c=10^{4}$)** |
 | SFEM   | 0.98  | 1.00  | 1.00  | 1.00  | 1.00   | ✅ |
 | LSFEM  | 1.19  | 1.12  | 1.20  | 1.33  | 1.51   | ❌ (Degraded) |
 | wLSFEM | 1.97  | 2.00  | 2.00  | 2.00  | 2.00   | ✅ |
