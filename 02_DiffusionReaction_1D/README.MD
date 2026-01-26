@@ -73,7 +73,7 @@ The convergence rates are computed as the logarithmic ratio of successive $L^2$ 
 **Solution Variable ($u$)**
 
 Diffusion-dominated regime ($c=10^{-4}$): 
-All three methods achieve optimal second-order convergence ($\mathcal{O}(h^2)$), with rates asymptotically approaching 2.00 as expected for $P_1$ elements.
+All three methods achieve optimal second-order convergence (${\cal O}(h^2)$), with rates asymptotically approaching 2.00 as expected for $P_1$ elements.
 
 **Table 3: Convergence Rates for Solution $u$**
 
