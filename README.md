@@ -206,15 +206,69 @@ If you use this work in your research, please cite:
 
 ---
 
-## 📚 Key References
+---
 
-1. **Bochev, P. B., & Gunzburger, M. D.** (2009). *Least-Squares Finite Element Methods*. Springer. [DOI:10.1007/b13382](https://doi.org/10.1007/b13382)
+## References
 
-2. **Roos, H.-G., Stynes, M., & Tobiska, L.** (2008). *Robust Numerical Methods for Singularly Perturbed Differential Equations* (2nd ed.). Springer. [DOI:10.1007/978-3-540-34467-4](https://doi.org/10.1007/978-3-540-34467-4)
+### Core LSFEM Theory
 
-3. **Dörfler, W.** (1996). A convergent adaptive algorithm for Poisson's equation. *SIAM Journal on Numerical Analysis*, 33(3), 1106-1124. [DOI:10.1137/0733054](https://doi.org/10.1137/0733054)
+[1] Bochev, P. B., & Gunzburger, M. D. (1998). *Finite element methods of least-squares type*. SIAM Review, 40(4), 789-837. DOI: [10.1137/S0036144597321156](https://doi.org/10.1137/S0036144597321156)
 
-**For complete bibliography**, see [`01_Theory/REFERENCES.md`](01_Theory/REFERENCES.md)
+[2] Bochev, P. B., & Gunzburger, M. D. (2009). *Least-Squares Finite Element Methods*. Springer. DOI: [10.1007/b13382](https://doi.org/10.1007/b13382)
+
+[3] Jiang, B. N. (1998). *The Least-Squares Finite Element Method: Theory and Applications in Computational Fluid Dynamics and Electromagnetics*. Springer. DOI: [10.1007/978-3-662-03740-9](https://doi.org/10.1007/978-3-662-03740-9)
+
+[4] Bochev, P., & Gunzburger, M. (2006). Least-squares methods for the velocity-pressure-stress formulation of the Stokes equations. *Computer Methods in Applied Mechanics and Engineering*, 195(7-8), 828-845. DOI: [10.1016/j.cma.2005.02.018](https://doi.org/10.1016/j.cma.2005.02.018)
+
+### Transport Equations
+
+[5] Pehlivanov, A. I., & Carey, G. F. (1994). Error estimates for least-squares mixed finite elements. *RAIRO-Modélisation mathématique et analyse numérique*, 28(5), 499-516. DOI: [10.1051/m2an/1994280504991](https://doi.org/10.1051/m2an/1994280504991)
+
+[6] Pehlivanov, A. I., Carey, G. F., & Lazarov, R. D. (1994). Least-squares mixed finite elements for second-order elliptic problems. *SIAM Journal on Numerical Analysis*, 31(5), 1368-1377. DOI: [10.1137/0731071](https://doi.org/10.1137/0731071)
+
+[7] Yang, S. Y. (2000). Analysis of optimal least-squares finite element methods for the Stokes equations on rectangular elements. *Journal of Computational Mathematics*, 18(3), 277-288.
+
+[8] Carey, G. F., Pehlivanov, A. I., & Vassilevski, P. S. (1995). Least-squares mixed finite element methods for non-selfadjoint elliptic problems: I. Error estimates. *Numerische Mathematik*, 72(4), 501-522. DOI: [10.1007/s002110050180](https://doi.org/10.1007/s002110050180)
+
+[9] Fialko, S. Y., Manko, V. P., & McConnell, P. W. (1998). First-order system least squares for the convection-diffusion problem. *International Journal for Numerical Methods in Engineering*, 43(2), 307-321.
+
+[10] Hsieh, P. W., & Yang, S. Y. (2009). On efficient least-squares finite element methods for convection-dominated problems. *Computer Methods in Applied Mechanics and Engineering*, 199(1-4), 183-196. DOI: [10.1016/j.cma.2009.09.029](https://doi.org/10.1016/j.cma.2009.09.029)
+
+[11] Lazarov, R., Tobiska, L., & Vassilevski, P. S. (1997). Streamline diffusion least-squares mixed finite element methods for convection-diffusion problems. *East-West Journal of Numerical Mathematics*, 5(4), 249-264.
+
+[12] Cai, Z., Manteuffel, T. A., & McCormick, S. F. (1997). First-order system least squares for second-order partial differential equations: Part II. *SIAM Journal on Numerical Analysis*, 34(2), 425-454. DOI: [10.1137/S0036142994266066](https://doi.org/10.1137/S0036142994266066)
+
+### Algebraic Multigrid
+
+[13] Bell, W. N., Olson, L. N., & Schroder, J. B. (2022). PyAMG: Algebraic Multigrid Solvers in Python v5.0. Release 5.0. DOI: [10.5281/zenodo.596446](https://doi.org/10.5281/zenodo.596446)
+
+[14] Virtanen, P., Gommers, R., Oliphant, T. E., et al. (2020). SciPy 1.0: Fundamental algorithms for scientific computing in Python. *Nature Methods*, 17, 261-272. DOI: [10.1038/s41592-019-0686-2](https://doi.org/10.1038/s41592-019-0686-2)
+
+### Adaptive Mesh Refinement
+
+[15] Dörfler, W. (1996). A convergent adaptive algorithm for Poisson's equation. *SIAM Journal on Numerical Analysis*, 33(3), 1106-1124. DOI: [10.1137/0733054](https://doi.org/10.1137/0733054)
+
+### Singular Perturbations
+
+[16] Roos, H.-G., Stynes, M., & Tobiska, L. (2008). *Robust Numerical Methods for Singularly Perturbed Differential Equations* (2nd ed.). Springer Series in Computational Mathematics, Vol. 24. DOI: [10.1007/978-3-540-34467-4](https://doi.org/10.1007/978-3-540-34467-4)
+
+[17] Shishkin, G. I. (1988). Grid approximation of singularly perturbed elliptic and parabolic equations. Second doctoral thesis, Keldysh Institute, Moscow. (In Russian)
+
+[18] Linß, T. (2010). *Layer-Adapted Meshes for Reaction-Convection-Diffusion Problems*. Springer Lecture Notes in Mathematics, Vol. 1985. DOI: [10.1007/978-3-642-05134-0](https://doi.org/10.1007/978-3-642-05134-0)
+
+### Convergence Theory
+
+[19] Brenner, S. C., & Scott, L. R. (2008). *The Mathematical Theory of Finite Element Methods* (3rd ed.). Springer Texts in Applied Mathematics, Vol. 15. DOI: [10.1007/978-0-387-75934-0](https://doi.org/10.1007/978-0-387-75934-0)
+
+[20] Ciarlet, P. G. (2002). *The Finite Element Method for Elliptic Problems*. SIAM Classics in Applied Mathematics, Vol. 40. DOI: [10.1137/1.9780898719208](https://doi.org/10.1137/1.9780898719208)
+
+---
+
+## Additional Resources
+
+### Software Implementations
+
+- **PyAMG**: [https://github.com/pyamg/pyamg](https://github.com/pyamg/pyamg)
 
 ---
 
