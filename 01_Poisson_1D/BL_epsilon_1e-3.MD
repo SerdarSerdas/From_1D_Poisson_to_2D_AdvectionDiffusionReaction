@@ -1,5 +1,13 @@
 ## 📊 Numerical Results
 
+### 📊 Comparative summary
+
+| Method | ∥u−uh∥0\\\|u - u_h\\\|_0∥u−uh∥0 (solution) | ∥q−qh∥0\\\|q - q_h\\\|_0∥q−qh∥0 (flux) | Convergence                                  | Key characteristic                           |
+| ------ | -------------------------------------- | ---------------------------------- | -------------------------------------------- | -------------------------------------------- |
+| SFEM   | Excellent (smallest errors)            | Poor (1st order)                   | u:O(h2)u: O(h^2)u:O(h2), q:O(h)q: O(h)q:O(h) | Highly accurate uuu, weak flux recovery      |
+| LSFEM  | Moderate (5× larger than SFEM)         | Excellent (2nd order)              | u,q:O(h2)u, q: O(h^2)u,q:O(h2)               | Robust fluxes, suboptimal uuu                |
+| wLSFEM | Excellent (≈ SFEM)                     | Very good (better than LSFEM)      | u,q:O(h2)u, q: O(h^2)u,q:O(h2)               | Balanced performance and improved robustness |
+
 ### 🧩 Solution variable u
 
 Both SFEM and wLSFEM demonstrate excellent accuracy and optimal second‑order convergence in the $L^2$ norm of u. In contrast, LSFEM produces consistently larger absolute errors across all refinement levels. SFEM yields the smallest u-errors overall, from $1.5 \times 10^{−2}$ at ML5 to $1.55 \times 10^{-5}$ at ML10, reflecting textbook second‑order convergence for $P_1$ elements.
