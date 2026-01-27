@@ -58,7 +58,7 @@ We consider following configurations:
 - **Boundary Layer** with $\epsilon = 5.e-6$ [BL $\epsilon = 5e-6$](BL_epsilon_5e-6)
 - **Interior Layer** with $\epsilon = 1.e-3$
 - **Interior Layer** with $\epsilon = 1.e-7$
-- [**Boundary Layer** with $\epsilon = 1.e-3$](BL_epsilon_1e-3) **Boundary Layer** with $\epsilon = 1.e-3$
+- [**Boundary Layer** with ϵ = 1.e-3](BL_epsilon_1e-3)
 
 | Config | $\epsilon$ | Jump to Results |
 |--------|------------|-----------------|
