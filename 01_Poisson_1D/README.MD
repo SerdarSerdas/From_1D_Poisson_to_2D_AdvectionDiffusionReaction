@@ -59,6 +59,10 @@ We consider following configurations:
 - **Interior Layer** with $\epsilon = 1.e-3$
 - **Interior Layer** with $\epsilon = 1.e-7$
 
+| Config | $\epsilon$ | Jump to Results |
+|--------|------------|-----------------|
+| [BL ε=1e-3](BL_epsilon_1e-3) | $\epsilon=10^{-3}$ | [→](BL_epsilon_1e-3) |
+| [BL ε=5e-6](BL_epsilon_5e-6) | $\epsilon=5\times10^{-6}$ | [→](BL_epsilon_5e-6) |
 
 ### Test Problem Configuration
 
