@@ -56,8 +56,8 @@ $${\cal F}(v,r) = w^2_1 (f, -r^\prime )_0$$
 We consider following configurations:
 - [**Boundary Layer** with ϵ = 1.e-3](BL_epsilon_1e-3.MD)
 - [**Boundary Layer** with ϵ = 5.e-6](BL_epsilon_5e-6.MD)
-- [**Interior Layer** with ϵ = 1.e-3](BL_epsilon_1e-3.MD)
-- [**Interior Layer** with ϵ = 1.e-7](BL_epsilon_1e-7.MD)
+- [**Interior Layer** with ϵ = 1.e-3](IL_epsilon_1e-3.MD)
+- [**Interior Layer** with ϵ = 1.e-7](IL_epsilon_1e-7.MD)
 
 All configurations are discretized using linear ($P_1$) elements on regular and perturbed meshes.
 
