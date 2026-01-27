@@ -59,7 +59,7 @@ We consider following configurations:
 - [**Interior Layer** with ϵ = 1.e-3](IL_epsilon_1e-3.MD)
 - [**Interior Layer** with ϵ = 1.e-7](IL_epsilon_1e-7.MD)
 
-All configurations are discretized using linear ($P_1$) finite elements. For the **moderate diffusion** cases ($\epsilon = 1\cdot10^{-3}$), both **regular** and **perturbed** grids are studied, while for the **strongly layered** cases ($\epsilon = 5\cdot10^{-6}$ and $1\cdot10^{-7}$) we consider **regular grids with adaptive mesh refinement**.
+All configurations are discretized using linear ($P_1$) finite elements. For the **moderate diffusion** cases ($\epsilon = 1\cdot10^{-3}$), both **regular** and **perturbed** grids are studied, while for the **strongly layered** cases ($\epsilon = 5\cdot10^{-6}$ and $\epsilon = 1\cdot10^{-7}$) we consider **regular grids with adaptive mesh refinement**.
 
 
 ## Summary
