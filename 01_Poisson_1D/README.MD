@@ -18,9 +18,9 @@ $$
 
 ## Standard Galerkin FEM (SFEM)
 
-The classical Galerkin finite element formulation seeks $u_h \in V_h \subset H^1_0({\cal B})$ such that
+The classical Galerkin finite element formulation seeks $u \in V \subset H^1_0({\cal B})$ such that
 
-$$(u^\prime_h, v^\prime_h)_0 = (f, v_h)_0 \quad \forall v_h \in V_h$$
+$$(u^\prime, v^\prime)_0 = (f, v)_0 \quad \forall v \in V_h$$
 
 ## Least Squares FEM (LSFEM)
 
