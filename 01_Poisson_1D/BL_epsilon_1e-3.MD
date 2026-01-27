@@ -25,7 +25,8 @@ A more pronounced contrast appears in the flux errors **$\|q - q_h\|_0$**:
 
 
 
-### 📊 Comparative summary
+### 🌊 Key observation
+The log-log slopes confirm: **wLSFEM = best of both worlds** 💎
 
 | Method | $\parallel u - u_h\parallel_0$ (solution) | $\parallel q - q_h\parallel_0$ (flux) | Convergence | Key characteristic |
 |--------|----------------------------|-------------------------|-------------|-------------------|
@@ -33,6 +34,19 @@ A more pronounced contrast appears in the flux errors **$\|q - q_h\|_0$**:
 | **LSFEM**  | Moderate ($5\times$ larger than SFEM) | Excellent (2nd order) | $u,q:O(h^2)$ | Robust fluxes, suboptimal $u$ |
 | **wLSFEM** | Excellent (≈ SFEM) | Very good (better than LSFEM) | $u,q:O(h^2)$ | Balanced performance and robustness |
 
-### 🌊 Key observation
-The log-log slopes confirm: **wLSFEM = best of both worlds** 💎
+
+### 📋 Raw convergence data (regular vs. perturbed meshes)
+
+**Solution $u$ errors ($\|u-u_h\|_0$, ML10):**
+| Mesh | SFEM (reg/pert) | LSFEM (reg/pert) | wLSFEM (reg/pert) |
+|------|-----------------|------------------|-------------------|
+| ML10 | $1.55×10^{-5}$ / $1.82×10^{-5}$ | $7.45×10^{-5}$ / $8.23×10^{-5}$ | $1.55×10^{-5}$ / $1.80×10^{-5}$ |
+
+**Flux $q$ errors ($\|q-q_h\|_0$, ML10):**
+| Mesh | SFEM (reg/pert) | LSFEM (reg/pert) | wLSFEM (reg/pert) |
+|------|-----------------|------------------|-------------------|
+| ML10 | $5.01×10^{-2}$ / $5.28×10^{-2}$ | $4.89×10^{-4}$ / $5.75×10^{-4}$ | $2.00×10^{-4}$ / $2.91×10^{-4}$ |
+
+**wLSFEM maintains SFEM-level $u$ accuracy AND superior flux recovery — even under mesh perturbation.**
+
 
