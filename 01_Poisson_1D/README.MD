@@ -4,7 +4,14 @@
 
 $$
 \begin{aligned}
--u^{\prime\prime} &= f \quad &&\text{in } {\cal B} = (0,1), \\
+-u^{\prime\prime} &= f \quad &&\text{in } {\cal B} = (0,1) \\
+\end{aligned}
+$$
+
+with
+
+$$
+\begin{aligned}
 u &= 0 \quad &&\text{on } \partial{\cal B}_D .
 \end{aligned}
 $$
