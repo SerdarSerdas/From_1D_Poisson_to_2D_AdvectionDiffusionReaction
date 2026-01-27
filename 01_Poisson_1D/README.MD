@@ -51,7 +51,14 @@ $${\cal A}((u,q);(v,r)) = (-q^\prime , -r^\prime)_0 + w^2_2 (q - u^\prime, r - v
 $${\cal F}(v,r) = w^2_2 (f, -r^\prime )_0$$
 
 
-## 4. Numerical Results
+## Numerical Results
+
+We consider following configurations:
+- **Boundary Layer** with $\epsilon = 1.e-3$ (https://github.com/SerdarSerdas)
+- **Boundary Layer** with $\epsilon = 5.e-6$
+- **Interior Layer** with $\epsilon = 1.e-3$
+- **Interior Layer** with $\epsilon = 1.e-7$
+
 
 ### Test Problem Configuration
 
