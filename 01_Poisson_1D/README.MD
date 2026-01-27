@@ -35,8 +35,8 @@ $$-q^\prime = f, \qquad q - u^\prime = 0$$
 $${\cal J}(u,q;f) = \frac{1}{2} \parallel (-q^\prime - f) \parallel^2_0 + \frac{1}{2} \parallel w_2 (q - u^\prime) \parallel^2_0$$
 
 **Weighting analyzed:**
-- **LSFEM**: $w_2 = 1$ (unweighted)
-- **wLSFEM**: $w_2 = \epsilon^{-1/2}$ (balanced scaling)
+- **LSFEM**: $w_1 = 1, w_2 = 1$ (unweighted)
+- **wLSFEM**: $w_1 = 1, w_2 = \epsilon^{-1/2}$ (balanced scaling)
 
 ### Variational Formulation
 
@@ -46,9 +46,9 @@ $${\cal A}((u,q);(v,r)) = {\cal F}(v,r), \quad \forall (v,r) \in V \times Q$$
 
 with
 
-$${\cal A}((u,q);(v,r)) = (-q^\prime , -r^\prime)_0 + w^2_2 (q - u^\prime, r - v^\prime)_0$$
+$${\cal A}((u,q);(v,r)) = w^2_1(-q^\prime , -r^\prime)_0 + w^2_2 (q - u^\prime, r - v^\prime)_0$$
 
-$${\cal F}(v,r) = w^2_2 (f, -r^\prime )_0$$
+$${\cal F}(v,r) = w^2_1 (f, -r^\prime )_0$$
 
 
 ## Numerical Results
