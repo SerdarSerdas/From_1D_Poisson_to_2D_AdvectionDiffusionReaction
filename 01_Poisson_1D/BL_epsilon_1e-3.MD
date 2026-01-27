@@ -13,9 +13,9 @@ wLSFEM, however, recovers SFEM‑level performance in u. Its $L^2$ norm-errors n
 
 ### 🌊 Flux variable $q = u^\prime$
  
-A more pronounced contrast appears in the flux errors $\parallel q - q _h \parallel_0:
+A more pronounced contrast appears in the flux errors $\parallel q - q _h \parallel_0$:
 
-SFEM achieves only first‑order convergence, consistent with the expected derivative‑recovery limitation of the classical Galerkin approach. Flux errors remain large — 1.53 at ML5 and $5.0 \times 10^{-2} at ML10 — showing weak gradient accuracy even on refined meshes.
+SFEM achieves only first‑order convergence, consistent with the expected derivative‑recovery limitation of the classical Galerkin approach. Flux errors remain large — 1.53 at ML5 and $5.0 \times 10^{-2}$ at ML10 — showing weak gradient accuracy even on refined meshes.
 
 LSFEM dramatically improves flux recovery, achieving second‑order convergence and reducing errors by approximately five orders of magnitude relative to SFEM at the finest mesh. This highlights the benefit of treating the flux as a primary unknown in the least‑squares framework.
 
