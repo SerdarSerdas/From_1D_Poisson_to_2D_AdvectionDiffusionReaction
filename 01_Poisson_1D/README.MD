@@ -54,7 +54,7 @@ $${\cal F}(v,r) = w^2_2 (f, -r^\prime )_0$$
 ## Numerical Results
 
 We consider following configurations:
-- **Boundary Layer** with $\epsilon = 1.e-3$ (01_Poisson_1D/BL_epsilon_1e-3)
+- **Boundary Layer** with $\epsilon = 1.e-3$ (tree/main/01_Poisson_1D/BL_epsilon_1e-3)
 - **Boundary Layer** with $\epsilon = 5.e-6$
 - **Interior Layer** with $\epsilon = 1.e-3$
 - **Interior Layer** with $\epsilon = 1.e-7$
