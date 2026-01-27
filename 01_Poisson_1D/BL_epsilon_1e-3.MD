@@ -1,6 +1,6 @@
 ## 📊 Numerical Results
 
-![Figure 1: 1D Poisson method comparison](Fig_Poisson1D_BL_SolutionConverg.png)
+![Figure 1: 1D Poisson method comparison](figures/Fig_Poisson1D_BL_SolutionConverg.png)
 **Figure 1.** (a) Solution $u_h$, (b) $u$ error convergence; (c) flux $q_h$, (d) $q$ error convergence. ML5 solutions (32 elements); log-log convergence (regular meshes). wLSFEM achieves SFEM-level $u$ accuracy with LSFEM-level flux recovery.
 
 ### 🧩 Solution variable $u$
