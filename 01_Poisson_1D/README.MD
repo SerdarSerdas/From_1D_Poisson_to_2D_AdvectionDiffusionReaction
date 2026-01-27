@@ -54,24 +54,14 @@ $${\cal F}(v,r) = w^2_2 (f, -r^\prime )_0$$
 ## Numerical Results
 
 We consider following configurations:
-- **Boundary Layer** with $\epsilon = 1.e-3$ [BL $\epsilon = 1e-3$](BL_epsilon_1e-3)
-- **Boundary Layer** with $\epsilon = 5.e-6$ [BL $\epsilon = 5e-6$](BL_epsilon_5e-6)
-- **Interior Layer** with $\epsilon = 1.e-3$
-- **Interior Layer** with $\epsilon = 1.e-7$
 - [**Boundary Layer** with ϵ = 1.e-3](BL_epsilon_1e-3)
+- [**Boundary Layer** with ϵ = 5.e-6](BL_epsilon_5e-6)
+- [**Interior Layer** with ϵ = 1.e-3](BL_epsilon_1e-3)
+- [**Interior Layer** with ϵ = 1.e-7](BL_epsilon_1e-7)
 
-| Config | $\epsilon$ | Jump to Results |
-|--------|------------|-----------------|
-| [BL ε=1e-3](BL_epsilon_1e-3) | $\epsilon=10^{-3}$ | [→](BL_epsilon_1e-3) |
-| [BL ε=5e-6](BL_epsilon_5e-6) | $\epsilon=5\times10^{-6}$ | [→](BL_epsilon_5e-6) |
+All configurations are discretized using linear ($P_1$) elements on regular and perturbed meshes.
 
-### Test Problem Configuration
-
-We consider two configurations with $\epsilon = 10^{-3}$:
-- **Boundary Layer**: Sharp gradients near domain boundaries
-- **Interior Layer**: Sharp gradients in the domain interior
-
-Both problems are discretized using linear ($P_1$) elements on regular and perturbed meshes.
+## Summary
 
 ### Solution and Flux at ML5 (32 elements)
 
