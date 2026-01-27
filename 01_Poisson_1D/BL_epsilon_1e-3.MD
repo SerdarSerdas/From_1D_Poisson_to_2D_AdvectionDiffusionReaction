@@ -2,7 +2,7 @@
 
 ### 📊 Comparative summary
 
-| Method | ∥u−uh∥0\\\|u - u_h\\\|_0∥u−uh∥0 (solution) | ∥q−qh∥0\\\|q - q_h\\\|_0∥q−qh∥0 (flux) | Convergence                                  | Key characteristic                           |
+| Method | $\parallel u − u_h \parallel_0$ (solution) | $\parallel q − q_h \parallel_0$ (flux) | Convergence                                  | Key characteristic                           |
 | ------ | -------------------------------------- | ---------------------------------- | -------------------------------------------- | -------------------------------------------- |
 | SFEM   | Excellent (smallest errors)            | Poor (1st order)                   | u:O(h2)u: O(h^2)u:O(h2), q:O(h)q: O(h)q:O(h) | Highly accurate uuu, weak flux recovery      |
 | LSFEM  | Moderate (5× larger than SFEM)         | Excellent (2nd order)              | u,q:O(h2)u, q: O(h^2)u,q:O(h2)               | Robust fluxes, suboptimal uuu                |
