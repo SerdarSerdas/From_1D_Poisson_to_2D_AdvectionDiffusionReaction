@@ -6,7 +6,7 @@ Both SFEM and wLSFEM demonstrate excellent accuracy and optimal second‑order c
 
 LSFEM $(w_2 = 1)$ exhibits larger solution errors — roughly five times higher than SFEM at every mesh level — suggesting an imperfect balance between the PDE and constitutive residuals in the unweighted least‑squares functional.
 
-wLSFEM, however, recovers SFEM‑level performance in u. Its $L^2$ norm-errors nearly coincide with SFEM values, indicating that the applied weighting successfully restores the balance lost in the standard LSFEM formulation.
+wLSFEM $(w_2 = \epsilon^{-1/2})$, however, recovers SFEM‑level performance in u. Its $L^2$ norm-errors nearly coincide with SFEM values, indicating that the applied weighting successfully restores the balance lost in the standard LSFEM formulation.
 
 
 
