@@ -48,7 +48,7 @@ with
 
 $${\cal A}((u,q);(v,r)) = (-q^\prime , -r^\prime)_0 + w^2_2 (q - u^\prime, r - v^\prime)_0$$
 
-$${\cal F}(v,r) = w^2_1 (f, -r^\prime )_0$$
+$${\cal F}(v,r) = w^2_2 (f, -r^\prime )_0$$
 
 
 ## 4. Numerical Results
