@@ -5,7 +5,7 @@
 $$
 \begin{aligned}
 -u^{\prime\prime} &= f \quad &&\text{in } {\cal B} = (0,1), \\
-u(0) = u(1) &= 0 \quad &&\text{on } \partial{\cal B}_D .
+u &= 0 \quad &&\text{on } \partial{\cal B}_D .
 \end{aligned}
 $$
 
