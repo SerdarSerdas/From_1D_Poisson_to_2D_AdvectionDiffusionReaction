@@ -50,3 +50,9 @@ The log-log slopes confirm: **wLSFEM = best of both worlds** 💎
 **wLSFEM maintains SFEM-level $u$ accuracy AND superior flux recovery — even under mesh perturbation.**
 
 
+
+
+
+![Figure 2: 1D Poisson solver performance](figures/solver_table.png)
+
+
