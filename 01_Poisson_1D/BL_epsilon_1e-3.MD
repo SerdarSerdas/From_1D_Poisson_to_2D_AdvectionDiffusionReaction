@@ -21,7 +21,7 @@ wLSFEM $(w_2 = \epsilon^{-1/2})$, however, recovers SFEM‑level performance in 
 
 ### 🌊 Flux variable $q = u^\prime$
  
-A more pronounced contrast appears in the flux errors $\parallel q - q _h \parallel_0$:
+A more pronounced contrast appears in the flux errors $\parallel q - q_h \parallel_0$:
 
 SFEM achieves only first‑order convergence, consistent with the expected derivative‑recovery limitation of the classical Galerkin approach. Flux errors remain large — 1.53 at ML5 and $5.0 \times 10^{-2}$ at ML10 — showing weak gradient accuracy even on refined meshes.
 
