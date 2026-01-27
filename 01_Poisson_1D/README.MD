@@ -1,39 +1,35 @@
 # 1D Poisson Equation: SFEM vs LSFEM
 
-## 1. Problem Statement
-
-**Strong form ($\nu = 1$):**
+### Strong Form
 
 $$
 \begin{aligned}
--u^{\prime\prime} &= f \quad &&\text{in } {\cal B}, \\
-u &= 0 \quad &&\text{on } \partial{\cal B}_D
+-u^{\prime\prime} &= f \quad &&\text{in } {\cal B} = (0,1), \\
+u(0) = u(1) &= 0 \quad &&\text{on } \partial{\cal B}_D .
 \end{aligned}
 $$
 
-## 2. Standard Galerkin FEM (SFEM)
+## Standard Galerkin FEM (SFEM)
 
 The classical Galerkin finite element formulation seeks $u_h \in V_h \subset H^1_0({\cal B})$ such that
 
 $$(u^\prime_h, v^\prime_h)_0 = (f, v_h)_0 \quad \forall v_h \in V_h$$
 
-### Bilinear and Linear Forms
-
-$$a(u_h, v_h) = (u^\prime_h, v^\prime_h)_0 = \int_{\cal B} u^\prime_h v^\prime_h dx$$
-
-$$\ell(v_h) = (f, v_h)_0 = \int_{\cal B} f v_h dx$$
-
-## 3. Least Squares FEM (LSFEM)
+## Least Squares FEM (LSFEM)
 
 ### First-Order System
 
-Define the diffusive flux $q = u'$. The strong form is reformulated as:
+Define the diffusive flux $q = u^\prime$:
 
-$$-q^\prime  = f, \qquad q - u^\prime = 0$$
+$$-q^\prime = f, \qquad q - u^\prime = 0$$
 
-### Least-Squares Functional
+### Functional
 
-$${\cal J}(u,q;f) = \|-q^\prime - f\|_0^2 + \|q - u'\|_0^2$$
+$${\cal J}(u,q;f) = \frac{1}{2} \parallel (-q^\prime - f) \parallel^2_0 + \frac{1}{2} \parallel w_2 (q - u^\prime) \parallel^2_0$$
+
+**Weighting analyzed:**
+- **LSFEM**: $w_2 = 1$ (unweighted)
+- **wLSFEM**: $w_2 = \epsilon^{-1/2}$ (balanced scaling)
 
 ### Variational Formulation
 
@@ -43,9 +39,9 @@ $${\cal A}((u_h,q_h);(v_h,r_h)) = {\cal F}(v_h,r_h), \quad \forall (v_h,r_h) \in
 
 with
 
-$${\cal A}((u,q);(v,r)) = (-q^\prime, -r^\prime)_0 + (q - u', r - v')_0$$
+$${\cal A}((u,q);(v,r)) = (-q^\prime , -r^\prime)_0 + w^2_2 (q - u^\prime, r - v^\prime)_0$$
 
-$${\cal F}(v,r) = (f, r')_0$$
+$${\cal F}(v,r) = w^2_1 (f, -r^\prime )_0$$
 
 
 ## 4. Numerical Results
