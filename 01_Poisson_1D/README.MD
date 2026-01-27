@@ -40,9 +40,9 @@ $${\cal J}(u,q;f) = \frac{1}{2} \parallel (-q^\prime - f) \parallel^2_0 + \frac{
 
 ### Variational Formulation
 
-The discrete variational form seeks $(u_h, q_h) \in V_h \times Q_h$ satisfying
+The discrete variational form seeks $(u, q) \in V \times Q$ satisfying
 
-$${\cal A}((u_h,q_h);(v_h,r_h)) = {\cal F}(v_h,r_h), \quad \forall (v_h,r_h) \in V_h \times Q_h$$
+$${\cal A}((u,q);(v,r)) = {\cal F}(v,r), \quad \forall (v,r) \in V \times Q$$
 
 with
 
