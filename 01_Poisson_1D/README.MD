@@ -54,8 +54,8 @@ $${\cal F}(v,r) = w^2_2 (f, -r^\prime )_0$$
 ## Numerical Results
 
 We consider following configurations:
-- **Boundary Layer** with $\epsilon = 1.e-3$ [BL ε=1e-3](BL_epsilon_1e-3)
-- **Boundary Layer** with $\epsilon = 5.e-6$ 
+- **Boundary Layer** with $\epsilon = 1.e-3$ [BL $\epsilon = 1e-3$](BL_epsilon_1e-3)
+- **Boundary Layer** with $\epsilon = 5.e-6$ [BL $\epsilon = 5e-6$](BL_epsilon_5e-6)
 - **Interior Layer** with $\epsilon = 1.e-3$
 - **Interior Layer** with $\epsilon = 1.e-7$
 
