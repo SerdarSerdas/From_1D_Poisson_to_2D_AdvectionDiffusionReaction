@@ -142,9 +142,9 @@ All configurations are discretized using linear ($P_1$) finite elements with ($\
 
 ### ⚡ Solver performance (CG–AMG)
 
-The CG–AMG iteration counts show that unweighted LSFEM becomes increasingly difficult to solve as c grows. For $c=10^{-4}$, both LSFEM and wLSFEM exhibit mesh-dependent but still moderate iteration counts, with wLSFEM sometimes requiring fewer iterations on regular grids but more on strongly perturbed meshes (Table 7).
+**The CG–AMG iteration counts show that unweighted LSFEM becomes increasingly difficult to solve as c grows. For $c=10^{-4}$, both LSFEM and wLSFEM exhibit mesh-dependent but still moderate iteration counts, with wLSFEM sometimes requiring fewer iterations on regular grids but more on strongly perturbed meshes (Table 7).**
 
-For $c=10^4$, the contrast becomes much stronger. LSFEM requires between 136 and 222 CG–AMG iterations at ML10, whereas wLSFEM converges in fewer than 25 iterations even on perturbed meshes (Table 8). The weighted formulation yields a much better conditioned system in the reaction-dominated regime, making it clearly preferable from a solver efficiency perspective.
+**For $c=10^4$, the contrast becomes much stronger. LSFEM requires between 136 and 222 CG–AMG iterations at ML10, whereas wLSFEM converges in fewer than 25 iterations even on perturbed meshes (Table 8). The weighted formulation yields a much better conditioned system in the reaction-dominated regime, making it clearly preferable from a solver efficiency perspective.**
 
 **Table 7: CG-AMG - iteration counts for $c=10^{-4}$ (Regular/Perturbed)**
 | Mesh | LSFEM | wLSFEM |
@@ -167,6 +167,14 @@ For $c=10^4$, the contrast becomes much stronger. LSFEM requires between 136 and
 | ML9  | 103 / 127 | 11 / 12 |
 | ML10 | 136 / 222 | 19 / 23 |
 
+#
 
+### 🏆 Summary
+
+- In diffusion-dominated settings $(c = 10^{-4})$, all methods behave similarly for u, and both LSFEM and wLSFEM provide optimal flux convergence.
+
+- In reaction-dominated settings $(c = 10^4)$, the unweighted LSFEM loses convergence for both u and q, while wLSFEM preserves SFEM-level accuracy in u and delivers superior, second-order accurate fluxes.
+
+- From a solver viewpoint, wLSFEM also yields significantly lower CG–AMG iteration counts in the stiff reaction-dominated regime, indicating better conditioning and overall robustness.
 
 
