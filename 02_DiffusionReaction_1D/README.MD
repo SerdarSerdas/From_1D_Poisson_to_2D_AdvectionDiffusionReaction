@@ -100,9 +100,9 @@ All configurations are discretized using linear ($P_1$) finite elements with ($\
 
 ### 🌊 Flux variable $q$
 
-For the diffusion-dominated regime $c = 10^{-4}$, the behavior matches the pure Poisson case: SFEM delivers only first-order convergence for the flux $q = u^\prime$, while both LSFEM and wLSFEM reach optimal second-order convergence with very similar error levels. The weighting has only a marginal influence here because diffusion dominates the operator and the residual scaling is already well balanced (Table 4 - Table 6).
+**For the diffusion-dominated regime $c = 10^{-4}$, the behavior matches the pure Poisson case: SFEM delivers only first-order convergence for the flux $q = u^\prime$, while both LSFEM and wLSFEM reach optimal second-order convergence with very similar error levels. The weighting has only a marginal influence here because diffusion dominates the operator and the residual scaling is already well balanced (Table 4 - Table 6).**
 
-The reaction-dominated regime $c = 10^{4}$, reveals the main advantage of wLSFEM. SFEM remains locked at first-order flux convergence, and unweighted LSFEM not only fails to improve the flux but actually shows erratic and suboptimal convergence behavior for q. In contrast, wLSFEM achieves clean second-order convergence with flux errors several orders of magnitude smaller than both SFEM and LSFEM on the finest meshes (Table 5, Table 6). This demonstrates that the choice $w_1 = c^{-1/2}$ successfully rebalances the reaction and flux residuals in the least-squares functional.
+**The reaction-dominated regime $c = 10^{4}$, reveals the main advantage of wLSFEM. SFEM remains locked at first-order flux convergence, and unweighted LSFEM not only fails to improve the flux but actually shows erratic and suboptimal convergence behavior for q. In contrast, wLSFEM achieves clean second-order convergence with flux errors several orders of magnitude smaller than both SFEM and LSFEM on the finest meshes (Table 5, Table 6). This demonstrates that the choice $w_1 = c^{-1/2}$ successfully rebalances the reaction and flux residuals in the least-squares functional.**
 
 **Table 4: $L^2$ Error ($\| q - q_h \|_0$) for $c = 10^{-4}$** / RG = Regular Grid, PG = Perturbed Grid
 
@@ -140,7 +140,8 @@ The reaction-dominated regime $c = 10^{4}$, reveals the main advantage of wLSFEM
 
 #
 
-⚡ Solver performance (CG–AMG)
+### ⚡ Solver performance (CG–AMG)
+
 The CG–AMG iteration counts show that unweighted LSFEM becomes increasingly difficult to solve as c grows. For $c=10^{-4}$, both LSFEM and wLSFEM exhibit mesh-dependent but still moderate iteration counts, with wLSFEM sometimes requiring fewer iterations on regular grids but more on strongly perturbed meshes (Table 7).
 
 For $c=10^4$, the contrast becomes much stronger. LSFEM requires between 136 and 222 CG–AMG iterations at ML10, whereas wLSFEM converges in fewer than 25 iterations even on perturbed meshes (Table 8). The weighted formulation yields a much better conditioned system in the reaction-dominated regime, making it clearly preferable from a solver efficiency perspective.
