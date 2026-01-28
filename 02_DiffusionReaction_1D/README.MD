@@ -55,7 +55,7 @@ All configurations are discretized using linear ($P_1$) finite elements with ($\
 - **Reaction-dominated**: $c = 10^{4}$
 
 **1. Solution Variable** $u$ **(Tables 1-2)**
-#
+
 Both **SFEM** and **LSFEM** achieve optimal second-order convergence $(O(h^2)$ for the solution variable u:
 
 **SFEM** produces the **smallest errors**:
