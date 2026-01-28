@@ -59,7 +59,7 @@ We consider following configurations:
 - [**Interior Layer** with ϵ = 1.e-3](IL_epsilon_1e-3.MD)
 - [**Interior Layer** with ϵ = 1.e-7](IL_epsilon_1e-7.MD)
 
-All configurations are discretized using linear ($P_1$) finite elements. For the **moderate diffusion** cases ($\epsilon = 1\cdot10^{-3}$), both **regular** and **perturbed** grids are studied, while for the **strongly layered** cases ($\epsilon = 5\cdot10^{-6}$ and $\epsilon = 1\cdot10^{-7}$) we consider **regular grids with adaptive mesh refinement**.
+All configurations are discretized using linear ($P_1$) finite elements with ($\nun = 1\cdot10^{-3}$ / **moderate diffusion**). Both **regular** and **perturbed** grids are studied.
 
 
 ## Summary
@@ -77,11 +77,11 @@ The computed solutions at ML5 (32 elements) show that while both methods resolve
 | Method | ML 5 | ML 6 | ML 7 | ML 8 | ML 9 | ML 10 |
 |--------|------|------|------|------|------|-------|
 | SFEM (RG)   | 4.0088e-03 | 1.0060e-03 | 2.5175e-04 | 6.2954e-05 | 1.5739e-05 | 3.9349e-06 |
-| LSFEM (RG)  |  |  |  |  |  |  |
+| LSFEM (RG)  | 7.4255e-03 | 1.8731e-03 | 4.6933e-04 | 1.1740e-04 | 2.9354e-05 | 7.3389e-06 |
 | wLSFEM (RG) |  |  |  |  |  |  |
 |             |            |            |            |            |            |            |
 | SFEM (PG)   | 4.9101e-03 | 1.1785e-03 | 2.8344e-04 | 7.0732e-05 | 1.7867e-05 | 4.4419e-06 |
-| LSFEM (PG)  |  |  |  |  |  |  |
+| LSFEM (PG)  | 8.6949e-03 | 2.0132e-03 | 5.2286e-04 | 1.2784e-04 | 3.2207e-05 | 7.9986e-06 |
 | wLSFEM (PG) |  |  |  |  |  |  |
 
 
@@ -92,7 +92,8 @@ The computed solutions at ML5 (32 elements) show that while both methods resolve
 | Method | ML5→6 | ML6→7 | ML7→8 | ML8→9 | ML9→10 | Asymptotic |
 |--------|-------|-------|-------|-------|--------|------------|
 | SFEM   | 1.99  | 2.00  | 2.00  | 2.00  | 2.00   | ✅ |
-| LSFEM  |   |   |   |   |    | ✅ |
+| LSFEM  | 1.99  | 2.00  | 2.00  | 2.00  | 2.00   | ✅ |
+| wLSFEM |   |   |   |   |    | ✅ |
 
 
 **Table 3: $L^2$ Error for Flux $q$ ($\| q - q_h \|_0$)**
@@ -100,12 +101,13 @@ The computed solutions at ML5 (32 elements) show that while both methods resolve
 | Method | ML 5 | ML 6 | ML 7 | ML 8 | ML 9 | ML 10 |
 |--------|------|------|------|------|------|-------|
 | SFEM (RG)   | 4.0613e-04 | 2.0367e-04 | 1.0191e-04 | 5.0965e-05 | 2.5483e-05 | 1.2742e-05 |
-| LSFEM (RG)  |  |  |  |  |  |  |
+| LSFEM (RG)  | 6.2490e-05 | 1.5812e-05 | 3.9654e-06 | 9.9212e-07 | 2.4808e-07 | 6.2023e-08 |
 | wLSFEM (RG) |  |  |  |  |  |  |
 |             |            |            |            |            |            |            |
 | SFEM (PG)   | 4.3709e-04 | 2.1479e-04 | 1.0588e-04 | 5.2829e-05 | 2.6532e-05 | 1.3245e-05 |
-| LSFEM (PG)  |  |  |  |  |  |  |
+| LSFEM (PG)  | 7.6399e-05 | 1.7035e-05 | 4.6915e-06 | 1.0984e-06 | 2.8095e-07 | 6.9651e-08 |
 | wLSFEM (PG) |  |  |  |  |  |  |
+
 
 
 **Table 4: Convergence Rates for Solution $q$**
@@ -113,11 +115,22 @@ The computed solutions at ML5 (32 elements) show that while both methods resolve
 | Method | ML5→6 | ML6→7 | ML7→8 | ML8→9 | ML9→10 | Asymptotic |
 |--------|-------|-------|-------|-------|--------|------------|
 | SFEM   | 1.00  | 1.00  | 1.00  | 1.00  | 1.00   | ✅ |
-| LSFEM  |   |   |   |   |    | ✅ |
+| LSFEM  | 1.98  | 2.00  | 2.00  | 2.00  | 2.00   | ✅ |
 | wLSFEM |   |   |   |   |    | ✅ |
 
 
-**Table 5: CG - iteration counts**
+**Table 5: CG - iteration counts (LSFEM)**
+| Mesh | CG (reg/pert) | CG-JACOBI (reg/pert) | CG-AMG (reg/pert) |
+|------|-----------------|------------------|-------------------|
+| ML5  |    237 /    475 |   32 /   64 |   9 /  10 |
+| ML6  |    829 /   1722 |   64 /  128 |  14 /  14 |
+| ML7  |   2890 /   6107 |  128 /  256 |  23 /  24 |
+| ML8  |   9896 /  21301 |  256 /  514 |  40 /  41 |
+| ML9  |  31293 /  68484 |  512 / 1035 |  74 /  76 |
+| ML10 | 103807 / 224250 | 1024 / 2076 | 140 / 144 |
+
+
+**Table 6: CG - iteration counts (wLSFEM)**
 | Mesh | CG (reg/pert) | CG-JACOBI (reg/pert) | CG-AMG (reg/pert) |
 |------|-----------------|------------------|-------------------|
 | ML5  | 200000 / 100000 | 200000 / 100000 | 200000 / 100000 |
