@@ -17,7 +17,7 @@ $$
 
 The classical Galerkin finite element formulation seeks $u_h \in V_h \subset H^1_0({\cal B})$ such that
 
-$$(\nu u'_h, v'_h)_0 + (a u_h, v'_h)_0 = (f, v_h)_0 \quad \forall v_h \in V_h$$
+$$(\nu u^\prime_h, v^\prime_h)_0 + (a u^\prime_h, v_h)_0 = (f, v_h)_0 \quad \forall v_h \in V_h$$
 
 
 ## Least Squares FEM 
@@ -28,9 +28,17 @@ $$(\nu u'_h, v'_h)_0 + (a u_h, v'_h)_0 = (f, v_h)_0 \quad \forall v_h \in V_h$$
 **Balance:** $-q^\prime + a u^\prime = f$  
 **Constitutive:** $q - \nu u^\prime = 0$
 
-### Functional
+### First-Order System - Total Flux $(LSFEM^{(t)})$ :
 
-$${\cal J}(u,q;f) = \frac{1}{2} \parallel w_1 (-q^\prime + a u^\prime - f) \parallel^2_0 + \frac{1}{2} \parallel w_2 (q - \nu u^\prime) \parallel^2_0$$
+**Flux:** $q = \nu u^\prime - a u$  
+**Balance:** $-q^\prime = f$  
+**Constitutive:** $q - \nu u^\prime + a u = 0$
+
+### Functionals
+
+$${\cal J}^{(d)}(u,q;f) = \frac{1}{2} \parallel w_1 (-q^\prime + a u^\prime - f) \parallel^2_0 + \frac{1}{2} \parallel w_2 (q - \nu u^\prime) \parallel^2_0$$
+
+$${\cal J}^{(t)}(u,q;f) = \frac{1}{2} \parallel w_1 (-q^\prime - f) \parallel^2_0 + \frac{1}{2} \parallel w_2 (q - \nu u^\prime + a u) \parallel^2_0$$
 
 
 ### Variational Formulation
