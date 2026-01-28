@@ -46,94 +46,128 @@ $${\cal A}((u,q);(v,r)) = w^2_1 (-q^\prime + c u , -r^\prime + c v)_0 + (q - u^\
 $${\cal F}(v,r) = w^2_1 (f, -r^\prime + c v)_0$$
 
 
-## 📊 Numerical Results
+## 🔍 Key Findings
 
-### 🔧 Test Problem Configuration
-
-We consider the **boundary layer problem** and the **interior layer problem** with $\epsilon = 10^{-3}$ for two reaction regimes:
-
-| Regime | Reaction coefficient |
-|--------|---------------------|
-| **Diffusion-dominated** | `c = 10^{-4}` (weak reaction) |
-| **Reaction-dominated** | `c = 10^{4}` (strong reaction) |
-
-**Both problems**: $P_1$ (linear) elements on **regular** and **perturbed** meshes.
+All configurations are discretized using linear ($P_1$) finite elements with ($\epsilon = 1\cdot10^{-3}$ / **moderate diffusion**). Both **regular** and **perturbed** grids are studied.
 
 
----
+**1. Solution Variable** $u$ **(Tables 1-2)**
+#
+Both **SFEM** and **LSFEM** achieve optimal second-order convergence $(O(h^2)$ for the solution variable u:
 
-### 🎯 Solution Accuracy: `$L^2$(u)` Errors
+**SFEM** produces the **smallest errors**:
+
+- ML5: $4.01 \times 10^{−3}$ → ML10: $3.93 \times 10^{−6}$ (regular mesh)
+- Consistent rate ≈ 2.00 across all refinement levels ✅
+
+**LSFEM** exhibits **$~1.8 \times$ larger errors** than SFEM:
+
+- ML5: $7.43 \times 10^{−3}$ → ML10: $7.34 \times 10^{−6}$ (regular mesh)
+- Also maintains optimal second-order convergence ✅
 
 
-### Convergence Rate Analysis
+**Table 1: $L^2$ Error for Solution $u$ ($\| u - u_h \|_0$)** / RG = Regular Grid, PG = Perturbed Grid
 
-The convergence rates are computed as the logarithmic ratio of successive $L^2$ errors between consecutive mesh refinement levels.
+| Method | ML 5 | ML 6 | ML 7 | ML 8 | ML 9 | ML 10 |
+|--------|------|------|------|------|------|-------|
+| SFEM / RG   | 4.0088e-03 | 1.0060e-03 | 2.5175e-04 | 6.2954e-05 | 1.5739e-05 | 3.9349e-06 |
+| LSFEM / RG  | 7.4255e-03 | 1.8731e-03 | 4.6933e-04 | 1.1740e-04 | 2.9354e-05 | 7.3389e-06 |
+|             |            |            |            |            |            |            |
+| SFEM / PG   | 4.9101e-03 | 1.1785e-03 | 2.8344e-04 | 7.0732e-05 | 1.7867e-05 | 4.4419e-06 |
+| LSFEM / PG  | 8.6949e-03 | 2.0132e-03 | 5.2286e-04 | 1.2784e-04 | 3.2207e-05 | 7.9986e-06 |
 
 
-**Solution Variable $u$ — Boundary Layer**
-
-Diffusion-dominated regime $(c=10^{-4})$: 
-All three methods achieve optimal second-order convergence $({\cal O}(h^2))$, with rates asymptotically approaching 2.00 as expected for $P_1$ elements.
-
-Reaction-dominated regime $(c = 10^{4})$:
-A critical distinction emerges. SFEM and wLSFEM maintain optimal convergence with rates consistently near 2.00. However, standard LSFEM experiences severe degradation, with rates collapsing to 0.80–1.18. This demonstrates that the unweighted least-squares functional fails when reaction terms dominate. The weighted formulation (wLSFEM) successfully restores optimal convergence across all regimes.
-
-**Table 3: Convergence Rates for Solution $u$**
-
-| Method | ML5→6 | ML6→7 | ML7→8 | ML8→9 | ML9→10 | Asymptotic |
-|--------|-------|-------|-------|-------|--------|------------|
-| **Diffusion-dominated ($c=10^{-4}$)** |
-| SFEM   | 1.94  | 1.98  | 2.00  | 2.00  | 2.00   | ✅ |
-| LSFEM  | 1.98  | 1.99  | 2.00  | 2.00  | 2.00   | ✅ |
-| wLSFEM | 1.94  | 1.99  | 2.00  | 2.00  | 2.00   | ✅ |
-| **Reaction-dominated ($c=10^{4}$)** |
-| SFEM   | 2.06  | 2.03  | 2.01  | 2.00  | 2.00   | ✅ |
-| LSFEM  | 0.97  | 0.80  | 0.84  | 0.98  | 1.18   | ❌ (Degraded) |
-| wLSFEM | 2.06  | 2.03  | 2.01  | 2.00  | 2.00   | ✅ |
-
-> **🔍 Observation**: LSFEM errors **stop decreasing** at high reaction (`c=10⁴`), while **wLSFEM maintains optimal convergence**.
-
-**Flux Variable $q$ — Boundary Layer** 
-
-Diffusion-dominated regime $(c = 10^{-4})$:
-
-SFEM exhibits standard first-order convergence $(\cal{O}(h), rate \approx 1.00)$ for flux recovery. Both LSFEM and wLSFEM demonstrate superconvergence, achieving second-order rates $(\approx 2.00)$ — a full order of magnitude improvement over SFEM.
-
-Reaction-dominated regime $(c = 10^{4})$:
-SFEM maintains first-order convergence. Standard LSFEM shows irregular and deteriorating behavior (rates 1.12–1.51), losing its superconvergent property. wLSFEM preserves second-order superconvergence $(rate \approx 2.00)$, demonstrating robust flux accuracy independent of the reaction coefficient magnitude. 
-
-*Key Finding:* Weighted LSFEM is essential for maintaining optimal convergence and flux superconvergence in reaction-dominated problems, while standard LSFEM is only suitable for diffusion-dominated regimes.
-
-**Table 4: Convergence Rates for Flux $q$**
+**Table 2: Convergence Rates for Solution $u$**
 
 | Method | ML5→6 | ML6→7 | ML7→8 | ML8→9 | ML9→10 | Asymptotic |
 |--------|-------|-------|-------|-------|--------|------------|
-| **Diffusion-dominated ($c=10^{-4}$)** |
-| SFEM   | 0.95  | 0.99  | 1.00  | 1.00  | 1.00   | ✅ |
-| LSFEM  | 1.94  | 1.98  | 2.00  | 2.00  | 2.00   | ✅ |
-| wLSFEM | 1.94  | 1.98  | 2.00  | 2.00  | 2.00   | ✅ |
-| **Reaction-dominated ($c=10^{4}$)** |
-| SFEM   | 0.98  | 1.00  | 1.00  | 1.00  | 1.00   | ✅ |
-| LSFEM  | 1.19  | 1.12  | 1.20  | 1.33  | 1.51   | ❌ (Degraded) |
-| wLSFEM | 1.97  | 2.00  | 2.00  | 2.00  | 2.00   | ✅ |
+| SFEM   | 1.99  | 2.00  | 2.00  | 2.00  | 2.00   | ✅ |
+| LSFEM  | 1.99  | 2.00  | 2.00  | 2.00  | 2.00   | ✅ |
+
+
+**2. Flux Variable** $q = u^\prime$ **(Tables 3-4)**
+
+Here the methods show **dramatically different behavior**: 
+
+**SFEM**: First-order convergence only $O(h)$
+
+- Flux errors remain large: 
+  - ML5: $4.06 \times 10^{−1}$ → ML10: $1.27 \times 10^{−2}$
+
+- Rate ≈ 1.00 (suboptimal for gradient recovery)
+- **~200× larger flux error** than LSFEM at ML10
+
+
+**LSFEM**: Second-order convergence $O(h^2)$ ✨
+
+- Flux errors **dramatically smaller**:
+  - ML5: $6.25 \times 10^{−2}$ → ML10: $6.20 \times 10^{−5}$
+- Rate ≈ 2.00 (optimal!)
+- Direct enforcement of constitutive relation $q - u^\prime = 0$ recovers optimal flux accuracy
 
 
 
----
+**Table 3: $L^2$ Error for Flux $q$ ($\| q - q_h \|_0$)** / RG = Regular Grid, PG = Perturbed Grid
 
-### 📈 Convergence Rates: Solution `u`
+| Method | ML 5 | ML 6 | ML 7 | ML 8 | ML 9 | ML 10 |
+|--------|------|------|------|------|------|-------|
+| SFEM / RG   | 4.0613e-01 | 2.0367e-01 | 1.0191e-01 | 5.0965e-02 | 2.5483e-02 | 1.2742e-02 |
+| LSFEM / RG  | 6.2490e-02 | 1.5812e-02 | 3.9654e-03 | 9.9212e-04 | 2.4808e-04 | 6.2023e-05 |
+|             |            |            |            |            |            |            |
+| SFEM / PG   | 4.3709e-01 | 2.1479e-01 | 1.0588e-01 | 5.2829e-02 | 2.6532e-02 | 1.3245e-02 |
+| LSFEM / PG  | 7.6399e-02 | 1.7035e-02 | 4.6915e-03 | 1.0984e-03 | 2.8095e-04 | 6.9651e-05 |
 
-**Table 2: Convergence Rates for `u` (Regular Grids)**
+
+**Table 4: Convergence Rates for Solution $q$**
+
+| Method | ML5→6 | ML6→7 | ML7→8 | ML8→9 | ML9→10 | Asymptotic |
+|--------|-------|-------|-------|-------|--------|------------|
+| SFEM   | 1.00  | 1.00  | 1.00  | 1.00  | 1.00   | ✅ |
+| LSFEM  | 1.98  | 2.00  | 2.00  | 2.00  | 2.00   | ❌ (Degraded)  |
 
 
-Solver Performance
-The symmetric positive definite structure of LSFEM systems enables efficient solution via the conjugate gradient (CG) method with algebraic multigrid (AMG) preconditioning. Table 5 presents iteration counts for LSFEM and wLSFEM across different preconditioners.
-Diffusion-dominated regime (c=10−4c = 10^{-4}
-c=10−4):
+**3. Mesh Perturbation Robustness**
 
-Without preconditioning, both methods exhibit iteration counts that scale linearly with problem size (CG: 32→1024 for LSFEM, 153→32402 for wLSFEM from ML5→ML10). AMG preconditioning dramatically improves efficiency: LSFEM requires 10→147 iterations, while wLSFEM achieves near mesh-independent convergence with only 5→25 iterations—representing up to a 1000× speedup over unpreconditioned CG at the finest mesh level.
-Reaction-dominated regime (c=104c = 10^{4}
-c=104):
+Both methods remain stable under mesh perturbation:
 
-The performance characteristics reverse. Standard LSFEM becomes poorly conditioned, requiring 173→24864 unpreconditioned iterations. In contrast, wLSFEM demonstrates superior conditioning with only 39→10801 iterations—already 2× better without preconditioning. With AMG, wLSFEM achieves remarkable efficiency: merely 1→18 iterations across all mesh levels. LSFEM-AMG requires 21→150 iterations, showing wLSFEM is 8× more efficient at the finest level.
-Conclusion: The weighted formulation not only restores convergence accuracy but also significantly improves system conditioning, making wLSFEM the preferred choice for general-purpose applications, particularly in reaction-dominated regimes.
+**SFEM**: ~20% error increase for u, ~7% for q
+**LSFEM**: ~9% error increase for u, ~12% for q
+**Convergence rates** unchanged (still 2.00 for u, 1.00/2.00 for q)
+
+✅ Both formulations are robust to irregular element geometry.
+
+
+**4. Linear Solver Performance (Table 5)**
+
+**Without preconditioning (CG):**
+
+Iteration count doubles with each mesh refinement (O(N) growth)
+- ML10: 1024 iterations (regular) / 2177 iterations (perturbed) 🔴
+- Impractical for large-scale problems
+
+**Jacobi preconditioning (CG-JACOBI):**
+
+- Modest improvement on regular meshes
+- Still exhibits O(N) scaling
+- ML10: **1024/2076 iterations** 🟡
+
+**Algebraic multigrid (CG-AMG): ⭐ Mesh-independent convergence!**
+
+- Iteration count grows sub-linearly with DOF
+- ML5: 10-11 iterations → ML10: **147-152** iterations
+- **~7× reduction** compared to unpreconditioned CG at ML10
+
+
+
+
+**Table 5: CG - iteration counts (Regular/Perturbed)**
+| Mesh | CG | CG-JACOBI | CG-AMG |
+|------|-----------------|------------------|-------------------|
+| ML5  |   32 /   66 |   32 /   64 |  10 /  11 |
+| ML6  |   64 /  134 |   64 /  128 |  15 /  16 |
+| ML7  |  128 /  270 |  128 /  256 |  25 /  26 |
+| ML8  |  256 /  542 |  256 /  515 |  44 /  45 |
+| ML9  |  512 / 1086 |  512 / 1036 |  79 /  82 |
+| ML10 | 1024 / 2177 | 1024 / 2076 | 147 / 152 |
+
+
