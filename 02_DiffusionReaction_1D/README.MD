@@ -50,6 +50,9 @@ $${\cal F}(v_h,r_h) = w^2_1 (f, -r^\prime_h + c v_h)_0$$
 
 All configurations are discretized using linear ($P_1$) finite elements with ($\epsilon = 1\cdot10^{-3}$ / **moderate diffusion**). Both **regular** and **perturbed** grids are studied.
 
+**Two regimes analyzed:**
+- **Diffusion-dominated**: $c = 10^{-4}$
+- **Reaction-dominated**: $c = 10^{4}$
 
 **1. Solution Variable** $u$ **(Tables 1-2)**
 #
