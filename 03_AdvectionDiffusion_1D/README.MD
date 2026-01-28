@@ -23,11 +23,13 @@ $$(\epsilon u'_h, v'_h)_0 + (a u_h, v'_h)_0 = (f, v_h)_0 \quad \forall v_h \in V
 ## Least Squares FEM $(LSFEM^{(d)})$ - Diffusive Flux 
 
 
-### First-Order System (Diffusive Flux - LSFEM$^{(d)}$:
+### First-Order System:
 
-**Flux:** $q = \nu u^\prime$  
-**Balance:** $-q^\prime + a u^\prime = f$  
-**Constitutive:** $q - \nu u^\prime = 0$
+Define the diffusive flux $q = u^\prime$:
+
+**Balance:** $$-q^\prime + au = f, \qquad **Constitutive:** q -\nu u^\prime = 0$$
+
+
 
 ### Functional
 
