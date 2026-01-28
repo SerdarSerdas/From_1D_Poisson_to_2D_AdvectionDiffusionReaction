@@ -49,9 +49,7 @@ $${\cal F}(v_h,r_h) = w^2_1 (f, -r^\prime_h )_0$$
 
 ## 🔍 Key Findings
 
-All configurations are discretized using linear ($P_1$) finite elements with ($\nun = 1\cdot10^{-3}$ / **moderate diffusion**). Both **regular** and **perturbed** grids are studied.
-
-
+All configurations are discretized using linear ($P_1$) finite elements with ($\epsilon = 1\cdot10^{-3}$ / **moderate diffusion**). Both **regular** and **perturbed** grids are studied.
 
 
 **1. Solution Variable** $u$ **(Tables 1-2)**
