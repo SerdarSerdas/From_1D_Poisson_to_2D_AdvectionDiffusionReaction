@@ -84,7 +84,7 @@ All configurations are discretized using linear ($P_1$) finite elements with $\n
 | SFEM / RG   | 4.7704e-02 | 2.4613e-03 | 4.2058e-04 | 1.0339e-04 | 2.5744e-05 | 6.4296e-06 |
 | LSFEM / RG  | 1.6371e-02 | 3.9346e-03 | 9.9363e-04 | 2.4912e-04 | 6.2323e-05 | 1.5583e-05 |
 | wLSFEM / RG | 1.6372e-02 | 3.9349e-03 | 9.9372e-04 | 2.4914e-04 | 6.2333e-05 | 1.5588e-05 |
-
+|--------|------|------|------|------|------|-------|
 | SFEM / PG   | 1.9123e-01 | 1.9898e-02 | 1.7512e-03 | 2.8413e-04 | 4.5773e-05 | 1.0628e-05 |
 | LSFEM / PG  |  |  |  |  |  |  |
 | wLSFEM / PG |  |  |  |  |  |  |
@@ -113,7 +113,7 @@ All configurations are discretized using linear ($P_1$) finite elements with $\n
 | SFEM / RG   | 4.7704e-02 | 2.4613e-03 | 4.2058e-04 | 1.0339e-04 | 2.5744e-05 | 6.4296e-06 |
 | LSFEM / RG  |  |  |  |  |  |  |
 | wLSFEM / RG |  |  |  |  |  |  |
-
+|--------|------|------|------|------|------|-------|
 | SFEM / PG   |  |  |  |  |  |  |
 | LSFEM / PG  |  |  |  |  |  |  |
 | wLSFEM / PG |  |  |  |  |  |  |
