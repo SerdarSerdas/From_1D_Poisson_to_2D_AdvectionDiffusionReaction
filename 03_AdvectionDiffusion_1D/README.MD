@@ -82,22 +82,66 @@ All configurations are discretized using linear ($P_1$) finite elements with $\n
 | Method | ML 5 | ML 6 | ML 7 | ML 8 | ML 9 | ML 10 |
 |--------|------|------|------|------|------|-------|
 | SFEM / RG   | 4.7704e-02 | 2.4613e-03 | 4.2058e-04 | 1.0339e-04 | 2.5744e-05 | 6.4296e-06 |
-| LSFEM / RG  | 1.6371e-02 | 3.9346e-03 | 9.9363e-04 | 2.4912e-04 | 6.2323e-05 | 1.5583e-05 |
+| LSFEM / RG  | 1.6371e-02 | 3.9346e-03 | 9.9363e-04 | 2.4912e-04 | 6.2323e-05 | 1.5585e-05 |
 | wLSFEM / RG | 1.6372e-02 | 3.9349e-03 | 9.9372e-04 | 2.4914e-04 | 6.2333e-05 | 1.5588e-05 |
-|--------|------|------|------|------|------|-------|
+|             |            |            |            |            |            |            |
 | SFEM / PG   | 1.9123e-01 | 1.9898e-02 | 1.7512e-03 | 2.8413e-04 | 4.5773e-05 | 1.0628e-05 |
-| LSFEM / PG  |  |  |  |  |  |  |
-| wLSFEM / PG |  |  |  |  |  |  |
+| LSFEM / PG  | 1.8624e-02 | 4.0468e-03 | 1.1457e-03 | 2.8020e-04 | 7.0392e-05 | 1.7625e-05 |
+| wLSFEM / PG | 1.8638e-02 | 4.0470e-03 | 1.1458e-03 | 2.8022e-04 | 7.0400e-05 | 1.7628e-05 |
 
 
 
-**Table 2: Convergence Rates for Solution $u$ / Diffusive Flux**
+**Table 2: Convergence Rates for Solution $u$ / Diffusive Flux** (regular grids)
 
 | Method | ML5→6 | ML6→7 | ML7→8 | ML8→9 | ML9→10 | Asymptotic |
 |--------|-------|-------|-------|-------|--------|------------|
 | SFEM   | 4.28 | 2.55 | 2.02 | 2.01 | 2.00 | ✅ |
 | LSFEM  | 2.06 | 1.99 | 2.00 | 2.00 | 2.00 | ✅ |
 | wLSFEM | 2.06 | 1.99 | 2.00 | 2.00 | 2.00 | ✅ |
+
+
+
+
+
+**Table 5: $L^2$ Error ($\| q - q_h \|_0$) / Diffusive Flux**
+
+| Method | ML 5 | ML 6 | ML 7 | ML 8 | ML 9 | ML 10 |
+|--------|------|------|------|------|------|-------|
+| SFEM / RG   | 3.1521e-04 | 8.5861e-05 | 4.0570e-05 | 2.0209e-05 | 1.0096e-05 | 5.0468e-06 |
+| LSFEM / RG  | 8.8749e-05 | 2.2778e-05 | 5.4635e-06 | 1.3493e-06 | 3.3634e-07 | 8.4409e-08 |
+| wLSFEM / RG | 8.8765e-05 | 2.2786e-05 | 5.4654e-06 | 1.3503e-06 | 3.3673e-07 | 8.4162e-08 |
+|             |            |            |            |            |            |            |
+| SFEM / PG   | 9.3350e-04 | 1.9935e-04 | 8.6637e-05 | 3.1559e-05 | 1.2299e-05 | 5.8724e-06 |
+| LSFEM / PG  | 1.0585e-04 | 3.0626e-05 | 1.3298e-05 | 5.0175e-06 | 2.4546e-06 | 1.1992e-06 |
+| wLSFEM / PG | 1.0011e-04 | 3.0630e-05 | 1.3301e-05 | 5.0184e-06 | 2.4548e-06 | 1.1992e-06 |
+
+
+
+**Table 6: Convergence Rates for Solution $q$ / Diffusive Flux**
+
+| Method | ML5→6 | ML6→7 | ML7→8 | ML8→9 | ML9→10 | Asymptotic |
+|--------|-------|-------|-------|-------|--------|------------|
+| SFEM   | 1.88 | 1.08 | 1.01 | 1.00 | 1.00 | ✅ |
+| LSFEM  | 1.96 | 2.06 | 2.02 | 2.00 | 2.00 | ✅ |
+| wLSFEM | 1.96 | 2.06 | 2.02 | 2.00 | 1.99 | ✅ |
+
+
+
+
+
+**Table 7: CG-AMG - iteration counts / Diffusive Flux** (Regular / Perturbed)
+| Mesh | LSFEM | wLSFEM |
+|------|-----------------|------------------|
+| ML5  |  43 /   45 |   6 /   6 |
+| ML6  |  67 /   74 |   7 /   9 |
+| ML7  | 119 /  128 |  16 /  19 |
+| ML8  | 223 /  264 |  48 /  52 |
+| ML9  | 435 /  533 |  96 / 105 |
+| ML10 | 860 / 1084 | 183 / 201 |
+
+
+
+
 
 
 
@@ -111,12 +155,13 @@ All configurations are discretized using linear ($P_1$) finite elements with $\n
 | Method | ML 5 | ML 6 | ML 7 | ML 8 | ML 9 | ML 10 |
 |--------|------|------|------|------|------|-------|
 | SFEM / RG   | 4.7704e-02 | 2.4613e-03 | 4.2058e-04 | 1.0339e-04 | 2.5744e-05 | 6.4296e-06 |
-| LSFEM / RG  |  |  |  |  |  |  |
-| wLSFEM / RG |  |  |  |  |  |  |
-|--------|------|------|------|------|------|-------|
-| SFEM / PG   |  |  |  |  |  |  |
-| LSFEM / PG  |  |  |  |  |  |  |
-| wLSFEM / PG |  |  |  |  |  |  |
+| LSFEM / RG  | 1.6371e-02 | 3.9346e-03 | 9.9363e-04 | 2.4912e-04 | 6.2324e-05 | 1.5577e-05 |
+| wLSFEM / RG | 1.6372e-02 | 3.9349e-03 | 9.9372e-04 | 2.4914e-04 | 6.2333e-05 | 1.5588e-05 |
+|             |            |            |            |            |            |            |
+| SFEM / PG   | 1.9123e-01 | 1.9898e-02 | 1.7512e-03 | 2.8413e-04 | 4.5773e-05 | 1.0628e-05 |
+| LSFEM / PG  | 1.8624e-02 | 4.0468e-03 | 1.1457e-03 | 2.8020e-04 | 7.0392e-05 | 1.7625e-05 |
+| wLSFEM / PG | 1.8638e-02 | 4.0470e-03 | 1.1458e-03 | 2.8022e-04 | 7.0400e-05 | 1.7628e-05 |
+
 
 
 
@@ -125,48 +170,22 @@ All configurations are discretized using linear ($P_1$) finite elements with $\n
 | Method | ML5→6 | ML6→7 | ML7→8 | ML8→9 | ML9→10 | Asymptotic |
 |--------|-------|-------|-------|-------|--------|------------|
 | SFEM   | 4.28 | 2.55 | 2.02 | 2.01 | 2.00 | ✅ |
-| LSFEM  |  |  |  |  |  | ❌ |
-| wLSFEM |  |  |  |  |  | ✅ |
+| LSFEM  | 2.06 | 1.99 | 2.00 | 2.00 | 2.00 | ✅ |
+| wLSFEM | 2.06 | 1.99 | 2.00 | 2.00 | 2.00 | ✅ |
 
-
-#
-
-### 🌊 Flux variable $q$
-
-**For the diffusion-dominated regime $c = 10^{-4}$, the behavior matches the pure Poisson case: SFEM delivers only first-order convergence for the flux $q = u^\prime$, while both LSFEM and wLSFEM reach optimal second-order convergence with very similar error levels. The weighting has only a marginal influence here because diffusion dominates the operator and the residual scaling is already well balanced (Table 4 - Table 6).**
-
-**The reaction-dominated regime $c = 10^{4}$, reveals the main advantage of wLSFEM. SFEM remains locked at first-order flux convergence, and unweighted LSFEM not only fails to improve the flux but actually shows erratic and suboptimal convergence behavior for q. In contrast, wLSFEM achieves clean second-order convergence with flux errors several orders of magnitude smaller than both SFEM and LSFEM on the finest meshes (Table 5, Table 6). This demonstrates that the choice $w_1 = c^{-1/2}$ successfully rebalances the reaction and flux residuals in the least-squares functional.**
-
-**Table 5: $L^2$ Error ($\| q - q_h \|_0$) / Diffusive Flux**
-
-| Method | ML 5 | ML 6 | ML 7 | ML 8 | ML 9 | ML 10 |
-|--------|------|------|------|------|------|-------|
-| SFEM / RG   |  |  |  |  |  |  |
-| LSFEM / RG  |  |  |  |  |  |  |
-| wLSFEM / RG |  |  |  |  |  |  |
-|                               |
-| SFEM / PG   |  |  |  |  |  |  |
-| LSFEM / PG  |  |  |  |  |  |  |
-| wLSFEM / PG |  |  |  |  |  |  |
-
-
-
-**Table 6: Convergence Rates for Solution $q$ / Diffusive Flux**
-
-| Method | ML5→6 | ML6→7 | ML7→8 | ML8→9 | ML9→10 | Asymptotic |
-|--------|-------|-------|-------|-------|--------|------------|
-| SFEM   | 1.88 | 1.08 | 1.01 | 1.00 | 1.00 | ✅ |
-| LSFEM  | 1.96 | 2.06 | 2.02 | 2.00 | 2.00 | ✅ |
-| wLSFEM | 1.96 | 2.06 | 2.02 | 2.00 | 1.99 | ✅ |
 
 
 **Table 7: $L^2$ Error ($\| q - q_h \|_0$) / Total Flux**
 
 | Method | ML 5 | ML 6 | ML 7 | ML 8 | ML 9 | ML 10 |
 |--------|------|------|------|------|------|-------|
-| SFEM   | 4.7705e-02 | 2.4627e-03 | 4.2253e-04 | 1.0534e-04 | 2.7652e-05 | 8.1737e-06 |
-| LSFEM  |  |  |  |  |  |  |
-| wLSFEM |  |  |  |  |  |  |
+| SFEM / RG   | 4.7705e-02 | 2.4627e-03 | 4.2253e-04 | 1.0534e-04 | 2.7652e-05 | 8.1737e-06 |
+| LSFEM / RG  | 1.6371e-02 | 3.9345e-03 | 9.9362e-04 | 2.4911e-04 | 6.2323e-05 | 1.5577e-05 |
+| wLSFEM / RG | 1.6372e-02 | 3.9349e-03 | 9.9371e-04 | 2.4914e-04 | 6.2332e-05 | 1.5588e-05 |
+|             |            |            |            |            |            |            |
+| SFEM / PG   | 1.9123e-01 | 1.9899e-02 | 1.7534e-03 | 2.8588e-04 | 4.7397e-05 | 1.2142e-05 |
+| LSFEM / PG  | 1.8607e-02 | 4.0475e-03 | 1.1452e-03 | 2.8014e-04 | 7.0341e-05 | 1.7587e-05 |
+| wLSFEM / PG | 1.8620e-02 | 4.0477e-03 | 1.1453e-03 | 2.8016e-04 | 7.0349e-05 | 1.7589e-05 |
 
 
 
@@ -177,8 +196,36 @@ All configurations are discretized using linear ($P_1$) finite elements with $\n
 | Method | ML5→6 | ML6→7 | ML7→8 | ML8→9 | ML9→10 | Asymptotic |
 |--------|-------|-------|-------|-------|--------|------------|
 | SFEM   | 4.28 | 2.54 | 2.00 | 1.93 | 1.76 | ❌ |
-| LSFEM  |  |  |  |  |  | ❌ |
-| wLSFEM |  |  |  |  |  | ✅ |
+| LSFEM  | 2.06 | 1.99 | 2.00 | 2.00 | 2.00 | ✅ |
+| wLSFEM | 2.06 | 1.99 | 2.00 | 2.00 | 2.00 | ✅ |
+
+
+
+
+
+
+**Table 8: CG-AMG - iteration counts / Total Flux** (Regular / Perturbed)
+| Mesh | LSFEM | wLSFEM |
+|------|-----------------|------------------|
+| ML5  | 5 / 5 | 15 / 15 |
+| ML6  | 5 / 5 | 11 / 12 |
+| ML7  | 5 / 5 |  8 /  8 |
+| ML8  | 5 / 6 |  6 /  7 |
+| ML9  | 5 / 6 |  5 /  6 |
+| ML10 | 5 / 6 |  5 /  6 |
+
+
+#
+
+### 🌊 Flux variable $q$
+
+**For the diffusion-dominated regime $c = 10^{-4}$, the behavior matches the pure Poisson case: SFEM delivers only first-order convergence for the flux $q = u^\prime$, while both LSFEM and wLSFEM reach optimal second-order convergence with very similar error levels. The weighting has only a marginal influence here because diffusion dominates the operator and the residual scaling is already well balanced (Table 4 - Table 6).**
+
+**The reaction-dominated regime $c = 10^{4}$, reveals the main advantage of wLSFEM. SFEM remains locked at first-order flux convergence, and unweighted LSFEM not only fails to improve the flux but actually shows erratic and suboptimal convergence behavior for q. In contrast, wLSFEM achieves clean second-order convergence with flux errors several orders of magnitude smaller than both SFEM and LSFEM on the finest meshes (Table 5, Table 6). This demonstrates that the choice $w_1 = c^{-1/2}$ successfully rebalances the reaction and flux residuals in the least-squares functional.**
+
+
+
+
 
 
 
@@ -190,28 +237,9 @@ All configurations are discretized using linear ($P_1$) finite elements with $\n
 
 **For $c=10^4$, the contrast becomes much stronger. LSFEM requires between 136 and 222 CG–AMG iterations at ML10, whereas wLSFEM converges in fewer than 25 iterations even on perturbed meshes (Table 8). The weighted formulation yields a much better conditioned system in the reaction-dominated regime, making it clearly preferable from a solver efficiency perspective.**
 
-**Table 7: CG-AMG - iteration counts / Diffusive Flux** (Regular / Perturbed)
-| Mesh | LSFEM | wLSFEM |
-|------|-----------------|------------------|
-| ML5  |  43 /   45 |   6 /   6 |
-| ML6  |  67 /   77 |   7 /   9 |
-| ML7  | 124 /  128 |  16 /  19 |
-| ML8  | 226 /  257 |  48 /  52 |
-| ML9  | 432 /  538 |  96 / 105 |
-| ML10 | 859 / 1085 | 183 / 200 |
 
 
 
-
-**Table 8: CG-AMG - iteration counts / Total Flux** (Regular / Perturbed)
-| Mesh | LSFEM | wLSFEM |
-|------|-----------------|------------------|
-| ML5  |  /  |  /  |
-| ML6  |  /  |  /  |
-| ML7  |  /  |  /  |
-| ML8  |  /  |  /  |
-| ML9  |  /  |  /  |
-| ML10 |  /  |  /  |
 
 #
 
