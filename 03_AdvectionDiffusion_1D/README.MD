@@ -88,6 +88,8 @@ All configurations are discretized using linear ($P_1$) finite elements with $\n
 | LSFEM  | 1.6371e-02 | 3.9346e-03 | 9.9363e-04 | 2.4912e-04 | 6.2323e-05 | 1.5583e-05 |
 | wLSFEM | 1.6372e-02 | 3.9349e-03 | 9.9372e-04 | 2.4914e-04 | 6.2333e-05 | 1.5588e-05 |
 
+
+
 **Table 2: Convergence Rates for Solution $u$ / Diffusive Flux**
 
 | Method | ML5→6 | ML6→7 | ML7→8 | ML8→9 | ML9→10 | Asymptotic |
@@ -98,6 +100,11 @@ All configurations are discretized using linear ($P_1$) finite elements with $\n
 
 
 
+
+
+
+
+
 **Table 3: $L^2$ Error $\| u - u_h \|_0$ / Total Flux**
 
 | Method | ML 5 | ML 6 | ML 7 | ML 8 | ML 9 | ML 10 |
@@ -105,6 +112,7 @@ All configurations are discretized using linear ($P_1$) finite elements with $\n
 | SFEM   | 4.7704e-02 | 2.4613e-03 | 4.2058e-04 | 1.0339e-04 | 2.5744e-05 | 6.4296e-06 |
 | LSFEM  |  |  |  |  |  |  |
 | wLSFEM |  |  |  |  |  |  |
+
 
 
 **Table 4: Convergence Rates for Solution $u$ / Total Flux**
@@ -146,16 +154,19 @@ All configurations are discretized using linear ($P_1$) finite elements with $\n
 
 | Method | ML 5 | ML 6 | ML 7 | ML 8 | ML 9 | ML 10 |
 |--------|------|------|------|------|------|-------|
-| SFEM   |  |  |  |  |  |  |
+| SFEM   | 4.7705e-02 | 2.4627e-03 | 4.2253e-04 | 1.0534e-04 | 2.7652e-05 | 8.1737e-06 |
 | LSFEM  |  |  |  |  |  |  |
 | wLSFEM |  |  |  |  |  |  |
+
+
+
 
 
 **Table 8: Convergence Rates for Solution $q$ / Total Flux**
 
 | Method | ML5→6 | ML6→7 | ML7→8 | ML8→9 | ML9→10 | Asymptotic |
 |--------|-------|-------|-------|-------|--------|------------|
-| SFEM   |  |  |  |  |  | ✅ |
+| SFEM   | 4.28 | 2.54 | 2.00 | 1.93 | 1.76 | ❌ |
 | LSFEM  |  |  |  |  |  | ❌ |
 | wLSFEM |  |  |  |  |  | ✅ |
 
@@ -173,11 +184,11 @@ All configurations are discretized using linear ($P_1$) finite elements with $\n
 | Mesh | LSFEM | wLSFEM |
 |------|-----------------|------------------|
 | ML5  |  43 /   45 |   6 /   6 |
-| ML6  |  68 /   77 |   7 /   9 |
-| ML7  | 122 /  128 |  16 /  19 |
+| ML6  |  67 /   77 |   7 /   9 |
+| ML7  | 124 /  128 |  16 /  19 |
 | ML8  | 226 /  257 |  48 /  52 |
-| ML9  | 427 /  538 |  96 / 105 |
-| ML10 | 861 / 1085 | 183 / 200 |
+| ML9  | 432 /  538 |  96 / 105 |
+| ML10 | 859 / 1085 | 183 / 200 |
 
 
 
