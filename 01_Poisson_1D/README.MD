@@ -32,11 +32,7 @@ $$-q^\prime = f, \qquad q - u^\prime = 0$$
 
 ### Functional
 
-$${\cal J}(u,q;f) = \frac{1}{2} \parallel w_1 (-q^\prime - f) \parallel^2_0 + \frac{1}{2} \parallel w_2 (q - \nu u^\prime) \parallel^2_0$$
-
-**Weighting analyzed:**
-- **LSFEM**: $w_1 = 1, w_2 = 1$ (unweighted)
-- **wLSFEM**: $w_1 = 1, w_2 = \nu^{-1/2}$ (balanced scaling)
+$${\cal J}(u,q;f) = \frac{1}{2} \parallel w_1 (-q^\prime - f) \parallel^2_0 + \frac{1}{2} \parallel w_2 (q - u^\prime) \parallel^2_0$$
 
 ### Variational Formulation
 
@@ -53,22 +49,8 @@ $${\cal F}(v_h,r_h) = w^2_1 (f, -r^\prime_h )_0$$
 
 ## Numerical Results
 
-We consider following configurations:
-- [**Boundary Layer** with ϵ = 1.e-3](BL_epsilon_1e-3.MD)
-- [**Boundary Layer** with ϵ = 5.e-6](BL_epsilon_5e-6.MD)
-- [**Interior Layer** with ϵ = 1.e-3](IL_epsilon_1e-3.MD)
-- [**Interior Layer** with ϵ = 1.e-7](IL_epsilon_1e-7.MD)
-
 All configurations are discretized using linear ($P_1$) finite elements with ($\nun = 1\cdot10^{-3}$ / **moderate diffusion**). Both **regular** and **perturbed** grids are studied.
 
-
-## Summary
-
-### Solution and Flux at ML5 (32 elements)
-
-![Solutions at ML5](./results/Fig_Poisson1D_Solutions_ML5.pdf)
-
-The computed solutions at ML5 (32 elements) show that while both methods resolve $u(x)$ adequately, **LSFEM's flux superconvergence is immediately apparent**. LSFEM solutions visually overlay the exact flux while SFEM exhibits characteristic $\mathcal{O}(h)$ oscillations. This demonstrates a **$10^5\times$ gain at boundaries** and **$205\times$ gain in the interior** for flux accuracy.
 
 ### Convergence Tables
 
