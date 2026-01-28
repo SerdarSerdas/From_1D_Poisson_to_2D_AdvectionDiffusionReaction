@@ -28,7 +28,7 @@ $$(u^\prime_h, v^\prime_h)_0 = (f, v_h)_0 \quad \forall v_h \in V_h$$
 
 Define the diffusive flux $q = u^\prime$:
 
-$$-q^\prime = f, \qquad q - \nu \ u^\prime = 0$$
+$$-q^\prime = f, \qquad q - \nu u^\prime = 0$$
 
 ### Functional
 
