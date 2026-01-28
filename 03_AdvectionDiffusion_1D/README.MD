@@ -76,17 +76,18 @@ All configurations are discretized using linear ($P_1$) finite elements with $\n
 
 ### 🧩 Solution variable $u$
 
-**For the diffusion-dominated case $c = 10^{-4}$, all three formulations (SFEM, LSFEM, wLSFEM) achieve optimal second-order convergence in the $L^2$-norm of the solution $u$. The unweighted LSFEM exhibits slightly larger errors (about a factor of 1.8) compared to SFEM, whereas the weighted variant wLSFEM essentially reproduces the SFEM error levels across all mesh refinements.**
 
-**In the reaction-dominated case $c = 10^{4}$, SFEM and wLSFEM again maintain second-order convergence with nearly identical error magnitudes. In contrast, unweighted LSFEM shows a clear loss of convergence order for $u$; the rates deteriorate well below second order and do not recover in the asymptotic range. This confirms that the naive choice $w_1 = 1$ severely underweights the reaction contribution in the least-squares functional when $c$ is large.**
-
-**Table 1: $L^2$ Error $\| u - u_h \|_0$ / Diffusive Flux**
+**Table 1: $L^2$ Error $\| u - u_h \|_0$ / Diffusive Flux** for regular and perturbed grids
 
 | Method | ML 5 | ML 6 | ML 7 | ML 8 | ML 9 | ML 10 |
 |--------|------|------|------|------|------|-------|
-| SFEM   | 4.7704e-02 | 2.4613e-03 | 4.2058e-04 | 1.0339e-04 | 2.5744e-05 | 6.4296e-06 |
-| LSFEM  | 1.6371e-02 | 3.9346e-03 | 9.9363e-04 | 2.4912e-04 | 6.2323e-05 | 1.5583e-05 |
-| wLSFEM | 1.6372e-02 | 3.9349e-03 | 9.9372e-04 | 2.4914e-04 | 6.2333e-05 | 1.5588e-05 |
+| SFEM / RG   | 4.7704e-02 | 2.4613e-03 | 4.2058e-04 | 1.0339e-04 | 2.5744e-05 | 6.4296e-06 |
+| LSFEM / RG  | 1.6371e-02 | 3.9346e-03 | 9.9363e-04 | 2.4912e-04 | 6.2323e-05 | 1.5583e-05 |
+| wLSFEM / RG | 1.6372e-02 | 3.9349e-03 | 9.9372e-04 | 2.4914e-04 | 6.2333e-05 | 1.5588e-05 |
+
+| SFEM / PG   | 1.9123e-01 | 1.9898e-02 | 1.7512e-03 | 2.8413e-04 | 4.5773e-05 | 1.0628e-05 |
+| LSFEM / PG  |  |  |  |  |  |  |
+| wLSFEM / PG |  |  |  |  |  |  |
 
 
 
@@ -109,9 +110,13 @@ All configurations are discretized using linear ($P_1$) finite elements with $\n
 
 | Method | ML 5 | ML 6 | ML 7 | ML 8 | ML 9 | ML 10 |
 |--------|------|------|------|------|------|-------|
-| SFEM   | 4.7704e-02 | 2.4613e-03 | 4.2058e-04 | 1.0339e-04 | 2.5744e-05 | 6.4296e-06 |
-| LSFEM  |  |  |  |  |  |  |
-| wLSFEM |  |  |  |  |  |  |
+| SFEM / RG   | 4.7704e-02 | 2.4613e-03 | 4.2058e-04 | 1.0339e-04 | 2.5744e-05 | 6.4296e-06 |
+| LSFEM / RG  |  |  |  |  |  |  |
+| wLSFEM / RG |  |  |  |  |  |  |
+
+| SFEM / PG   |  |  |  |  |  |  |
+| LSFEM / PG  |  |  |  |  |  |  |
+| wLSFEM / PG |  |  |  |  |  |  |
 
 
 
@@ -136,9 +141,14 @@ All configurations are discretized using linear ($P_1$) finite elements with $\n
 
 | Method | ML 5 | ML 6 | ML 7 | ML 8 | ML 9 | ML 10 |
 |--------|------|------|------|------|------|-------|
-| SFEM   | 3.1521e-04 | 8.5861e-05 | 4.0570e-05 | 2.0209e-05 | 1.0096e-05 | 5.0468e-06 |
-| LSFEM  | 8.8749e-05 | 2.2778e-05 | 5.4623e-06 | 1.3493e-06 | 3.3634e-07 | 8.4383e-08 |
-| wLSFEM | 8.8765e-05 | 2.2786e-05 | 5.4654e-06 | 1.3503e-06 | 3.3673e-07 | 8.4162e-08 |
+| SFEM / RG   |  |  |  |  |  |  |
+| LSFEM / RG  |  |  |  |  |  |  |
+| wLSFEM / RG |  |  |  |  |  |  |
+|                               |
+| SFEM / PG   |  |  |  |  |  |  |
+| LSFEM / PG  |  |  |  |  |  |  |
+| wLSFEM / PG |  |  |  |  |  |  |
+
 
 
 **Table 6: Convergence Rates for Solution $q$ / Diffusive Flux**
