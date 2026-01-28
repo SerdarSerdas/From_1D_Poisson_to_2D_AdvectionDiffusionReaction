@@ -76,6 +76,36 @@ All configurations are discretized using linear ($P_1$) finite elements with $\n
 
 ### 🧩 Solution variable $u$
 
+1. SFEM suffers from advection-induced instabilities:
+
+ML5 error (regular): 4.77×10−24.77 \times 10^{-2}
+4.77×10−2
+ML5 error (perturbed): 1.91×10−11.91 \times 10^{-1}
+1.91×10−1 (
+4× worse)
+Convergence rate 4.28 indicates severe solution pollution on coarse meshes
+Requires 4+ mesh refinements to reach asymptotic regime
+Classic Galerkin instability for advection-dominated problems
+2. LSFEM provides built-in stabilization:
+
+ML5 error: 1.64×10−21.64 \times 10^{-2}
+1.64×10−2 (
+3× better than SFEM on regular grids)
+ML5 error (perturbed): 1.86×10−21.86 \times 10^{-2}
+1.86×10−2 (
+10× better than SFEM)
+Optimal second-order convergence from coarsest mesh ✅
+No ad-hoc stabilization (SUPG, etc.) needed
+3. Flux formulation choice has no impact on solution accuracy:
+
+Diffusive and total flux formulations produce identical uu
+u errors (to 4+ decimal places)
+
+Both LSFEM variants maintain stability and optimal convergence
+4. Weighting has minimal effect on solution accuracy:
+
+wLSFEM ≈ LSFEM for both formulations
+Differences appear only at 5th decimal place
 
 **Table 1: $L^2$ Error $\| u - u_h \|_0$ / Diffusive Flux** for regular and perturbed grids
 
@@ -100,10 +130,7 @@ All configurations are discretized using linear ($P_1$) finite elements with $\n
 | wLSFEM | 2.06 | 1.99 | 2.00 | 2.00 | 2.00 | ✅ |
 
 
-
-
-
-**Table 5: $L^2$ Error ($\| q - q_h \|_0$) / Diffusive Flux**
+**Table 3: $L^2$ Error ($\| q - q_h \|_0$) / Diffusive Flux**
 
 | Method | ML 5 | ML 6 | ML 7 | ML 8 | ML 9 | ML 10 |
 |--------|------|------|------|------|------|-------|
@@ -115,9 +142,7 @@ All configurations are discretized using linear ($P_1$) finite elements with $\n
 | LSFEM / PG  | 1.0585e-04 | 3.0626e-05 | 1.3298e-05 | 5.0175e-06 | 2.4546e-06 | 1.1992e-06 |
 | wLSFEM / PG | 1.0011e-04 | 3.0630e-05 | 1.3301e-05 | 5.0184e-06 | 2.4548e-06 | 1.1992e-06 |
 
-
-
-**Table 6: Convergence Rates for Solution $q$ / Diffusive Flux**
+**Table 4: Convergence Rates for Solution $q$ / Diffusive Flux**
 
 | Method | ML5→6 | ML6→7 | ML7→8 | ML8→9 | ML9→10 | Asymptotic |
 |--------|-------|-------|-------|-------|--------|------------|
