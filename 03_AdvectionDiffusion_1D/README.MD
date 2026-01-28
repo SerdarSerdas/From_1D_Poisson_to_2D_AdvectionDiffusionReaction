@@ -45,7 +45,7 @@ $${\cal J}^{(t)}(u,q;f) = \frac{1}{2} \parallel w_1 (-q^\prime - f) \parallel^2_
 
 The discrete variational form seeks $(u_h, q_h) \in V_h \times Q_h$ satisfying
 
-$${\cal A}(u_h,q_h;v_h,r_h) = {\cal F}(v_h,r_h), \quad \forall (v_h,r_h) \in V_h \times Q_h$$ \ .
+$${\cal A}(u_h,q_h;v_h,r_h) = {\cal F}(v_h,r_h), \quad \forall (v_h,r_h) \in V_h \times Q_h$$ .
 
 **Diffusive flux:**
 
@@ -62,18 +62,15 @@ $${\cal F}^{(t)}(v_h,r_h) = w_1 (f, -r^\prime_h)_0$$
 
 ## Weighting factor
 **Weighting analyzed:**
-- **LSFEM**: $w_1 = 1$, $w_2 = 1$ (unweighted)
-- **wLSFEM**: $w_1 = 1$, $w_2 = c^{-1/2}$ (constitutive scaling)
+- **Unweighted**: $w_1 = 1$, $w_2 = 1$ 
+- **Weighted**: $w_1 = 1$, $w_2 = \nu^{-1/2}$ 
 
 
 
 ## 🔍 Key Findings
 
-All configurations are discretized using linear ($P_1$) finite elements with ($\epsilon = 1\cdot10^{-3}$ / **moderate diffusion**). Both **regular** and **perturbed** grids are studied.
+All configurations are discretized using linear ($P_1$) finite elements with $\nu = 1\cdot10^{-3}$ and $a = 1$ (**moderate diffusion**). Both **regular** and **perturbed** grids are studied.
 
-**Two regimes analyzed:**
-- **Diffusion-dominated**: $c = 10^{-4}$
-- **Reaction-dominated**: $c = 10^{4}$
 
 #
 
