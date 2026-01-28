@@ -4,7 +4,7 @@
 
 $$
 \begin{aligned}
--u^{\prime\prime} &= f \quad &&\text{in } {\cal B} = (0,1) \\
+-\nu u^{\prime\prime} &= f \quad &&\text{in } {\cal B} = (0,1) \\
 \end{aligned}
 $$
 
@@ -20,7 +20,7 @@ $$
 
 The classical Galerkin finite element formulation seeks $u \in V \subset H^1_0({\cal B})$ such that
 
-$$(u^\prime_h, v^\prime_h)_0 = (f, v_h)_0 \quad \forall v_h \in V_h$$
+$$\nu (u^\prime_h, v^\prime_h)_0 = (f, v_h)_0 \quad \forall v_h \in V_h$$
 
 ## Least Squares FEM (LSFEM)
 
@@ -76,11 +76,13 @@ The computed solutions at ML5 (32 elements) show that while both methods resolve
 
 | Method | ML 5 | ML 6 | ML 7 | ML 8 | ML 9 | ML 10 |
 |--------|------|------|------|------|------|-------|
-| SFEM (RG)  | 4.0088e-03 | 1.0060e-03 | 2.5175e-04 | 6.2954e-05 | 1.5739e-05 | 3.9349e-06 |
-| LSFEM (RG) |  |  |  |  |  |  |
-|            |            |            |            |            |            |            |
-| SFEM (PG)  | 4.9101e-03 | 1.1785e-03 | 2.8344e-04 | 7.0732e-05 | 1.7867e-05 | 4.4419e-06 |
-| LSFEM (PG) |  |  |  |  |  |  |
+| SFEM (RG)   | 4.0088e-03 | 1.0060e-03 | 2.5175e-04 | 6.2954e-05 | 1.5739e-05 | 3.9349e-06 |
+| LSFEM (RG)  |  |  |  |  |  |  |
+| wLSFEM (RG) |  |  |  |  |  |  |
+|             |            |            |            |            |            |            |
+| SFEM (PG)   | 4.9101e-03 | 1.1785e-03 | 2.8344e-04 | 7.0732e-05 | 1.7867e-05 | 4.4419e-06 |
+| LSFEM (PG)  |  |  |  |  |  |  |
+| wLSFEM (PG) |  |  |  |  |  |  |
 
 
 
@@ -97,11 +99,13 @@ The computed solutions at ML5 (32 elements) show that while both methods resolve
 
 | Method | ML 5 | ML 6 | ML 7 | ML 8 | ML 9 | ML 10 |
 |--------|------|------|------|------|------|-------|
-| SFEM (RG)  | 4.0613e-04 | 2.0367e-04 | 1.0191e-04 | 5.0965e-05 | 2.5483e-05 | 1.2742e-05 |
-| LSFEM (RG) |  |  |  |  |  |  |
-|            |            |            |            |            |            |            |
-| SFEM (PG)  | 4.3709e-04 | 2.1479e-04 | 1.0588e-04 | 5.2829e-05 | 2.6532e-05 | 1.3245e-05 |
-| LSFEM (PG) |  |  |  |  |  |  |
+| SFEM (RG)   | 4.0613e-04 | 2.0367e-04 | 1.0191e-04 | 5.0965e-05 | 2.5483e-05 | 1.2742e-05 |
+| LSFEM (RG)  |  |  |  |  |  |  |
+| wLSFEM (RG) |  |  |  |  |  |  |
+|             |            |            |            |            |            |            |
+| SFEM (PG)   | 4.3709e-04 | 2.1479e-04 | 1.0588e-04 | 5.2829e-05 | 2.6532e-05 | 1.3245e-05 |
+| LSFEM (PG)  |  |  |  |  |  |  |
+| wLSFEM (PG) |  |  |  |  |  |  |
 
 
 **Table 4: Convergence Rates for Solution $q$**
@@ -110,6 +114,7 @@ The computed solutions at ML5 (32 elements) show that while both methods resolve
 |--------|-------|-------|-------|-------|--------|------------|
 | SFEM   | 1.00  | 1.00  | 1.00  | 1.00  | 1.00   | ✅ |
 | LSFEM  |   |   |   |   |    | ✅ |
+| wLSFEM |   |   |   |   |    | ✅ |
 
 
 **Table 5: CG - iteration counts**
