@@ -4,7 +4,7 @@
 
 $$
 \begin{aligned}
--\nuu^{\prime\prime} + au^\prime &= f \quad &&\text{in } {\cal B} = (0,1), \\
+-\nu u^{\prime\prime} + au^\prime &= f \quad &&\text{in } {\cal B} = (0,1), \\
 u(0) = u(1) &= 0 \quad &&\text{on } \partial{\cal B}_D
 \end{aligned}
 $$
@@ -17,27 +17,21 @@ $$
 
 The classical Galerkin finite element formulation seeks $u_h \in V_h \subset H^1_0({\cal B})$ such that
 
-$$(\epsilon u'_h, v'_h)_0 + (a u_h, v'_h)_0 = (f, v_h)_0 \quad \forall v_h \in V_h$$
+$$(\nu u'_h, v'_h)_0 + (a u_h, v'_h)_0 = (f, v_h)_0 \quad \forall v_h \in V_h$$
 
 
-## Least Squares FEM $(LSFEM^{(d)})$ - Diffusive Flux 
+## Least Squares FEM 
 
+### First-Order System - Diffusive Flux $(LSFEM^{(d)})$ :
 
-### First-Order System:
-
-Define the diffusive flux $q = u^\prime$:
-
-**Balance:** $$-q^\prime + au = f, \qquad **Constitutive:** q -\nu u^\prime = 0$$
-
-
+**Flux:** $q = \nu u^\prime$  
+**Balance:** $-q^\prime + a u^\prime = f$  
+**Constitutive:** $q - \nu u^\prime = 0$
 
 ### Functional
 
-$${\cal J}(u,q;f) = \frac{1}{2} \parallel w_1 (-q^\prime + cu - f) \parallel^2_0 + \frac{1}{2} \parallel q - u^\prime \parallel^2_0$$
+$${\cal J}(u,q;f) = \frac{1}{2} \parallel w_1 (-q^\prime + a u^\prime - f) \parallel^2_0 + \frac{1}{2} \parallel w_2 (q - \nu u^\prime) \parallel^2_0$$
 
-**Weighting analyzed:**
-- **LSFEM**: $w_1 = 1$ (unweighted)
-- **wLSFEM**: $w_1 = c^{-1/2}$ (balanced scaling)
 
 ### Variational Formulation
 
@@ -50,6 +44,13 @@ with
 $${\cal A}((u_h,q_h);(v_h,r_h)) = w^2_1 (-q^\prime_h + c u_h , -r^\prime_h + c v_h)_0 + (q_h - u^\prime_h, r_h - v^\prime_h)_0$$
 
 $${\cal F}(v_h,r_h) = w^2_1 (f, -r^\prime_h + c v_h)_0$$
+
+
+## Weighting factor
+**Weighting analyzed:**
+- **LSFEM**: $w_1 = 1$, $w_2 = 1$ (unweighted)
+- **wLSFEM**: $w_1 = 1$, $w_2 = c^{-1/2}$ (constitutive scaling)
+
 
 
 ## 🔍 Key Findings
