@@ -20,7 +20,7 @@ $$
 
 The classical Galerkin finite element formulation seeks $u \in V \subset H^1_0({\cal B})$ such that
 
-$$(u^\prime, v^\prime)_0 = (f, v)_0 \quad \forall v \in V_h$$
+$$(u^\prime_h, v^\prime_h)_0 = (f, v_h)_0 \quad \forall v_h \in V_h$$
 
 ## Least Squares FEM (LSFEM)
 
@@ -32,23 +32,23 @@ $$-q^\prime = f, \qquad q - u^\prime = 0$$
 
 ### Functional
 
-$${\cal J}(u,q;f) = \frac{1}{2} \parallel w_1 (-q^\prime - f) \parallel^2_0 + \frac{1}{2} \parallel w_2 (q - u^\prime) \parallel^2_0$$
+$${\cal J}(u,q;f) = \frac{1}{2} \parallel w_1 (-q^\prime - f) \parallel^2_0 + \frac{1}{2} \parallel w_2 (q - \nu u^\prime) \parallel^2_0$$
 
 **Weighting analyzed:**
 - **LSFEM**: $w_1 = 1, w_2 = 1$ (unweighted)
-- **wLSFEM**: $w_1 = 1, w_2 = \epsilon^{-1/2}$ (balanced scaling)
+- **wLSFEM**: $w_1 = 1, w_2 = \nu^{-1/2}$ (balanced scaling)
 
 ### Variational Formulation
 
-The discrete variational form seeks $(u, q) \in V \times Q$ satisfying
+The discrete variational form seeks $(u_h, q_h) \in V_h \times Q_h$ satisfying
 
-$${\cal A}((u,q);(v,r)) = {\cal F}(v,r), \quad \forall (v,r) \in V \times Q$$
+$${\cal A}((u_h,q_h);(v_h,r_h)) = {\cal F}(v_h,r_h), \quad \forall (v_h,r_h) \in V_h \times Q_h$$
 
 with
 
-$${\cal A}((u,q);(v,r)) = w^2_1(-q^\prime , -r^\prime)_0 + w^2_2 (q - u^\prime, r - v^\prime)_0$$
+$${\cal A}((u_h,q_h);(v_h,r_h)) = w^2_1(-q^\prime_h , -r^\prime_h)_0 + w^2_2 (q_h - \nu u^\prime_h, r_h - v^\prime_h)_0$$
 
-$${\cal F}(v,r) = w^2_1 (f, -r^\prime )_0$$
+$${\cal F}(v_h,r_h) = w^2_1 (f, -r^\prime_h )_0$$
 
 
 ## Numerical Results
