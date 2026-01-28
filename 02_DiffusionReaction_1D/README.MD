@@ -92,6 +92,7 @@ Both **SFEM** and **LSFEM** achieve optimal second-order convergence $(O(h^2)$ f
 | LSFEM  | 1.99  | 2.00  | 2.00  | 2.00  | 2.00   | ✅ |
 | wLSFEM | 1.99  | 2.00  | 2.00  | 2.00  | 2.00   | ✅ |
 
+#
 
 **2. Flux Variable** $q = u^\prime$ **(Tables 3-4)**
 
@@ -112,8 +113,6 @@ Here the methods show **dramatically different behavior**:
   - ML5: $6.25 \times 10^{−2}$ → ML10: $6.20 \times 10^{−5}$
 - Rate ≈ 2.00 (optimal!)
 - Direct enforcement of constitutive relation $q - u^\prime = 0$ recovers optimal flux accuracy
-
-
 
 **Table 3: $L^2$ Error for Flux $q$ ($\| q - q_h \|_0$)** / RG = Regular Grid, PG = Perturbed Grid
 
@@ -136,6 +135,7 @@ Here the methods show **dramatically different behavior**:
 | LSFEM  | 1.98  | 2.00  | 2.00  | 2.00  | 2.00   | ❌ (Degraded)  |
 | wLSFEM |   | 2.00  | 2.00  | 2.00  | 2.00   | ❌ (Degraded)  |
 
+#
 
 **3. Mesh Perturbation Robustness**
 
@@ -147,6 +147,7 @@ Both methods remain stable under mesh perturbation:
 
 ✅ Both formulations are robust to irregular element geometry.
 
+#
 
 **4. Linear Solver Performance (Table 5)**
 
