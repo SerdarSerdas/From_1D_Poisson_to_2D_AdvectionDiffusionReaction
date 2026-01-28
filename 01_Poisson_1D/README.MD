@@ -60,7 +60,7 @@ Both **SFEM** and **LSFEM** achieve optimal second-order convergence $(O(h^2)$ f
 
 **SFEM** produces the **smallest errors**:
 
-- ML5: $4.01 \times 10^{−3}$ → ML10: $3.93 \times 10^{−6} (regular mesh)
+- ML5: $4.01 \times 10^{−3}$ → ML10: $3.93 \times 10^{−6}$ (regular mesh)
 - Consistent rate ≈ 2.00 across all refinement levels ✅
 
 **LSFEM** exhibits **$~1.8 \times$ larger errors** than SFEM:
@@ -80,13 +80,35 @@ Both **SFEM** and **LSFEM** achieve optimal second-order convergence $(O(h^2)$ f
 | LSFEM / PG  | 8.6949e-03 | 2.0132e-03 | 5.2286e-04 | 1.2784e-04 | 3.2207e-05 | 7.9986e-06 |
 
 
-
 **Table 2: Convergence Rates for Solution $u$**
 
 | Method | ML5→6 | ML6→7 | ML7→8 | ML8→9 | ML9→10 | Asymptotic |
 |--------|-------|-------|-------|-------|--------|------------|
 | SFEM   | 1.99  | 2.00  | 2.00  | 2.00  | 2.00   | ✅ |
 | LSFEM  | 1.99  | 2.00  | 2.00  | 2.00  | 2.00   | ✅ |
+
+
+**2. Flux Variable** $q = u^\prime$ **(Tables 3-4)**
+
+Here the methods show **dramatically different behavior**: 
+
+**SFEM**: First-order convergence only $O(h)$
+
+- Flux errors remain large: 
+  - ML5: $4.06 \times 10^{−1} → ML10: $1.27 \times 10^{−2}
+
+- Rate ≈ 1.00 (suboptimal for gradient recovery)
+- **~200× larger flux error** than LSFEM at ML10
+
+
+**LSFEM**: Second-order convergence $O(h^2)$ ✨
+
+
+- Flux errors **dramatically smaller**:
+  - ML5: $6.25 \times 10^{−2}$ → ML10: $6.20 \times 10^{−5}
+- Rate ≈ 2.00 (optimal!)
+- Direct enforcement of constitutive relation $q - u^\prime = 0$ recovers optimal flux accuracy
+
 
 
 **Table 3: $L^2$ Error for Flux $q$ ($\| q - q_h \|_0$)** / RG = Regular Grid, PG = Perturbed Grid
