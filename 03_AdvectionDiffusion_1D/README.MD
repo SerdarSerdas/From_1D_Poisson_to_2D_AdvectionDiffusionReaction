@@ -4,26 +4,30 @@
 
 $$
 \begin{aligned}
--u^{\prime\prime} + cu &= f \quad &&\text{in } {\cal B} = (0,1), \\
+-\nuu^{\prime\prime} + au^\prime &= f \quad &&\text{in } {\cal B} = (0,1), \\
 u(0) = u(1) &= 0 \quad &&\text{on } \partial{\cal B}_D
 \end{aligned}
 $$
 
-where $c \geq 0$ is the reaction coefficient.
+**Parameters:**
+- $\nu = 10^{-3}$ (**moderate diffusion**)
+- $a = 1$ (**advection velocity**)
 
 ## Standard Galerkin FEM (SFEM)
 
 The classical Galerkin finite element formulation seeks $u_h \in V_h \subset H^1_0({\cal B})$ such that
 
-$$(u^\prime_h, v^\prime_h)_0 + c(u_h, v_h)_0 = (f, v_h)_0 \quad \forall v_h \in V_h$$
+$$(\epsilon u'_h, v'_h)_0 + (a u_h, v'_h)_0 = (f, v_h)_0 \quad \forall v_h \in V_h$$
 
-## Least Squares FEM (LSFEM)
 
-### First-Order System
+## Least Squares FEM - Diffusive Flux (LSFEM$^{(d)}$)
 
-Define the diffusive flux $q = u^\prime$:
 
-$$-q^\prime + cu = f, \qquad q - u^\prime = 0$$
+### First-Order System (Diffusive Flux - LSFEM$^{(d)}$:
+
+**Flux:** $q = \nu u^\prime$  
+**Balance:** $-q^\prime + a u^\prime = f$  
+**Constitutive:** $q - \nu u^\prime = 0$
 
 ### Functional
 
