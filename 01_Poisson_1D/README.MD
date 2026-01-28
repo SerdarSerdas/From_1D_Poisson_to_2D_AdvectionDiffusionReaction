@@ -96,7 +96,7 @@ The computed solutions at ML5 (32 elements) show that while both methods resolve
 | wLSFEM |   |   |   |   |    | ✅ |
 
 
-**Table 3: $L^2$ Error for Flux $q$ ($\| q - q_h \|_0$)**
+**Table 3: $L^2$ Error for Flux $q$ ($\| q - q_h \|_0$)** / RG = Regular Grid, PG = Perturbed Grid
 
 | Method | ML 5 | ML 6 | ML 7 | ML 8 | ML 9 | ML 10 |
 |--------|------|------|------|------|------|-------|
@@ -119,8 +119,8 @@ The computed solutions at ML5 (32 elements) show that while both methods resolve
 | wLSFEM |   |   |   |   |    | ✅ |
 
 
-**Table 5: CG - iteration counts (LSFEM)**
-| Mesh | CG (reg/pert) | CG-JACOBI (reg/pert) | CG-AMG (reg/pert) |
+**Table 5: CG - iteration counts (LSFEM)** / RG = Regular Grid, PG = Perturbed Grid
+| Mesh | CG (RG/PG) | CG-JACOBI (RG/PG) | CG-AMG (RG/PG) |
 |------|-----------------|------------------|-------------------|
 | ML5  |    237 /    475 |   32 /   64 |   9 /  10 |
 | ML6  |    829 /   1722 |   64 /  128 |  14 /  14 |
@@ -130,8 +130,8 @@ The computed solutions at ML5 (32 elements) show that while both methods resolve
 | ML10 | 103807 / 224250 | 1024 / 2076 | 140 / 144 |
 
 
-**Table 6: CG - iteration counts (wLSFEM)**
-| Mesh | CG (reg/pert) | CG-JACOBI (reg/pert) | CG-AMG (reg/pert) |
+**Table 6: CG - iteration counts (wLSFEM)** / RG = Regular Grid, PG = Perturbed Grid
+| Mesh | CG (RG/PG) | CG-JACOBI (RG/PG) | CG-AMG (RG/PG) |
 |------|-----------------|------------------|-------------------|
 | ML5  | 200000 / 100000 | 200000 / 100000 | 200000 / 100000 |
 | ML6  | 200000 / 100000 | 200000 / 100000 | 200000 / 100000 |
