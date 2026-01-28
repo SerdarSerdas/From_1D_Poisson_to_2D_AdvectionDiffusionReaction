@@ -72,7 +72,7 @@ The computed solutions at ML5 (32 elements) show that while both methods resolve
 
 ### Convergence Tables
 
-**Table 1: $L^2$ Error for Solution $u$ ($\| u - u_h \|_0$)**
+**Table 1: $L^2$ Error for Solution $u$ ($\| u - u_h \|_0$)** / RG = Regular Grid, PG = Perturbed Grid
 
 | Method | ML 5 | ML 6 | ML 7 | ML 8 | ML 9 | ML 10 |
 |--------|------|------|------|------|------|-------|
