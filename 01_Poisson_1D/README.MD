@@ -119,8 +119,8 @@ The computed solutions at ML5 (32 elements) show that while both methods resolve
 | wLSFEM |   |   |   |   |    | ✅ |
 
 
-**Table 5: CG - iteration counts (LSFEM)** / RG = Regular Grid, PG = Perturbed Grid
-| Mesh | CG (LSFEM/wLSFEM) | CG-JACOBI (LSFEM/wLSFEM) | CG-AMG (LSFEM/wLSFEM) |
+**Table 5: CG - iteration counts (LSFEM/wLSFEM)** on regular grids
+| Mesh | CG | CG-JACOBI | CG-AMG |
 |------|-----------------|------------------|-------------------|
 | ML5  |  /  |  /  |  /  |
 | ML6  |  /  |  /  |  /  |
@@ -130,7 +130,7 @@ The computed solutions at ML5 (32 elements) show that while both methods resolve
 | ML10 |  /  |  /  |  /  |
 
 
-**Table 6: CG - iteration counts (wLSFEM)** / RG = Regular Grid, PG = Perturbed Grid
+**Table 6: CG - iteration counts (LSFEM/wLSFEM)** on perturebd grids
 | Mesh | CG (RG/PG) | CG-JACOBI (RG/PG) | CG-AMG (RG/PG) |
 |------|-----------------|------------------|-------------------|
 | ML5  |  /  |  /  |  /  |
