@@ -4,7 +4,7 @@
 
 $$
 \begin{aligned}
--\nu u^{\prime\prime} &= f \quad &&\text{in } {\cal B} = (0,1) \\
+-u^{\prime\prime} &= f \quad &&\text{in } {\cal B} = (0,1) \\
 \end{aligned}
 $$
 
@@ -20,7 +20,7 @@ $$
 
 The classical Galerkin finite element formulation seeks $u \in V \subset H^1_0({\cal B})$ such that
 
-$$\nu (u^\prime_h, v^\prime_h)_0 = (f, v_h)_0 \quad \forall v_h \in V_h$$
+$$(u^\prime_h, v^\prime_h)_0 = (f, v_h)_0 \quad \forall v_h \in V_h$$
 
 ## Least Squares FEM (LSFEM)
 
@@ -28,7 +28,7 @@ $$\nu (u^\prime_h, v^\prime_h)_0 = (f, v_h)_0 \quad \forall v_h \in V_h$$
 
 Define the diffusive flux $q = u^\prime$:
 
-$$-q^\prime = f, \qquad q - \nu u^\prime = 0$$
+$$-q^\prime = f, \qquad q - u^\prime = 0$$
 
 ### Functional
 
@@ -76,14 +76,11 @@ The computed solutions at ML5 (32 elements) show that while both methods resolve
 
 | Method | ML 5 | ML 6 | ML 7 | ML 8 | ML 9 | ML 10 |
 |--------|------|------|------|------|------|-------|
-| SFEM (RG)   |  |  |  |  |  |  |
-| LSFEM (RG)  |  |  |  |  |  |  |
-| wLSFEM (RG) |  |  |  |  |  |  |
+| SFEM / RG   | 4.0088e-03 | 1.0060e-03 | 2.5175e-04 | 6.2954e-05 | 1.5739e-05 | 3.9349e-06 |
+| LSFEM / RG  | 7.4255e-03 | 1.8731e-03 | 4.6933e-04 | 1.1740e-04 | 2.9354e-05 | 7.3389e-06 |
 |             |            |            |            |            |            |            |
-| SFEM (PG)   |  |  |  |  |  |  |
-| LSFEM (PG)  |  |  |  |  |  |  |
-| wLSFEM (PG) |  |  |  |  |  |  |
-
+| SFEM / PG   | 4.9101e-03 | 1.1785e-03 | 2.8344e-04 | 7.0732e-05 | 1.7867e-05 | 4.4419e-06 |
+| LSFEM / PG  | 8.6949e-03 | 2.0132e-03 | 5.2286e-04 | 1.2784e-04 | 3.2207e-05 | 7.9986e-06 |
 
 
 
@@ -93,21 +90,17 @@ The computed solutions at ML5 (32 elements) show that while both methods resolve
 |--------|-------|-------|-------|-------|--------|------------|
 | SFEM   | 1.99  | 2.00  | 2.00  | 2.00  | 2.00   | ✅ |
 | LSFEM  | 1.99  | 2.00  | 2.00  | 2.00  | 2.00   | ✅ |
-| wLSFEM |   |   |   |   |    | ✅ |
 
 
 **Table 3: $L^2$ Error for Flux $q$ ($\| q - q_h \|_0$)** / RG = Regular Grid, PG = Perturbed Grid
 
 | Method | ML 5 | ML 6 | ML 7 | ML 8 | ML 9 | ML 10 |
 |--------|------|------|------|------|------|-------|
-| SFEM (RG)   |  |  |  |  |  |  |
-| LSFEM (RG)  |  |  |  |  |  |  |
-| wLSFEM (RG) |  |  |  |  |  |  |
+| SFEM / RG   | 4.0613e-01 | 2.0367e-01 | 1.0191e-01 | 5.0965e-02 | 2.5483e-02 | 1.2742e-02 |
+| LSFEM / RG  | 6.2490e-02 | 1.5812e-02 | 3.9654e-03 | 9.9212e-04 | 2.4808e-04 | 6.2023e-05 |
 |             |            |            |            |            |            |            |
-| SFEM (PG)   |  |  |  |  |  |  |
-| LSFEM (PG)  |  |  |  |  |  |  |
-| wLSFEM (PG) |  |  |  |  |  |  |
-
+| SFEM / PG   | 4.3709e-01 | 2.1479e-01 | 1.0588e-01 | 5.2829e-02 | 2.6532e-02 | 1.3245e-02 |
+| LSFEM / PG  | 7.6399e-02 | 1.7035e-02 | 4.6915e-03 | 1.0984e-03 | 2.8095e-04 | 6.9651e-05 |
 
 
 **Table 4: Convergence Rates for Solution $q$**
@@ -116,29 +109,20 @@ The computed solutions at ML5 (32 elements) show that while both methods resolve
 |--------|-------|-------|-------|-------|--------|------------|
 | SFEM   | 1.00  | 1.00  | 1.00  | 1.00  | 1.00   | ✅ |
 | LSFEM  | 1.98  | 2.00  | 2.00  | 2.00  | 2.00   | ✅ |
-| wLSFEM |   |   |   |   |    | ✅ |
 
 
-**Table 5: CG - iteration counts (LSFEM/wLSFEM)** on regular grids
+
+**Table 5: CG - iteration counts (Regular/Perturbed)**
 | Mesh | CG | CG-JACOBI | CG-AMG |
 |------|-----------------|------------------|-------------------|
-| ML5  |  /  |  /  |  /  |
-| ML6  |  /  |  /  |  /  |
-| ML7  |  /  |  /  |  /  |
-| ML8  |  /  |  /  |  /  |
-| ML9  |  /  |  /  |  /  |
-| ML10 |  /  |  /  |  /  |
+| ML5  |   32 /   66 |   32 /   64 |  10 /  11 |
+| ML6  |   64 /  134 |   64 /  128 |  15 /  16 |
+| ML7  |  128 /  270 |  128 /  256 |  25 /  26 |
+| ML8  |  256 /  542 |  256 /  515 |  44 /  45 |
+| ML9  |  512 / 1086 |  512 / 1036 |  79 /  82 |
+| ML10 | 1024 / 2177 | 1024 / 2076 | 147 / 152 |
 
 
-**Table 6: CG - iteration counts (LSFEM/wLSFEM)** on perturebd grids
-| Mesh | CG (RG/PG) | CG-JACOBI (RG/PG) | CG-AMG (RG/PG) |
-|------|-----------------|------------------|-------------------|
-| ML5  |  /  |  /  |  /  |
-| ML6  |  /  |  /  |  /  |
-| ML7  |  /  |  /  |  /  |
-| ML8  |  /  |  /  |  /  |
-| ML9  |  /  |  /  |  /  |
-| ML10 |  /  |  /  |  /  |
 
 ### Key Observations
 
