@@ -20,7 +20,7 @@ The classical Galerkin finite element formulation seeks $u_h \in V_h \subset H^1
 $$(\epsilon u'_h, v'_h)_0 + (a u_h, v'_h)_0 = (f, v_h)_0 \quad \forall v_h \in V_h$$
 
 
-## Least Squares FEM - Diffusive Flux (LSFEM$^{(d)}$)
+## Least Squares FEM $(LSFEM^{(d)})$ - Diffusive Flux 
 
 
 ### First-Order System (Diffusive Flux - LSFEM$^{(d)}$:
