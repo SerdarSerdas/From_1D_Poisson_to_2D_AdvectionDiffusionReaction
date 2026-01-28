@@ -103,7 +103,6 @@ Here the methods show **dramatically different behavior**:
 
 **LSFEM**: Second-order convergence $O(h^2)$ ✨
 
-
 - Flux errors **dramatically smaller**:
   - ML5: $6.25 \times 10^{−2}$ → ML10: $6.20 \times 10^{−5}$
 - Rate ≈ 2.00 (optimal!)
@@ -130,6 +129,15 @@ Here the methods show **dramatically different behavior**:
 | LSFEM  | 1.98  | 2.00  | 2.00  | 2.00  | 2.00   | ✅ |
 
 
+**3. Mesh Perturbation Robustness**
+
+Both methods remain stable under mesh perturbation:
+
+**SFEM**: ~20% error increase for u, ~7% for q
+**LSFEM**: ~9% error increase for u, ~12% for q
+**Convergence rates** unchanged (still 2.00 for u, 1.00/2.00 for q)
+
+✅ Both formulations are robust to irregular element geometry.
 
 **Table 5: CG - iteration counts (Regular/Perturbed)**
 | Mesh | CG | CG-JACOBI | CG-AMG |
