@@ -1,28 +1,33 @@
 ## 1D Advection-Diffusion Equation
 
 ### Strong Form
+
 $$
 \begin{aligned}
--\epsilon u'' + b u' &= f \quad &&\text{in } \mathcal{B} = (0,1), \\
-u(0) = u(1) &= 0 \quad &&\text{on } \partial\mathcal{B}_D
+-u^{\prime\prime} + cu &= f \quad &&\text{in } {\cal B} = (0,1), \\
+u(0) = u(1) &= 0 \quad &&\text{on } \partial{\cal B}_D
 \end{aligned}
 $$
-**Parameters:**
-- $\epsilon = 10^{-3}$ (**moderate diffusion**)
-- $b = 1$ (**advection velocity**)
 
-### SFEM (Standard Galerkin)
-$$(\epsilon u'_h, v'_h)_0 + (b u_h, v'_h)_0 = (f, v_h)_0 \quad \forall v_h \in V_h$$
+where $c \geq 0$ is the reaction coefficient.
 
-### LSFEM First-Order System
-**Flux:** $q = \epsilon u'$  
-**Balance:** $-q' + b u' = f$  
-**Constitutive:** $q - \epsilon u' = 0$
+## Standard Galerkin FEM (SFEM)
 
-**Functional:**
-$$
-\mathcal{J}(u,q;f) = \frac{1}{2} \| w_1 (-q' + b u' - f) \|^2_0 + \frac{1}{2} \| w_2 (q - \epsilon u') \|^2_0
-$$
+The classical Galerkin finite element formulation seeks $u_h \in V_h \subset H^1_0({\cal B})$ such that
+
+$$(u^\prime_h, v^\prime_h)_0 + c(u_h, v_h)_0 = (f, v_h)_0 \quad \forall v_h \in V_h$$
+
+## Least Squares FEM (LSFEM)
+
+### First-Order System
+
+Define the diffusive flux $q = u^\prime$:
+
+$$-q^\prime + cu = f, \qquad q - u^\prime = 0$$
+
+### Functional
+
+$${\cal J}(u,q;f) = \frac{1}{2} \parallel w_1 (-q^\prime + cu - f) \parallel^2_0 + \frac{1}{2} \parallel q - u^\prime \parallel^2_0$$
 
 **Weighting analyzed:**
 - **LSFEM**: $w_1 = 1$ (unweighted)
