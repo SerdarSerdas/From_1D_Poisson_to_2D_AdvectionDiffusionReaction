@@ -95,7 +95,7 @@ Here the methods show **dramatically different behavior**:
 **SFEM**: First-order convergence only $O(h)$
 
 - Flux errors remain large: 
-  - ML5: $4.06 \times 10^{−1} → ML10: $1.27 \times 10^{−2}
+  - ML5: $4.06 \times 10^{−1}$ → ML10: $1.27 \times 10^{−2}$
 
 - Rate ≈ 1.00 (suboptimal for gradient recovery)
 - **~200× larger flux error** than LSFEM at ML10
@@ -105,7 +105,7 @@ Here the methods show **dramatically different behavior**:
 
 
 - Flux errors **dramatically smaller**:
-  - ML5: $6.25 \times 10^{−2}$ → ML10: $6.20 \times 10^{−5}
+  - ML5: $6.25 \times 10^{−2}$ → ML10: $6.20 \times 10^{−5}$
 - Rate ≈ 2.00 (optimal!)
 - Direct enforcement of constitutive relation $q - u^\prime = 0$ recovers optimal flux accuracy
 
