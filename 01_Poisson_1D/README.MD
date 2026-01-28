@@ -63,10 +63,11 @@ Both **SFEM** and **LSFEM** achieve optimal second-order convergence $(O(h^2)$ f
 - ML5: $4.01 \times 10^{−3}$ → ML10: $3.93 \times 10^{−6} (regular mesh)
 - Consistent rate ≈ 2.00 across all refinement levels ✅
 
-**LSFEM** exhibits **$~1.8 \times$** larger errors than SFEM:
+**LSFEM** exhibits **$~1.8 \times$ larger errors** than SFEM:
 
 - ML5: $7.43 \times 10^{−3}$ → ML10: $7.34 \times 10^{−6}$ (regular mesh)
 - Also maintains optimal second-order convergence ✅
+
 
 **Table 1: $L^2$ Error for Solution $u$ ($\| u - u_h \|_0$)** / RG = Regular Grid, PG = Perturbed Grid
 
