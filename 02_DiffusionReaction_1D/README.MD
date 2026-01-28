@@ -71,25 +71,33 @@ Both **SFEM** and **LSFEM** achieve optimal second-order convergence $(O(h^2)$ f
 - Also maintains optimal second-order convergence ✅
 
 
-**Table 1: $L^2$ Error for Solution $u$ ($\| u - u_h \|_0$) for $c = 10^{-4}$** / RG = Regular Grid, PG = Perturbed Grid
+**Table 1: $L^2$ Error $\| u - u_h \|_0$ for $c = 10^{-4}$** / RG = Regular Grid, PG = Perturbed Grid
 
 | Method | ML 5 | ML 6 | ML 7 | ML 8 | ML 9 | ML 10 |
 |--------|------|------|------|------|------|-------|
-| SFEM / RG   |  |  |  |  |  |  |
+| SFEM / RG   | 4.0088e-03 | 1.0060e-03 | 2.5175e-04 | 6.2953e-05 | 1.5739e-05 | 3.9349e-06 |
 | LSFEM / RG  |  |  |  |  |  |  |
+| wLSFEM / RG |  |  |  |  |  |  |
 |             |            |            |            |            |            |            |
-| SFEM / PG   |  |  |  |  |  |  |
+| SFEM / PG   | 4.9101e-03 | 1.1785e-03 | 2.8344e-04 | 7.0732e-05 | 1.7867e-05 | 4.4419e-06 |
 | LSFEM / PG  |  |  |  |  |  |  |
+| wLSFEM / PG |  |  |  |  |  |  |
 
-**Table 1: $L^2$ Error for Solution $u$ ($\| u - u_h \|_0$) for $c = 10^{4}$** / RG = Regular Grid, PG = Perturbed Grid
+
+
+
+**Table 1: $L^2$ Error $\| u - u_h \|_0$ for $c = 10^{4}$** / RG = Regular Grid, PG = Perturbed Grid
 
 | Method | ML 5 | ML 6 | ML 7 | ML 8 | ML 9 | ML 10 |
 |--------|------|------|------|------|------|-------|
-| SFEM / RG   |  |  |  |  |  |  |
+| SFEM / RG   | 1.7129e-03 | 4.1770e-04 | 1.0377e-04 | 2.5902e-05 | 6.4729e-06 | 1.6181e-06 |
 | LSFEM / RG  |  |  |  |  |  |  |
+| wLSFEM / RG |  |  |  |  |  |  |
 |             |            |            |            |            |            |            |
-| SFEM / PG   |  |  |  |  |  |  |
+| SFEM / PG   | 2.3761e-03 | 5.6720e-04 | 1.3528e-04 | 3.4318e-05 | 8.7650e-06 | 2.1671e-06 |
 | LSFEM / PG  |  |  |  |  |  |  |
+| wLSFEM / PG |  |  |  |  |  |  |
+
 
 
 **Table 3: Convergence Rates for Solution $u$** for regular grids $(c = 10^{-4} / c = 10^{4})$
@@ -126,21 +134,28 @@ Here the methods show **dramatically different behavior**:
 
 | Method | ML 5 | ML 6 | ML 7 | ML 8 | ML 9 | ML 10 |
 |--------|------|------|------|------|------|-------|
-| SFEM / RG   |  |  |  |  |  |  |
+| SFEM / RG   | 4.0613e-01 | 2.0367e-01 | 1.0191e-01 | 5.0965e-02 | 2.5483e-02 | 1.2742e-02 |
 | LSFEM / RG  |  |  |  |  |  |  |
+| wLSFEM / RG |  |  |  |  |  |  |
 |             |            |            |            |            |            |            |
-| SFEM / PG   |  |  |  |  |  |  |
+| SFEM / PG   | 4.3709e-01 | 2.1479e-01 | 1.0588e-01 | 5.2829e-02 | 2.6532e-02 | 1.3245e-02 |
 | LSFEM / PG  |  |  |  |  |  |  |
+| wLSFEM / PG |  |  |  |  |  |  |
+
+
 
 **Table 5: $L^2$ Error for Solution $u$ ($\| q - q_h \|_0$) for $c = 10^{4}$** / RG = Regular Grid, PG = Perturbed Grid
 
 | Method | ML 5 | ML 6 | ML 7 | ML 8 | ML 9 | ML 10 |
 |--------|------|------|------|------|------|-------|
-| SFEM / RG   |  |  |  |  |  |  |
+| SFEM / RG   | 4.0982e-01 | 2.0415e-01 | 1.0197e-01 | 5.0972e-02 | 2.5484e-02 | 1.2742e-02 |
 | LSFEM / RG  |  |  |  |  |  |  |
+| wLSFEM / RG |  |  |  |  |  |  |
 |             |            |            |            |            |            |            |
-| SFEM / PG   |  |  |  |  |  |  |
+| SFEM / PG   | 4.4388e-01 | 2.1558e-01 | 1.0596e-01 | 5.2838e-02 | 2.6533e-02 | 1.3245e-02 |
 | LSFEM / PG  |  |  |  |  |  |  |
+| wLSFEM / PG |  |  |  |  |  |  |
+
 
 
 
