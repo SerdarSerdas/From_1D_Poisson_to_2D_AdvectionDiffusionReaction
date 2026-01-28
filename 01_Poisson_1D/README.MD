@@ -47,12 +47,22 @@ $${\cal A}((u_h,q_h);(v_h,r_h)) = w^2_1(-q^\prime_h , -r^\prime_h)_0 + w^2_2 (q_
 $${\cal F}(v_h,r_h) = w^2_1 (f, -r^\prime_h )_0$$
 
 
-## Numerical Results
+## 🔍 Key Findings
 
 All configurations are discretized using linear ($P_1$) finite elements with ($\nun = 1\cdot10^{-3}$ / **moderate diffusion**). Both **regular** and **perturbed** grids are studied.
 
 
-### Convergence Tables
+
+
+**1. Solution Variable** $u$ **(Tables 1-2)**
+
+Both **SFEM** and **LSFEM** achieve optimal second-order convergence $(O(h^2)$ for the solution variable u:
+
+**SFEM** produces the **smallest errors**:
+
+- ML5: $4.01 \times 10^{−3}$ → ML10: 3$.93 \timees 10^{−6} (regular mesh)
+- Consistent rate ≈ 2.00 across all refinement levels ✅
+
 
 **Table 1: $L^2$ Error for Solution $u$ ($\| u - u_h \|_0$)** / RG = Regular Grid, PG = Perturbed Grid
 
