@@ -71,20 +71,28 @@ Both **SFEM** and **LSFEM** achieve optimal second-order convergence $(O(h^2)$ f
 - Also maintains optimal second-order convergence ✅
 
 
-**Table 1: $L^2$ Error for Solution $u$ ($\| u - u_h \|_0$)** / RG = Regular Grid, PG = Perturbed Grid
+**Table 1: $L^2$ Error for Solution $u$ ($\| u - u_h \|_0$) for $c = 10^{-4}$** / RG = Regular Grid, PG = Perturbed Grid
 
 | Method | ML 5 | ML 6 | ML 7 | ML 8 | ML 9 | ML 10 |
 |--------|------|------|------|------|------|-------|
-| SFEM / RG   | 4.01e-03 / 1.71e-03 | 1.01e-03 / 4.12e-04 | 2.52e-04 / 1.04e-04 | 6.30e-05 / 2.59e-05 | 1.57e-05 / 6.47e-06 | 3.94e-06 / 1.62e-06 |
-| LSFEM / RG  |  /  |  /  |  /  |  /  |  /  |  /  |
-| wLSFEM / RG |  /  |  /  |  /  |  /  |  /  |  /  |
+| SFEM / RG   |  |  |  |  |  |  |
+| LSFEM / RG  |  |  |  |  |  |  |
 |             |            |            |            |            |            |            |
-| SFEM / PG   |  /  |  /  |  /  |  /  |  /  |  /  |
-| LSFEM / PG  |  /  |  /  |  /  |  /  |  /  |  /  |
-| wLSFEM / PG |  /  |  /  |  /  |  /  |  /  |  /  |
+| SFEM / PG   |  |  |  |  |  |  |
+| LSFEM / PG  |  |  |  |  |  |  |
+
+**Table 1: $L^2$ Error for Solution $u$ ($\| u - u_h \|_0$) for $c = 10^{4}$** / RG = Regular Grid, PG = Perturbed Grid
+
+| Method | ML 5 | ML 6 | ML 7 | ML 8 | ML 9 | ML 10 |
+|--------|------|------|------|------|------|-------|
+| SFEM / RG   |  |  |  |  |  |  |
+| LSFEM / RG  |  |  |  |  |  |  |
+|             |            |            |            |            |            |            |
+| SFEM / PG   |  |  |  |  |  |  |
+| LSFEM / PG  |  |  |  |  |  |  |
 
 
-**Table 2: Convergence Rates for Solution $u$** (regular grid)
+**Table 3: Convergence Rates for Solution $u$** for regular grids $(c = 10^{-4} / c = 10^{4})$
 
 | Method | ML5→6 | ML6→7 | ML7→8 | ML8→9 | ML9→10 | Asymptotic |
 |--------|-------|-------|-------|-------|--------|------------|
@@ -114,21 +122,29 @@ Here the methods show **dramatically different behavior**:
 - Rate ≈ 2.00 (optimal!)
 - Direct enforcement of constitutive relation $q - u^\prime = 0$ recovers optimal flux accuracy
 
-**Table 3: $L^2$ Error for Flux $q$ ($\| q - q_h \|_0$)** / RG = Regular Grid, PG = Perturbed Grid
+**Table 4: $L^2$ Error for Solution $u$ ($\| q - q_h \|_0$) for $c = 10^{-4}$** / RG = Regular Grid, PG = Perturbed Grid
 
 | Method | ML 5 | ML 6 | ML 7 | ML 8 | ML 9 | ML 10 |
 |--------|------|------|------|------|------|-------|
-| SFEM / RG   | 4.0613e-01 / 4.0982e-01 | 2.0367e-01 / 2.0415e-01 | 1.0191e-01 / 1.0197e-01 | 5.0965e-02 / 5.0972e-02 | 2.5483e-02 / 2.5484e-02 | 1.2742e-02 / 1.2742e-02 |
-| LSFEM / RG  |  /  |  /  |  /  |  /  |  /  |  /  |
-| wLSFEM / RG |  /  |  /  |  /  |  /  |  /  |  /  |
+| SFEM / RG   |  |  |  |  |  |  |
+| LSFEM / RG  |  |  |  |  |  |  |
 |             |            |            |            |            |            |            |
-| SFEM / PG   |  /  |  /  |  /  |  /  |  /  |  /  |
-| LSFEM / PG  |  /  |  /  |  /  |  /  |  /  |  /  |
-| wLSFEM / PG |  /  |  /  |  /  |  /  |  /  |  /  |
+| SFEM / PG   |  |  |  |  |  |  |
+| LSFEM / PG  |  |  |  |  |  |  |
+
+**Table 5: $L^2$ Error for Solution $u$ ($\| q - q_h \|_0$) for $c = 10^{4}$** / RG = Regular Grid, PG = Perturbed Grid
+
+| Method | ML 5 | ML 6 | ML 7 | ML 8 | ML 9 | ML 10 |
+|--------|------|------|------|------|------|-------|
+| SFEM / RG   |  |  |  |  |  |  |
+| LSFEM / RG  |  |  |  |  |  |  |
+|             |            |            |            |            |            |            |
+| SFEM / PG   |  |  |  |  |  |  |
+| LSFEM / PG  |  |  |  |  |  |  |
 
 
 
-**Table 4: Convergence Rates for Solution $q$**
+**Table 6: Convergence Rates for Solution $q$** for regular grids $(c = 10^{-4} / c = 10^{4})$
 
 | Method | ML5→6 | ML6→7 | ML7→8 | ML8→9 | ML9→10 | Asymptotic |
 |--------|-------|-------|-------|-------|--------|------------|
