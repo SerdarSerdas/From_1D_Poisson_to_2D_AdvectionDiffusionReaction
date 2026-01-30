@@ -3,6 +3,8 @@
 
 ### 🧩 Solution variable $u$
 
+**Figure 1 depicts the solution $u$ at mesh level 5 (ML5 / 32 elements)  and the $L^2(u)$ errors for regular girds.**
+
 **For the diffusion-dominated case $c = 10^{-4}$, all three formulations (SFEM, LSFEM, wLSFEM) achieve optimal second-order convergence in the $L^2$-norm of the solution $u$. The unweighted LSFEM exhibits slightly larger errors (about a factor of 1.8) compared to SFEM, whereas the weighted variant wLSFEM essentially reproduces the SFEM error levels across all mesh refinements.**
 
 **In the reaction-dominated case $c = 10^{4}$, SFEM and wLSFEM again maintain second-order convergence with nearly identical error magnitudes. In contrast, unweighted LSFEM shows a clear loss of convergence order for $u$; the rates deteriorate well below second order and do not recover in the asymptotic range. This confirms that the naive choice $w_1 = 1$ severely underweights the reaction contribution in the least-squares functional when $c$ is large.**
