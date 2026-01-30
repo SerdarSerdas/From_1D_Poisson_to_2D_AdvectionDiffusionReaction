@@ -4,10 +4,21 @@ This study compares the Standard Finite Element Method (SFEM) and Least-Squares 
 
 ### 🧩 Solution variable $u$
 
-**Figure 1 depicts the solution $u$ at mesh level 5 (ML5 / 32 elements) and the $L^2(u)$ errors for regular girds.**
+Figure 1 depicts the solution $u$ at mesh level 5 (ML5 / 32 elements) and the $L^2(u)$ errors for regular girds.
 
 ![Figure 1: 1D Poisson - solution u](figures/Fig_Poisson1D_BL_ML5_u.png)
 **Figure 1.** (a) Solution $u_h$ for ML5 (32 ekements), (b) $L^2(u)$ error convergence. 
+
+Both methods achieve optimal second-order convergence for the primary solution variable:
+
+- **SFEM**: Convergence rate $\approx$ 2.00, achieving $O(h^2)$ accuracy
+- **LSFEM**: Convergence rate $\approx$ 2.00, achieving $O(h^2)$ accuracy
+- **Accuracy comparison**: SFEM produces approximately $1.7 \times$ smaller errors for u
+
+At the finest mesh (ML10):
+
+SFEM: L² error = 1.95e-06
+LSFEM: L² error = 3.37e-06
 
 **Table 1: $L^2$ Error $\| u - u_h \|_0$** / RG = Regular Grid, PG = Perturbed Grid
 
