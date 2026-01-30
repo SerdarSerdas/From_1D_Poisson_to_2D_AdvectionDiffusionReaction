@@ -43,11 +43,22 @@ At the finest mesh (ML10):
 
 #
 
-### 🌊 Flux variable $q$
+### 🧩 Solution flux variable $q$
 
 **Figure 2 depicts the solution $q$ at mesh level 5 (ML5 / 32 elements) and the $L^2(q)$ errors for regular girds.**
 
 ![Figure 2: 1D Poisson - flux q](figures/Fig_Poisson1D_BL_ML5_q.png)
+
+The most significant difference appears in the flux variable, where LSFEM demonstrates clear superiority:
+
+- **SFEM**: First-order convergence (rate $\approx$ 1.00), achieving $O(h)$ accuracy
+- **LSFEM**: Second-order convergence (rate $\approx$ 2.00), achieving $O(h^2)$ accuracy
+- **Accuracy comparison**: LSFEM produces approximately $10 \times$ smaller errors at coarse meshes, with the advantage increasing at finer meshes due to the higher convergence rate
+
+At the finest mesh (ML10):
+
+**SFEM**: $L^2$ error = 6.30e-03
+**LSFEM: $L^2$ error = 1.76e-05 (~357× more accurate)**
 
 **Table 3: $L^2$ Error ($\| q - q_h \|_0$)** / RG = Regular Grid, PG = Perturbed Grid
 
