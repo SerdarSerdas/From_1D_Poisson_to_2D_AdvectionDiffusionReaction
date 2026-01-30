@@ -109,7 +109,7 @@ Both methods demonstrate good stability under mesh perturbation:
 **Algebraic multigrid (CG-AMG): ⭐ Mesh-independent convergence!**
 
 - Iteration count grows sub-linearly with DOF (~O(N^0.6))
-- ML5: 10/10 iterations → ML10: 149/152 iterations
+- ML5: 10/10 iterations → ML10: 149/152 iterations 🟢
 - **~14× reduction compared to unpreconditioned CG at ML10**
 - **~14× reduction compared to Jacobi-preconditioned CG at ML10**
 - Enables practical solution of large-scale LSFEM systems
