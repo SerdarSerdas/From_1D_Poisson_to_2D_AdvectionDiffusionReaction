@@ -5,6 +5,8 @@
 
 **Figure 1 depicts the solution $u$ at mesh level 5 (ML5 / 32 elements) and the $L^2(u)$ errors for regular girds.**
 
+![Figure 1: 1D Poisson - solution u](figures/Fig_Poisson1D_BL_u.png)
+**Figure 1.** (a) Solution $u_h$ for ML5 (32 ekements), (b) $L^2(u)$ error convergence. 
 
 **Table 1: $L^2$ Error $\| u - u_h \|_0$** / RG = Regular Grid, PG = Perturbed Grid
 
