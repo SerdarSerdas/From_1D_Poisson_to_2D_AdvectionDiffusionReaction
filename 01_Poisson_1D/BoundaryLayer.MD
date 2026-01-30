@@ -58,7 +58,7 @@ The most significant difference appears in the flux variable, where LSFEM demons
 At the finest mesh (ML10):
 
 **SFEM**: $L^2$ error = 6.30e-03
-**LSFEM: $L^2$ error = 1.76e-05 (~357× more accurate)**
+**LSFEM**: $L^2$ error = 1.76e-05 **(~357× more accurate)**
 
 **Table 3: $L^2$ Error ($\| q - q_h \|_0$)** / RG = Regular Grid, PG = Perturbed Grid
 
