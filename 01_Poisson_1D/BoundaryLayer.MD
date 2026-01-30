@@ -6,10 +6,10 @@ This study compares the Standard Finite Element Method (SFEM) and Least-Squares 
 
 ### 🧩 Solution variable $u$
 
-Figure 1 depicts the solution $u$ at mesh level 5 (ML5 / 32 elements) and the $L^2(u)$ errors for regular girds.
+Figure 1 depicts the solution $u$ at mesh level 5 (ML5 / 32 elements) and the $L^2(u)$ errors for regular grids.
 
 ![Figure 1: 1D Poisson - solution u](figures/Fig_Poisson1D_BL_ML5_u.png)
-**Figure 1.** (a) Solution $u_h$ for ML5 (32 ekements), (b) $L^2(u)$ error convergence. 
+**Figure 1.** (a) Solution $u_h$ for ML5 (32 elements), (b) $L^2(u)$ error convergence. 
 
 Both methods achieve optimal second-order convergence for the primary solution variable:
 
@@ -133,18 +133,19 @@ AMG preconditioning reduces iteration counts dramatically, growing approximately
 
 ### 🧩 Solution variable $u$
 
-**Figure 1 depicts the solution $u$ at mesh level 5 (ML5 / 32 elements) and the $L^2(u)$ errors for regular girds.**
+**Figure 3 depicts the solution $u$ at mesh level 5 (ML5 / 32 elements) for regular grid and the $L^2(u)$ errors for regular girds.**
 
+P1 - Bild
 
-**Table 6: $L^2$ Error $\| u - u_h \|_0$** / RG = Regular Grid, PG = Perturbed Grid
+**Table 6: $L^2$ Error $\| u - u_h \|_0$** - $P_1 / P_2$
 
 | Method | ML 5 | ML 6 | ML 7 | ML 8 | ML 9 | ML 10 |
 |--------|------|------|------|------|------|-------|
-| SFEM / RG   |  |  |  |  |  |  |
-| LSFEM / RG  |  |  |  |  |  |  |
-|             |            |            |            |            |            |            |
-| SFEM / PG   |  |  |  |  |  |  |
-| LSFEM / PG  |  |  |  |  |  |  |
+| SFEM / $P_1$     |  |  |  |  |  |  |
+| LSFEM / $P_1P_1$ |  |  |  |  |  |  |
+|                  |            |            |            |            |            |            |
+| SFEM / $P_2$     |  |  |  |  |  |  |
+| LSFEM / $P_2P_2$ |  |  |  |  |  |  |
 
 
 
@@ -154,6 +155,8 @@ AMG preconditioning reduces iteration counts dramatically, growing approximately
 |--------|-------|-------|-------|-------|--------|------------|
 | SFEM   |  |  |  |  |  | ✅ |
 | LSFEM  |  |  |  |  |  | ✅ |
+
+P2-Bild
 
 #
 
