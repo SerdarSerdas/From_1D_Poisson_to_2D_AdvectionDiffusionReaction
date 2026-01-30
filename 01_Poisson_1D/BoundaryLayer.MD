@@ -128,53 +128,55 @@ AMG preconditioning reduces iteration counts dramatically, growing approximately
 
 #
 
-## 📊 Numerical Results $\epsilon = 10^{-3}$
+## 📊 Adaptive Mesh Refinement
 
+In this case we decrease the parameter $\epsilon$ to $\epsilon = 10^{-3}$ yielding to a severe boundary layer near to $x = 1$. Analysis is carried out for $P_1$ and $P_2$ elements. Two adaptive refinement strategies, namely $\alpha-Bulk$ and $Dörfler$ for $P_1$ and $P_2$ elements are considered. 
 
 ### 🧩 Solution variable $u$
 
-**Figure 3 depicts the solution $u$ at mesh level 5 (ML5 / 32 elements) for regular grid and the $L^2(u)$ errors for regular girds.**
+**Figure 3 depicts the solution $u$ at mesh level 8 (ML8 / 256 elements) for regular grid and the $L^2(u)$ errors for regular girds.**
 
 P1 - Bild
 
-**Table 6: $L^2$ Error $\| u - u_h \|_0$** - $P_1 / P_2$
+**Table 6: $L^2$ Error $\| u - u_h \|_0$** - $P_1 / P_2$ (regular grids)
 
 | Method | ML 5 | ML 6 | ML 7 | ML 8 | ML 9 | ML 10 |
 |--------|------|------|------|------|------|-------|
-| SFEM / $P_1$     |  |  |  |  |  |  |
-| LSFEM / $P_1P_1$ |  |  |  |  |  |  |
+| SFEM / $P_1$     | 1.1777e-01 | 1.9684e-01 | 5.8239e-02 | 1.7741e-02 | 6.4160e-03 | 1.8445e-03 |
+| LSFEM / $P_1P_1$ | 1.6756e+00 | 2.7528e+00 | 1.6024e+00 | 5.9229e-01 | 1.7221e-01 | 4.5035e-02 |
 |                  |            |            |            |            |            |            |
-| SFEM / $P_2$     |  |  |  |  |  |  |
-| LSFEM / $P_2P_2$ |  |  |  |  |  |  |
-
-
+| SFEM / $P_2$     | 7.9493e-02 | 1.9903e-01 | 5.0769e-02 | 4.6098e-03 | 6.6623e-04 | 9.4856e-05 |
+| LSFEM / $P_2P_2$ | 8.9287e-02 | 2.1738e-01 | 5.8522e-02 | 6.4992e-03 | 8.0132e-04 | 1.0041e-04 |
 
 **Table 7: Convergence Rates for Solution $u$** on regular grids
 
 | Method | ML5→6 | ML6→7 | ML7→8 | ML8→9 | ML9→10 | Asymptotic |
 |--------|-------|-------|-------|-------|--------|------------|
-| SFEM   |  |  |  |  |  | ✅ |
-| LSFEM  |  |  |  |  |  | ✅ |
+| SFEM / $P_1$     | -0.74 | 1.76 | 1.71 | 1.47 | 1.80 | ✅ |
+| LSFEM / $P_1P_1$ | -0.72 | 0.78 | 1.44 | 1.78 | 1.94 | ✅ |
+|                  |            |            |            |            |            |            |
+| SFEM / $P_2$     | -1.32 | 1.97 | 3.46 | 2.79 | 2.81 | ✅ |
+| LSFEM / $P_2P_2$ | -1.28 | 1.89 | 3.17 | 3.02 | 2.80 | ✅ |
 
 P2-Bild
 
 #
 
-### 🌊 Flux variable $q$
+### 🧩 Solution flux variable $q$
 
-**Figure 2 depicts the solution $q$ at mesh level 5 (ML5 / 32 elements) and the $L^2(q)$ errors for regular girds.**
+**Figure 3 depicts the solution $q$ at mesh level 5 (ML5 / 32 elements) and the $L^2(q)$ errors for regular girds.**
 
+P1-Bild
 
-**Table 8: $L^2$ Error ($\| q - q_h \|_0$)** / RG = Regular Grid, PG = Perturbed Grid
+**Table 8: $L^2$ Error ($\| q - q_h \|_0$)** - $P_1 / P_2$ (recursive grids)
 
 | Method | ML 5 | ML 6 | ML 7 | ML 8 | ML 9 | ML 10 |
 |--------|------|------|------|------|------|-------|
-| SFEM / RG   |  |  |  |  |  |  |
-| LSFEM / RG  |  |  |  |  |  |  |
-|             |            |            |            |            |            |            |
-| SFEM / PG   |  |  |  |  |  |  |
-| LSFEM / PG  |  |  |  |  |  |  |
-
+| SFEM / $P_1$     | 4.3580e+00 | 1.0682e+01 | 1.5973e+01 | 1.5514e+01 | 1.0708e+01 | 6.0225e+00 |
+| LSFEM / $P_1P_1$ | 2.3713e+01 | 4.5047e+01 | 3.4751e+01 | 1.7589e+01 | 6.4106e+00 | 1.8428e+00 |
+|                  |            |            |            |            |            |            |
+| SFEM / $P_2$     | 7.0770e+00 | 1.0901e+01 | 8.8122e+00 | 6.0894e+00 | 2.5067e+00 | 7.4435e-01 |
+| LSFEM / $P_2P_2$ | 1.3438e+01 | 2.2378e+01 | 1.2512e+01 | 3.5710e+00 | 6.6043e-01 | 9.4953e-02 |
 
 
 
@@ -182,8 +184,13 @@ P2-Bild
 
 | Method | ML5→6 | ML6→7 | ML7→8 | ML8→9 | ML9→10 | Asymptotic |
 |--------|-------|-------|-------|-------|--------|------------|
-| SFEM   |  |  |  |  |  | ✅ |
-| LSFEM  |  |  |  |  |  | ✅ |
+| SFEM / $P_1$     | -1.29 | -0.58 | 0.04 | 0.53 | 0.83 | ✅ |
+| LSFEM / $P_1P_1$ | -0.93 | 0.37 | 0.98 | 1.46 | 1.80 | ✅ |
+|                  |            |            |            |            |            |            |
+| SFEM / $P_2$     | -0.62 | 0.31 | 0.53 | 1.28 | 1.75 | ✅ |
+| LSFEM / $P_2P_2$ | -0.74 | 0.84 | 1.81 | 2.43 | 2.80| ✅ |
+
+P2-Bild
 
 #
 
