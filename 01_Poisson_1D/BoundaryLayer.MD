@@ -2,6 +2,8 @@
 
 This study compares the Standard Finite Element Method (SFEM) and Least-Squares Finite Element Method (LSFEM) for solving the 1D Poisson equation with parameter $\epsilon = 10^{-1}$. Both methods are tested on regular and perturbed grids across six mesh levels (ML5-ML10, corresponding to 32-1024 elements).
 
+#
+
 ### 🧩 Solution variable $u$
 
 Figure 1 depicts the solution $u$ at mesh level 5 (ML5 / 32 elements) and the $L^2(u)$ errors for regular girds.
@@ -45,6 +47,7 @@ At the finest mesh (ML10):
 
 **Figure 2 depicts the solution $q$ at mesh level 5 (ML5 / 32 elements) and the $L^2(q)$ errors for regular girds.**
 
+![Figure 2: 1D Poisson - flux q](figures/Fig_Poisson1D_BL_ML5_q.png)
 
 **Table 3: $L^2$ Error ($\| q - q_h \|_0$)** / RG = Regular Grid, PG = Perturbed Grid
 
