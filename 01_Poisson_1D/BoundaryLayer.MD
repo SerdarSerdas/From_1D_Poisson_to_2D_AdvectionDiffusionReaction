@@ -17,8 +17,8 @@ Both methods achieve optimal second-order convergence for the primary solution v
 
 At the finest mesh (ML10):
 
-SFEM: L² error = 1.95e-06
-LSFEM: L² error = 3.37e-06
+- SFEM: $L^2$ error = 1.95e-06
+- LSFEM: $L^2$ error = 3.37e-06
 
 **Table 1: $L^2$ Error $\| u - u_h \|_0$** / RG = Regular Grid, PG = Perturbed Grid
 
