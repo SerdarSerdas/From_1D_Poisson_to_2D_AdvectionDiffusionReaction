@@ -1,3 +1,6 @@
+## 📊 Numerical Results $\epsilon = 10^{-1}$
+
+
 ### 🧩 Solution variable $u$
 
 **For the diffusion-dominated case $c = 10^{-4}$, all three formulations (SFEM, LSFEM, wLSFEM) achieve optimal second-order convergence in the $L^2$-norm of the solution $u$. The unweighted LSFEM exhibits slightly larger errors (about a factor of 1.8) compared to SFEM, whereas the weighted variant wLSFEM essentially reproduces the SFEM error levels across all mesh refinements.**
