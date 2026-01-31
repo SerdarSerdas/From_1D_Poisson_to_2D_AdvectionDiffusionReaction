@@ -173,7 +173,7 @@ Figure 1 depicts the solution $u$ at mesh level 5 (ML5 / 32 elements) and the $L
 
 #
 
-### ⚡ Solver performance 
+## 🧩 Solver performance 
 
 **Table 9: CG - iteration counts of $P_1$ elements**
 | Mesh | Elements | DoF | CG | CG-JACOBI | CG-AMG |
@@ -217,3 +217,19 @@ Figure 1 depicts the solution $u$ at mesh level 5 (ML5 / 32 elements) and the $L
 - Jacobi preconditioner is counterproductive for $P_2$ elements
 - Highlights importance of sophisticated preconditioning (AMG)
 
+
+## 🧩 Mesh Perturbation Robustness
+
+Both methods maintain optimal convergence rates on randomly perturbed grids:
+
+**$P_1$** Regular vs Perturbed:
+
+- Error magnitude increases ~12-20%
+- Convergence rates remain $O(h^2)$ for u, $O(h)/O(h^2)$ for q
+- Demonstrates numerical stability
+
+**$P_2$** Regular vs Perturbed:
+
+- Initial mesh shows larger variation due to geometric sensitivity
+- Asymptotic rates achieved by ML6-ML7
+- Both methods robust
