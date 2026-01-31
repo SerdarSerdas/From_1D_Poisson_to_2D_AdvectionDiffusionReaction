@@ -94,7 +94,7 @@ Figure 1 depicts the solution $u$ at mesh level 5 (ML5 / 32 elements) and the $L
 - Ratio ≈ 8.0 = $2^3$ confirms third-order convergence
 - **LSFEM maintains perfect 8.0 ratio while SFEM degrades to 7.31 at finest level**
 - LSFEM actually achieves slightly better accuracy than SFEM (6.41e-08 vs 7.01e-08)
-- Both achieve engineering precision (~$10^{-7}$) with only 256 elements
+- Both achieve engineering precision $(~10^{-7})$ with only 256 elements
 
 #
 
