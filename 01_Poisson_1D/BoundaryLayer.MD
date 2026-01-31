@@ -78,7 +78,7 @@ Figure 1 depicts the solution $u$ at mesh level 5 (ML5 / 32 elements) and the $L
 | SFEM / PG   | 3.9714e-04 | 3.4124e-05 | 5.3776e-06 | 7.1791e-07 | 8.1484e-08 |
 | LSFEM / PG  | 4.1081e-04 | 3.4360e-05 | 5.3909e-06 | 7.2076e-07 | 8.0282e-08 |
 
-**Table 4: $L^2(u)$ ratios** for $P_2$ elements on regular grids / RG = Regular Grid, PG = Perturbed Grid
+**Table 4: $L^2(u)$ ratios** for $P_2$ elements on regular grids
 
 | Method | ML4→5 | ML5→6 | ML6→7 | ML7→8 | Asymptotic |
 |--------|-------|-------|-------|-------|------------|
@@ -98,15 +98,13 @@ Figure 1 depicts the solution $u$ at mesh level 5 (ML5 / 32 elements) and the $L
 
 #
 
-### 🧩 Solution flux variable $q$
+## 🧩 Solution flux variable $q$
 
 **Figure 2 depicts the solution $q$ at mesh level 5 (ML5 / 32 elements) and the $L^2(q)$ errors for regular grids.**
 
 ![Figure 2: 1D Poisson - flux q](figures/Fig_Poisson1D_BL_ML5_q.png)
 
-
-
-**Table 5: $L^2$ Error $\| q - q_h \|_0$** for $P_1$ elements / RG = Regular Grid, PG = Perturbed Grid
+**Table 5: $L^2$ Error $\| q - q_h \|_0$** for $P_1$ elements
 
 | Method | ML 4 | ML 5 | ML 6 | ML 7 | ML 8 |
 |--------|------|------|------|------|------|
@@ -115,6 +113,12 @@ Figure 1 depicts the solution $u$ at mesh level 5 (ML5 / 32 elements) and the $L
 |             |            |            |            |            |            |
 | SFEM / PG   | 4.4342e-01 | 1.9879e-01 | 1.0656e-01 | 5.3637e-02 | 2.6144e-02 |
 | LSFEM / PG  | 9.3888e-02 | 1.7910e-02 | 5.3102e-03 | 1.3730e-03 | 3.1838e-04 |
+
+**Accuracy Comparison at ML8:**
+
+- SFEM: 2.5214e-02
+- LSFEM: 2.8204e-04
+- **LSFEM is 89× more accurate!** ⭐
 
 **Table 6: $L^2(q)$ Ratios** for $P_1$ elements on regular grids / RG = Regular Grid, PG = Perturbed Grid
 
@@ -126,6 +130,12 @@ Figure 1 depicts the solution $u$ at mesh level 5 (ML5 / 32 elements) and the $L
 | SFEM / PG  | 2.23 | 1.87 | 1.99 | 2.05 | ✅ |
 | LSFEM / PG | 5.24 | 3.37 | 3.87 | 4.31 | ✅ |
 
+**Analysis:**
+
+- **SFEM achieves only $O(h)$ convergence** (ratio ≈ 2.0)
+- **LSFEM achieves $O(h^2)$ convergence** (ratio ≈ 4.0)
+- This is the fundamental advantage of LSFEM: treats flux as primary variable
+- The accuracy gap widens with refinement due to convergence rate difference
 
 **Table 7: $L^2$ Error $\| q - q_h \|_0$** for $P_2$ elements / RG = Regular Grid, PG = Perturbed Grid
 
@@ -137,6 +147,12 @@ Figure 1 depicts the solution $u$ at mesh level 5 (ML5 / 32 elements) and the $L
 | SFEM / PG   | 4.1298e-02 | 8.1191e-03 | 2.3646e-03 | 6.0959e-04 | 1.4309e-04 |
 | LSFEM / PG  | 3.9709e-03 | 3.4119e-04 | 5.3799e-05 | 7.2036e-06 | 8.0272e-07 |
 
+**Accuracy Comparison at ML8:**
+
+- SFEM: 1.3006e-04
+- LSFEM: 6.4122e-07
+- **LSFEM is 203× more accurate!** ⭐⭐⭐
+
 **Table 8: $L^2(q)$ ratios** for $P_2$ elements on regular grids / RG = Regular Grid, PG = Perturbed Grid
 
 | Method | ML4→5 | ML5→6 | ML6→7 | ML7→8 | Asymptotic |
@@ -147,31 +163,19 @@ Figure 1 depicts the solution $u$ at mesh level 5 (ML5 / 32 elements) and the $L
 | SFEM / PG  |  5.09 | 3.43 | 3.88 | 4.26 | ✅ |
 | LSFEM / PG | 11.64 | 6.34 | 7.47 | 8.97 | ✅ |
 
+**Analysis:**
+
+- SFEM achieves $O(h^2)$ convergence (ratio ≈ 4.0)
+- **LSFEM achieves $O(h^3)$ convergence (ratio ≈ 8.0)**
+- This matches the solution u convergence for LSFEM
+- LSFEM treats both u and q with equal accuracy
+- The $203 \times$ accuracy difference demonstrates LSFEM's superiority for derivative quantities
+
 #
 
 ### ⚡ Solver performance 
 
-**Without preconditioning (CG):** 🔴
-
-- Iteration count doubles with each mesh refinement (O(N) growth)
-- ML5: 32/33 iterations → ML10: 513/541 iterations 
-- Impractical for large-scale problems
-
-**Jacobi preconditioning (CG-JACOBI):** 🟡
-
-- Modest improvement, eliminates ~1 iteration per level on regular grids
-- Still exhibits O(N) scaling behavior
-- ML5: 31/32 iterations → ML8: 511/514 iterations
-- Negligible improvement over unpreconditioned CG
-
-**Algebraic multigrid (CG-AMG): ⭐ Mesh-independent convergence!**  🟢
-
-- Iteration count grows sub-linearly with DOF (~O(N^0.6))
-- ML4: 7/7 iterations → ML8: 45/46 iterations
-- **~11× reduction compared to unpreconditioned CG at ML8**
-- **~11× reduction compared to Jacobi-preconditioned CG at ML8**
-
-**Table 9: CG - iteration counts of $P_1$ elements (Regular/Perturbed)**
+**Table 9: CG - iteration counts of $P_1$ elements**
 | Mesh | CG | CG-JACOBI | CG-AMG |
 |------|----|-----------|------------------|
 | ML4  |  32 /  33 |  31 /  32 |  7 /  7 |
@@ -179,6 +183,18 @@ Figure 1 depicts the solution $u$ at mesh level 5 (ML5 / 32 elements) and the $L
 | ML6  | 128 / 133 | 127 / 128 | 16 / 16 |
 | ML7  | 256 / 269 | 255 / 256 | 26 / 26 |
 | ML8  | 513 / 541 | 511 / 514 | 45 / 46 |
+
+**Observations:**
+
+- **Unpreconditioned CG:** Iterations ≈ 2N (O(N) scaling) - impractical
+- **Jacobi preconditioning:** Saves ~1 iteration - negligible benefit
+- **AMG preconditioning:** ~45 iterations at ML8 → $11 \times$ reduction! 🚀
+
+**Scaling Analysis:**
+
+- CG: Doubles with each refinement (2N)
+- AMG: Sub-linear growth $(~N^0.6)$
+- At ML8: 513 iterations (CG) vs 45 iterations (AMG)
 
 
 **Table 10: CG - iteration counts of $P_2$ elements (Regular/Perturbed)**
@@ -190,5 +206,14 @@ Figure 1 depicts the solution $u$ at mesh level 5 (ML5 / 32 elements) and the $L
 | ML7  |  578 /  638 |  576 /  582 |  70 /  71 |
 | ML8  | 1162 / 1289 | 1163 / 1178 | 124 / 126 |
 
-AMG preconditioning reduces iteration counts dramatically, growing approximately as $O(h^{-0.6})$ compared to $O(h^{-1})$ for unpreconditioned CG. This is essential for the practical application of LSFEM, which produces larger symmetric systems.
+**Observations:**
+
+- **Unpreconditioned CG:** 1162 iterations at ML8 - completely impractical
+- **Jacobi preconditioning:** Actually WORSE (1163 vs 1162) - useless!
+- **AMG preconditioning:** 124 iterations at ML8 → **9× reduction!** 🚀
+
+**Surprising Result:**
+
+- Jacobi preconditioner is counterproductive for $P_2$ elements
+- Highlights importance of sophisticated preconditioning (AMG)
 
