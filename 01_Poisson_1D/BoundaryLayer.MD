@@ -193,12 +193,12 @@ Figure 1 depicts the solution $u$ at mesh level 5 (ML5 / 32 elements) and the $L
 **Scaling Analysis:**
 
 - CG: Doubles with each refinement (2N)
-- AMG: Sub-linear growth $(~N^0.6)$
+- AMG: Sub-linear growth $(~N^{0.6})$
 - At ML8: 513 iterations (CG) vs 45 iterations (AMG)
 
 
 **Table 10: CG - iteration counts of $P_2$ elements (Regular/Perturbed)**
-| Mesh | CG | CG-JACOBI | CG-AMG |
+| **Mesh** | **CG** | **CG-JACOBI** | **CG-AMG** |
 |------|----|-----------|------------------|
 | ML4  |   68 /   74 |   66 /   67 |  16 /  17 |
 | ML5  |  141 /  151 |  138 /  139 |  27 /  27 |
