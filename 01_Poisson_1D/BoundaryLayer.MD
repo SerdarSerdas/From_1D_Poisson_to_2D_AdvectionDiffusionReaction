@@ -7,7 +7,7 @@ This study compares the Standard Finite Element Method (SFEM) and Least-Squares 
 ### Methods Compared
 
 - **SFEM (Standard Galerkin FEM)**: Primal formulation with solution variable u
-- **LSFEM (Least-Squares FEM)**: First-order system with ($u$, $q = -u^\prime$) as unknowns
+- **LSFEM (Least-Squares FEM)**: First-order system with $(q = -u^\prime)$ as unknowns
 
 - **Element Types:** $P_1$ (linear) and $P_2$ (quadratic)
 - **Mesh Types:** Regular (RG) and Perturbed (PG) Grids
@@ -51,7 +51,7 @@ Figure 1 depicts the solution $u$ at mesh level 5 (ML5 / 32 elements) and the $L
 | SFEM / PG   | 1.0181e-02 | 1.9912e-03 | 5.7947e-04 | 1.4927e-04 | 3.4878e-05 |
 | LSFEM / PG  | 1.6742e-02 | 3.4810e-03 | 9.7084e-04 | 2.4665e-04 | 5.8935e-05 |
 
-**Table 2: $L^2(u)$ Ratios** for $P_1$ elements on regular grids / RG = Regular Grid, PG = Perturbed Grid
+**Table 2: $L^2(u)$ Ratios** for $P_1$ elements on regular grids
 
 | Method | ML4→5 | ML5→6 | ML6→7 | ML7→8 | Asymptotic |
 |--------|-------|-------|-------|-------|------------|
