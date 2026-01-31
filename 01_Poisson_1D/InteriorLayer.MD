@@ -266,7 +266,7 @@ Figure 1 depicts the solution $u$ at mesh level 5 (ML5 / 32 elements) and the $L
 $P_1$ Elements:
 
 - Error magnitude increases ~12-25% on perturbed grids
-- Convergence rates maintained $(O(h^2) for u, O(h)/O(h^2) for q)$
+- Convergence rates maintained ($O(h^2)$ for u, $O(h)/O(h^2)$ for q)
 - Some variation in convergence ratios but asymptotically correct
 - Both methods robust
 
