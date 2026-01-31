@@ -64,7 +64,7 @@ Figure 1 depicts the solution $u$ at mesh level 5 (ML5 / 32 elements) and the $L
 **Analysis:**
 
 - Both methods achieve optimal $O(h^2)$ convergence for $P_1$ elements
-- Ratio ≈ 4.0 = $2^2" confirms second-order convergence
+- Ratio ≈ 4.0 = $2^2$ confirms second-order convergence
 - Perturbed grids show initial variation but maintain asymptotic rates
 - SFEM produces $1.74 \times$ smaller errors for solution u
 
