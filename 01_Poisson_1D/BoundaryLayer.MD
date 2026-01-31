@@ -1,6 +1,6 @@
 ## 📊 Numerical Results for $\epsilon = 10^{-1}$
 
-This study compares the Standard Finite Element Method (SFEM) and Least-Squares Finite Element Method (LSFEM) for solving the 1D Poisson equation with parameter $\epsilon = 10^{-1}$. Both methods are tested on regular and perturbed grids across six mesh levels (ML5-ML10, corresponding to 32-1024 elements).
+This study compares the Standard Finite Element Method (SFEM) and Least-Squares Finite Element Method (LSFEM) for solving the 1D Poisson equation with parameter $\epsilon = 10^{-1}$. Both methods are tested on regular and perturbed grids across six mesh levels (ML4-ML8, corresponding to 16-256 elements).
 
 #
 
@@ -24,22 +24,22 @@ At the finest mesh (ML10):
 
 **Table 1: $L^2$ Error $\| u - u_h \|_0$** / RG = Regular Grid, PG = Perturbed Grid
 
-| Method | ML 5 | ML 6 | ML 7 | ML 8 | ML 9 | ML 10 |
-|--------|------|------|------|------|------|-------|
-| SFEM / RG   | 1.9821e-03 | 4.9766e-04 | 1.2455e-04 | 3.1145e-05 | 7.7869e-06 | 1.9468e-06 |
-| LSFEM / RG  | 3.4398e-03 | 8.6257e-04 | 2.1581e-04 | 5.3962e-05 | 1.3491e-05 | 3.3728e-06 |
-|             |            |            |            |            |            |            |
-| SFEM / PG   | 1.9912e-03 | 5.7947e-04 | 1.4927e-04 | 3.4878e-05 | 8.7734e-06 | 2.2322e-06 |
-| LSFEM / PG  | 3.4810e-03 | 9.7084e-04 | 2.4665e-04 | 5.8935e-05 | 1.4771e-05 | 3.7402e-06 |
+| Method | ML 4 | ML 5 | ML 6 | ML 7 | ML 8 |
+|--------|------|------|------|------|------|
+| SFEM / RG   | 7.7953e-03 | 1.9821e-03 | 4.9766e-04 | 1.2455e-04 | 3.1145e-05 |
+| LSFEM / RG  | 1.3594e-02 | 3.4398e-03 | 8.6257e-04 | 2.1581e-04 | 5.3962e-05 |
+|             |            |            |            |            |            |
+| SFEM / PG   | 1.0181e-02 | 1.9912e-03 | 5.7947e-04 | 1.4927e-04 | 3.4878e-05 |
+| LSFEM / PG  | 1.6742e-02 | 3.4810e-03 | 9.7084e-04 | 2.4665e-04 | 5.8935e-05 |
 
 
 
 **Table 2: Convergence Rates for Solution $u$** on regular grids
 
-| Method | ML5→6 | ML6→7 | ML7→8 | ML8→9 | ML9→10 | Asymptotic |
-|--------|-------|-------|-------|-------|--------|------------|
-| SFEM   | 1.99 | 2.00 | 2.00 | 2.00 | 2.00 | ✅ |
-| LSFEM  | 2.00 | 2.00 | 2.00 | 2.00 | 2.00 | ✅ |
+| Method | ML4→5 | ML5→6 | ML6→7 | ML7→8 | Asymptotic |
+|--------|-------|-------|-------|-------|------------|
+| SFEM   | 1.98 | 1.99 | 2.00 | 2.00 | ✅ |
+| LSFEM  | 1.98 | 2.00 | 2.00 | 2.00 | ✅ |
 
 #
 
@@ -62,22 +62,21 @@ At the finest mesh (ML10):
 
 **Table 3: $L^2$ Error ($\| q - q_h \|_0$)** / RG = Regular Grid, PG = Perturbed Grid
 
-| Method | ML 5 | ML 6 | ML 7 | ML 8 | ML 9 | ML 10 |
-|--------|------|------|------|------|------|-------|
-| SFEM / RG   | 2.0075e-01 | 1.0074e-01 | 5.0416e-02 | 2.5214e-02 | 1.2608e-02 | 6.3039e-03 |
-| LSFEM / RG  | 1.7933e-02 | 4.5057e-03 | 1.1278e-03 | 2.8204e-04 | 7.0517e-05 | 1.7629e-05 |
-|             |            |            |            |            |            |            |
-| SFEM / PG   | 1.9879e-01 | 1.0656e-01 | 5.3637e-02 | 2.6144e-02 | 1.3101e-02 | 6.5859e-03 |
-| LSFEM / PG  | 1.7910e-02 | 5.3102e-03 | 1.3730e-03 | 3.1838e-04 | 8.0174e-05 | 2.0436e-05 |
-
+| Method | ML 4 | ML 5 | ML 6 | ML 7 | ML 8 |
+|--------|------|------|------|------|------|
+| SFEM / RG   | 3.9579e-01 | 2.0075e-01 | 1.0074e-01 | 5.0416e-02 | 2.5214e-02 |
+| LSFEM / RG  | 7.0335e-02 | 1.7933e-02 | 4.5057e-03 | 1.1278e-03 | 2.8204e-04 |
+|             |            |            |            |            |            |
+| SFEM / PG   | 4.4342e-01 | 1.9879e-01 | 1.0656e-01 | 5.3637e-02 | 2.6144e-02 |
+| LSFEM / PG  | 9.3888e-02 | 1.7910e-02 | 5.3102e-03 | 1.3730e-03 | 3.1838e-04 |
 
 
 **Table 4: Convergence Rates for Solution $q$** on regular grids
 
-| Method | ML5→6 | ML6→7 | ML7→8 | ML8→9 | ML9→10 | Asymptotic |
-|--------|-------|-------|-------|-------|--------|------------|
-| SFEM   | 0.99 | 1.00 | 1.00 | 1.00 | 1.00 | ✅ |
-| LSFEM  | 1.99 | 2.00 | 2.00 | 2.00 | 2.00 | ✅ |
+| Method | ML4→5 | ML5→6 | ML6→7 | ML7→8 | Asymptotic |
+|--------|-------|-------|-------|-------|------------|
+| SFEM   | 0.98 | 0.99 | 1.00 | 1.00 | ✅ |
+| LSFEM  | 1.97 | 1.99 | 2.00 | 2.00 | ✅ |
 
 #
 
@@ -109,20 +108,20 @@ Both methods demonstrate good stability under mesh perturbation:
 **Algebraic multigrid (CG-AMG): ⭐ Mesh-independent convergence!**
 
 - Iteration count grows sub-linearly with DOF (~O(N^0.6))
-- ML5: 10/10 iterations → ML10: 149/152 iterations 🟢
-- **~14× reduction compared to unpreconditioned CG at ML10**
-- **~14× reduction compared to Jacobi-preconditioned CG at ML10**
-- Enables practical solution of large-scale LSFEM systems
+- ML4: 7/7 iterations → ML8: 45/46 iterations 🟢
+- **~11× reduction compared to unpreconditioned CG at ML8**
+- **~11× reduction compared to Jacobi-preconditioned CG at ML8**
 
 **Table 5: CG - iteration counts (Regular/Perturbed)**
 | Mesh | CG | CG-JACOBI | CG-AMG |
 |------|----|-----------|------------------|
-| ML5  |   64 /   66 |   63 /   64 |  10 /  10 |
-| ML6  |  128 /  133 |  127 /  128 |  16 /  16 |
-| ML7  |  256 /  269 |  255 /  256 |  26 /  26 |
-| ML8  |  512 /  541 |  511 /  514 |  45 /  46 |
-| ML9  | 1025 / 1084 | 1023 / 1036 |  80 /  82 |
-| ML10 | 2049 / 2173 | 2047 / 2075 | 149 / 152 |
+| ML4  |  32 /  33 |  31 /  32 |  7 /  7 |
+| ML5  |  64 /  66 |  63 /  64 | 10 / 10 |
+| ML6  | 128 / 133 | 127 / 128 | 16 / 16 |
+| ML7  | 256 / 269 | 255 / 256 | 26 / 26 |
+| ML8  | 513 / 541 | 511 / 514 | 45 / 46 |
+
+
 
 AMG preconditioning reduces iteration counts dramatically, growing approximately as $O(h^{-0.6})$ compared to $O(h^{-1})$ for unpreconditioned CG. This is essential for the practical application of LSFEM, which produces larger symmetric systems.
 
@@ -138,7 +137,7 @@ In this case we decrease the parameter $\epsilon$ to $\epsilon = 10^{-3}$ yieldi
 
 P1 - Bild
 
-**Table 6: $L^2$ Error $\| u - u_h \|_0$** - $P_1 / P_2$ (regular grids)
+**Table 6: $L^2$ Error $\| u - u_h \|_0$** - $P_1 / P_2$ (graded grids)
 
 | Method | ML 5 | ML 6 | ML 7 | ML 8 | ML 9 | ML 10 |
 |--------|------|------|------|------|------|-------|
