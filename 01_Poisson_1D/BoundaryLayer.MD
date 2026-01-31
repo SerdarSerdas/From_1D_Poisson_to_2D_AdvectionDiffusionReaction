@@ -17,10 +17,10 @@ Both methods achieve optimal second-order convergence for the primary solution v
 - **LSFEM**: Convergence rate $\approx$ 2.00, achieving $O(h^2)$ accuracy
 - **Accuracy comparison**: SFEM produces approximately $1.7 \times$ smaller errors for u
 
-At the finest mesh (ML10):
+At the finest mesh (ML8):
 
-- SFEM: $L^2$ error = 1.95e-06
-- LSFEM: $L^2$ error = 3.37e-06
+- SFEM: $L^2$ error = 3.1145e-05
+- LSFEM: $L^2$ error = 5.3962e-05
 
 **Table 1: $L^2$ Error $\| u - u_h \|_0$** / RG = Regular Grid, PG = Perturbed Grid
 
@@ -31,8 +31,6 @@ At the finest mesh (ML10):
 |             |            |            |            |            |            |
 | SFEM / PG   | 1.0181e-02 | 1.9912e-03 | 5.7947e-04 | 1.4927e-04 | 3.4878e-05 |
 | LSFEM / PG  | 1.6742e-02 | 3.4810e-03 | 9.7084e-04 | 2.4665e-04 | 5.8935e-05 |
-
-
 
 **Table 2: Convergence Rates for Solution $u$** on regular grids
 
@@ -45,7 +43,7 @@ At the finest mesh (ML10):
 
 ### 🧩 Solution flux variable $q$
 
-**Figure 2 depicts the solution $q$ at mesh level 5 (ML5 / 32 elements) and the $L^2(q)$ errors for regular girds.**
+**Figure 2 depicts the solution $q$ at mesh level 5 (ML5 / 32 elements) and the $L^2(q)$ errors for regular grids.**
 
 ![Figure 2: 1D Poisson - flux q](figures/Fig_Poisson1D_BL_ML5_q.png)
 
@@ -57,8 +55,8 @@ The most significant difference appears in the flux variable, where LSFEM demons
 
 At the finest mesh (ML10):
 
-- **SFEM**: $L^2$ error = 6.30e-03
-- **LSFEM: $L^2$ error = 1.76e-05 (~357× more accurate)**
+- **SFEM**: $L^2$ error = 2.5214e-02
+- **LSFEM: $L^2$ error = 2.8204e-04 (~89 $\times$ more accurate)**
 
 **Table 3: $L^2$ Error ($\| q - q_h \|_0$)** / RG = Regular Grid, PG = Perturbed Grid
 
@@ -81,6 +79,23 @@ At the finest mesh (ML10):
 #
 
 ### 🧩 Mesh Perturbation Robustness
+
+**Table 4: Convergence Ratios for Solution $u$** on perturbed grids
+
+| Method | ML4→5 | ML5→6 | ML6→7 | ML7→8 | Asymptotic |
+|--------|-------|-------|-------|-------|------------|
+| SFEM   | 5.11 | 3.44 | 3.88 | 4.28 | ✅ |
+| LSFEM  | 4.81 | 3.59 | 3.94 | 4.19 | ✅ |
+
+**Table 4: Convergence Ratios for Solution $q$** on perturbed grids
+
+| Method | ML4→5 | ML5→6 | ML6→7 | ML7→8 | Asymptotic |
+|--------|-------|-------|-------|-------|------------|
+| SFEM   | 2.23 | 1.87 | 1.99 | 2.05 | ✅ |
+| LSFEM  | 5.24 | 3.37 | 3.87 | 4.31 | ✅ |
+
+
+
 
 Both methods demonstrate good stability under mesh perturbation:
 
