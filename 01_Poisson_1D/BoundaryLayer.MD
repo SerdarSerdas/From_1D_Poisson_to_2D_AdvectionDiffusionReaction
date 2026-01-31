@@ -18,6 +18,7 @@ This study compares the Standard Finite Element Method (SFEM) and Least-Squares 
 ## Main Results Summary
 
 🎯 **Key Finding: LSFEM's Superior Flux Accuracy**
+
 **For $P_1$ elements at ML8:**
 
 - Solution u: SFEM is 1.74× more accurate
@@ -32,25 +33,15 @@ This study compares the Standard Finite Element Method (SFEM) and Least-Squares 
 
 #
 
-### 🧩 Solution variable $u$
+## 🧩 Solution variable $u$
 
 Figure 1 depicts the solution $u$ at mesh level 5 (ML5 / 32 elements) and the $L^2(u)$ errors for regular grids with $P_1$ elements.
 
 ![Figure 1: 1D Poisson - solution u](figures/Fig_Poisson1D_BL_ML5_u.png)
 **Figure 1.** (a) Solution $u_h$ for ML5 (32 elements), (b) $L^2(u)$ error convergence. 
 
-Both methods achieve optimal second-order convergence for the primary solution variable:
 
-- **SFEM**: Convergence rate $\approx$ 2.00, achieving $O(h^2)$ accuracy
-- **LSFEM**: Convergence rate $\approx$ 2.00, achieving $O(h^2)$ accuracy
-- **Accuracy comparison**: SFEM produces approximately $1.7 \times$ smaller errors for u
-
-At the finest mesh (ML8):
-
-- SFEM: $L^2$ error = 3.1145e-05
-- LSFEM: $L^2$ error = 5.3962e-05
-
-**Table 1: $L^2$ Error $\| u - u_h \|_0$** for $P_1$ elements / RG = Regular Grid, PG = Perturbed Grid
+**Table 1: $L^2$ Error $\| u - u_h \|_0$** for $P_1$ elements
 
 | Method | ML 4 | ML 5 | ML 6 | ML 7 | ML 8 |
 |--------|------|------|------|------|------|
@@ -70,9 +61,14 @@ At the finest mesh (ML8):
 | SFEM / PG  | 5.11 | 3.44 | 3.88 | 4.28 | ✅ |
 | LSFEM / PG | 4.81 | 3.59 | 3.94 | 4.19 | ✅ |
 
+**Analysis:**
 
+- Both methods achieve optimal $O(h^2)$ convergence for $P_1$ elements
+- Ratio ≈ 4.0 = $2^2" confirms second-order convergence
+- Perturbed grids show initial variation but maintain asymptotic rates
+- SFEM produces $1.74 \times$ smaller errors for solution u
 
-**Table 3: $L^2$ Error $\| u - u_h \|_0$** for $P_2$ elements / RG = Regular Grid, PG = Perturbed Grid
+**Table 3: $L^2$ Error $\| u - u_h \|_0$** for $P_2$ elements
 
 | Method | ML 4 | ML 5 | ML 6 | ML 7 | ML 8 |
 |--------|------|------|------|------|------|
@@ -92,7 +88,13 @@ At the finest mesh (ML8):
 | SFEM / PG  | 11.64 | 6.35 | 7.49 | 8.81 | ✅ |
 | LSFEM / PG | 11.96 | 6.37 | 7.48 | 8.98 | ✅ |
 
-SFEM ratio at ML7→8 degrades
+**Analysis:**
+
+- Both methods achieve $O(h^3)$ convergence for $P_2$ elements
+- Ratio ≈ 8.0 = $2^3$ confirms third-order convergence
+- **LSFEM maintains perfect 8.0 ratio while SFEM degrades to 7.31 at finest level**
+- LSFEM actually achieves slightly better accuracy than SFEM (6.41e-08 vs 7.01e-08)
+- Both achieve engineering precision (~$10^{-7}$) with only 256 elements
 
 #
 
