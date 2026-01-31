@@ -22,13 +22,6 @@ At the finest mesh (ML8):
 - SFEM: $L^2$ error = 3.1145e-05
 - LSFEM: $L^2$ error = 5.3962e-05
 
-Method ML4 ML5 ML6 ML7 ML8
-SFEM / RG  7.7953e-03 1.9821e-03 4.9766e-04 1.2455e-04 3.1145e-05
-LSFEM / RG 1.3594e-02 3.4398e-03 8.6257e-04 2.1581e-04 5.3962e-05
-
-SFEM / PG  1.0181e-02 1.9912e-03 5.7947e-04 1.4927e-04 3.4878e-05 
-LSFEM / PG 1.6742e-02 3.4810e-03 9.7084e-04 2.4665e-04 5.8935e-05
-
 **Table 1: $L^2$ Error $\| u - u_h \|_0$** / RG = Regular Grid, PG = Perturbed Grid
 
 | Method | ML 4 | ML 5 | ML 6 | ML 7 | ML 8 |
@@ -87,22 +80,19 @@ At the finest mesh (ML10):
 
 ### 🧩 Mesh Perturbation Robustness
 
-**Table 4: Convergence Ratios for Solution $u$** on perturbed grids
+**Table 5: Convergence Ratios for Solution $u$** on perturbed grids
 
 | Method | ML4→5 | ML5→6 | ML6→7 | ML7→8 | Asymptotic |
 |--------|-------|-------|-------|-------|------------|
 | SFEM   | 5.11 | 3.44 | 3.88 | 4.28 | ✅ |
 | LSFEM  | 4.81 | 3.59 | 3.94 | 4.19 | ✅ |
 
-**Table 4: Convergence Ratios for Solution $q$** on perturbed grids
+**Table 6: Convergence Ratios for Solution $q$** on perturbed grids
 
 | Method | ML4→5 | ML5→6 | ML6→7 | ML7→8 | Asymptotic |
 |--------|-------|-------|-------|-------|------------|
 | SFEM   | 2.23 | 1.87 | 1.99 | 2.05 | ✅ |
 | LSFEM  | 5.24 | 3.37 | 3.87 | 4.31 | ✅ |
-
-
-
 
 Both methods demonstrate good stability under mesh perturbation:
 
@@ -114,27 +104,27 @@ Both methods demonstrate good stability under mesh perturbation:
 
 ### ⚡ Solver performance 
 
-**Without preconditioning (CG):**
+**Without preconditioning (CG):** 🔴
 
 - Iteration count doubles with each mesh refinement (O(N) growth)
-- ML5: 64/66 iterations → ML10: 2049/2173 iterations 🔴
+- ML5: 32/33 iterations → ML10: 513/541 iterations 
 - Impractical for large-scale problems
 
-**Jacobi preconditioning (CG-JACOBI):**
+**Jacobi preconditioning (CG-JACOBI):** 🟡
 
-- Modest improvement, eliminates ~1 iteration per level
+- Modest improvement, eliminates ~1 iteration per level on regular grids
 - Still exhibits O(N) scaling behavior
-- ML5: 63/64 iterations → ML10: 2047/2075 iterations 🟡
+- ML5: 31/32 iterations → ML8: 511/514 iterations
 - Negligible improvement over unpreconditioned CG
 
-**Algebraic multigrid (CG-AMG): ⭐ Mesh-independent convergence!**
+**Algebraic multigrid (CG-AMG): ⭐ Mesh-independent convergence!**  🟢
 
 - Iteration count grows sub-linearly with DOF (~O(N^0.6))
-- ML4: 7/7 iterations → ML8: 45/46 iterations 🟢
+- ML4: 7/7 iterations → ML8: 45/46 iterations
 - **~11× reduction compared to unpreconditioned CG at ML8**
 - **~11× reduction compared to Jacobi-preconditioned CG at ML8**
 
-**Table 5: CG - iteration counts (Regular/Perturbed)**
+**Table 7: CG - iteration counts (Regular/Perturbed)**
 | Mesh | CG | CG-JACOBI | CG-AMG |
 |------|----|-----------|------------------|
 | ML4  |  32 /  33 |  31 /  32 |  7 /  7 |
@@ -142,8 +132,6 @@ Both methods demonstrate good stability under mesh perturbation:
 | ML6  | 128 / 133 | 127 / 128 | 16 / 16 |
 | ML7  | 256 / 269 | 255 / 256 | 26 / 26 |
 | ML8  | 513 / 541 | 511 / 514 | 45 / 46 |
-
-
 
 AMG preconditioning reduces iteration counts dramatically, growing approximately as $O(h^{-0.6})$ compared to $O(h^{-1})$ for unpreconditioned CG. This is essential for the practical application of LSFEM, which produces larger symmetric systems.
 
@@ -155,29 +143,33 @@ In this case we decrease the parameter $\epsilon$ to $\epsilon = 10^{-3}$ yieldi
 
 ### 🧩 Solution variable $u$
 
-**Figure 3 depicts the solution $u$ at mesh level 8 (ML8 / 256 elements) for regular grid and the $L^2(u)$ errors for regular girds.**
+**Figure 3 depicts the solution $u$ at mesh level 8 (ML8 / 256 elements) for regular grid and the $L^2(u)$ errors for graded grids.**
 
 P1 - Bild
 
 **Table 6: $L^2$ Error $\| u - u_h \|_0$** - $P_1 / P_2$ (graded grids)
 
-| Method | ML 5 | ML 6 | ML 7 | ML 8 | ML 9 | ML 10 |
-|--------|------|------|------|------|------|-------|
-| SFEM / $P_1$     | 1.1777e-01 | 1.9684e-01 | 5.8239e-02 | 1.7741e-02 | 6.4160e-03 | 1.8445e-03 |
-| LSFEM / $P_1P_1$ | 1.6756e+00 | 2.7528e+00 | 1.6024e+00 | 5.9229e-01 | 1.7221e-01 | 4.5035e-02 |
-|                  |            |            |            |            |            |            |
-| SFEM / $P_2$     | 7.9493e-02 | 1.9903e-01 | 5.0769e-02 | 4.6098e-03 | 6.6623e-04 | 9.4856e-05 |
-| LSFEM / $P_2P_2$ | 8.9287e-02 | 2.1738e-01 | 5.8522e-02 | 6.4992e-03 | 8.0132e-04 | 1.0041e-04 |
+| Method | ML 4 | ML 5 | ML 6 | ML 7 | ML 8 |
+|--------|------|------|------|------|------|
+| SFEM / $P_1$     | 9.1005e-02 | 2.3395e-02 | 9.1643e-03 | 2.8331e-03 | 7.6106e-04 |
+| LSFEM / $P_1P_1$ |  |  |  |  |  |
+|                  |            |            |            |            |            |
+| SFEM / $P_2$     |  |  |  |  |  |
+| LSFEM / $P_2P_2$ |  |  |  |  |  |
 
-**Table 7: Convergence Rates for Solution $u$** on regular grids
 
-| Method | ML5→6 | ML6→7 | ML7→8 | ML8→9 | ML9→10 | Asymptotic |
-|--------|-------|-------|-------|-------|--------|------------|
-| SFEM / $P_1$     | -0.74 | 1.76 | 1.71 | 1.47 | 1.80 | ✅ |
-| LSFEM / $P_1P_1$ | -0.72 | 0.78 | 1.44 | 1.78 | 1.94 | ✅ |
-|                  |            |            |            |            |            |            |
-| SFEM / $P_2$     | -1.32 | 1.97 | 3.46 | 2.79 | 2.81 | ✅ |
-| LSFEM / $P_2P_2$ | -1.28 | 1.89 | 3.17 | 3.02 | 2.80 | ✅ |
+
+**Table 7: Convergence Ratios for Solution $u$** on graded grids
+
+| Method | ML4→5 | ML5→6 | ML6→7 | ML7→8 | Asymptotic |
+|--------|-------|-------|-------|-------|------------|
+| SFEM / $P_1$      | 3.89 | 2.55 | 3.23 | 3.72 | ✅ |
+| LSFEM / $P_1P_1$  |  |  |  |  | ✅ |
+|                   |  |  |  |  |  |
+| SFEM / $P_2$      |  |  |  |  | ✅ |
+| LSFEM / $P_2P_2$  |  |  |  |  | ✅ |
+
+
 
 P2-Bild
 
@@ -185,31 +177,31 @@ P2-Bild
 
 ### 🧩 Solution flux variable $q$
 
-**Figure 3 depicts the solution $q$ at mesh level 5 (ML5 / 32 elements) and the $L^2(q)$ errors for regular girds.**
+**Figure 3 depicts the solution $q$ at mesh level 5 (ML5 / 32 elements) and the $L^2(q)$ errors for graded grids.**
 
 P1-Bild
 
-**Table 8: $L^2$ Error ($\| q - q_h \|_0$)** - $P_1 / P_2$ (recursive grids)
+**Table 8: $L^2$ Error ($\| q - q_h \|_0$)** - $P_1 / P_2$ (graded grids)
 
-| Method | ML 5 | ML 6 | ML 7 | ML 8 | ML 9 | ML 10 |
-|--------|------|------|------|------|------|-------|
-| SFEM / $P_1$     | 4.3580e+00 | 1.0682e+01 | 1.5973e+01 | 1.5514e+01 | 1.0708e+01 | 6.0225e+00 |
-| LSFEM / $P_1P_1$ | 2.3713e+01 | 4.5047e+01 | 3.4751e+01 | 1.7589e+01 | 6.4106e+00 | 1.8428e+00 |
+| Method | ML 4 | ML 5 | ML 6 | ML 7 | ML 8 |
+|--------|------|------|------|------|------|
+| SFEM / $P_1$     | 1.4925e+01 | 1.6329e+01 | 1.2416e+01 | 7.3883e+00 | 3.9111e+00 |
+| LSFEM / $P_1P_1$ |  |  |  |  |  |
 |                  |            |            |            |            |            |            |
-| SFEM / $P_2$     | 7.0770e+00 | 1.0901e+01 | 8.8122e+00 | 6.0894e+00 | 2.5067e+00 | 7.4435e-01 |
-| LSFEM / $P_2P_2$ | 1.3438e+01 | 2.2378e+01 | 1.2512e+01 | 3.5710e+00 | 6.6043e-01 | 9.4953e-02 |
+| SFEM / $P_2$     |  |  |  |  |  |
+| LSFEM / $P_2P_2$ |  |  |  |  |  |
 
 
 
-**Table 9: Convergence Rates for Solution $q$** on regular grids
+**Table 7: Convergence Ratios for Solution $q$** on graded grids
 
-| Method | ML5→6 | ML6→7 | ML7→8 | ML8→9 | ML9→10 | Asymptotic |
-|--------|-------|-------|-------|-------|--------|------------|
-| SFEM / $P_1$     | -1.29 | -0.58 | 0.04 | 0.53 | 0.83 | ✅ |
-| LSFEM / $P_1P_1$ | -0.93 | 0.37 | 0.98 | 1.46 | 1.80 | ✅ |
-|                  |            |            |            |            |            |            |
-| SFEM / $P_2$     | -0.62 | 0.31 | 0.53 | 1.28 | 1.75 | ✅ |
-| LSFEM / $P_2P_2$ | -0.74 | 0.84 | 1.81 | 2.43 | 2.80| ✅ |
+| Method | ML4→5 | ML5→6 | ML6→7 | ML7→8 | Asymptotic |
+|--------|-------|-------|-------|-------|------------|
+| SFEM / $P_1$   | 0.91 | 1.32 | 1.68 | 1.89 | ✅ |
+| LSFEM / $P_1P_1$  |  |  |  |  | ✅ |
+|                   |  |  |  |  |  |
+| SFEM / $P_2$      |  |  |  |  | ✅ |
+| LSFEM / $P_2P_2$  |  |  |  |  | ✅ |
 
 P2-Bild
 
