@@ -55,10 +55,25 @@ This repository presents a comprehensive comparison of **Standard Galerkin FEM (
 
 **1. Boundary Layer Problem**
 
+$$
+u(x) = x - (\exp((x - 1) / \epsilon) - \exp(-1 / \epsilon)) / (1 - \exp(-1 / \epsilon))
+$$
+
+with $\epsilon = 10^{-1}$.
+
+- Mesh levels: ML4 (16 elements) to ML8 (256 elements)
+- Element types: $P_1$ (linear) and $P_2$ (quadratic)
+
 
 **2. Interior Layer Problem**
 
-Mesh levels: ML4 (16 elements) to ML8 (256 elements)
-Element types: $P_1$ (linear) and $P_2$ (quadratic)
+$$
+u(x) = 4\left(\arctan\left(\frac{2(1/16-(x-1/2)^2)}{\pi\sqrt{\epsilon}}\right) + \frac{1}{2}\right)(1-x)x
+$$
+
+with $\epsilon = 10^{-3}$.
+
+- Mesh levels: ML4 (16 elements) to ML8 (256 elements)
+- Element types: $P_1$ (linear) and $P_2$ (quadratic)
 
 
