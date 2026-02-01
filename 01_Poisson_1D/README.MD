@@ -71,22 +71,23 @@ $$
 u(x) = 4\left(\arctan\left(\frac{2(1/16-(x-1/2)^2)}{\pi\sqrt{\epsilon}}\right) + \frac{1}{2}\right)(1-x)x
 $$
 
+### 🎯 Key Results
+
+**Convergence Rates (Theory vs Practice)**
+
 ### Summary of Convergence Rates
 
-| Method    | Variable | Theoretical | Observed     | Status              |
+| Method    | Variable | Theoretical | Observed Ratio    | Status              |
 |-----------|----------|-------------|--------------|---------------------|
-| SFEM P₁   | Solution u | O(h²)     | ✅ 4.00     | Perfect            |
-| SFEM P₁   | Flux q     | O(h)      | ✅ 2.00     | Perfect            |
-| LSFEM P₁  | Solution u | O(h²)     | ✅ 4.00     | Perfect            |
-| **LSFEM P₁** | **Flux q** | **O(h²)** | **✅ 4.00** | **Perfect ⭐** |
-| SFEM P₂   | Solution u | O(h³)     | ⚠️ 7.31-7.69| Degrades          |
-| SFEM P₂   | Flux q     | O(h²)     | ⚠️ 3.91-3.95| Degrades          |
-| **LSFEM P₂** | **Solution u** | **O(h³)** | **✅ 8.00-8.01** | **Perfect ⭐** |
-| **LSFEM P₂** | **Flux q** | **O(h³)** | **✅ 7.99-8.00** | **Perfect ⭐⭐** |
+| SFEM $P_1$   | Solution u | $O(h^2)$     | ✅ 4.00     | Perfect            |
+| SFEM $P_1$   | Flux q     | $O(h)$      | ✅ 2.00     | Perfect            |
+| LSFEM $P_1$  | Solution u | $O(h^2)     | ✅ 4.00     | Perfect            |
+| **LSFEM $P_1$** | **Flux q** | **$O(h^2)$** | **✅ 4.00** | **Perfect ⭐** |
+| SFEM $P_2$   | Solution u | $O(h^3)$     | ⚠️ 7.31-7.69| Degrades          |
+| SFEM $P_2$   | Flux q     | $O(h^2)$     | ⚠️ 3.91-3.95| Degrades          |
+| **LSFEM $P_2$** | **Solution u** | **$O(h^3)$** | **✅ 8.00-8.01** | **Perfect ⭐** |
+| **LSFEM $P_2$** | **Flux q** | **$O(h^3)$** | **✅ 7.99-8.00** | **Perfect ⭐⭐** |
 
-with $\epsilon = 10^{-3}$.
 
-- Mesh levels: ML4 (16 elements) to ML8 (256 elements)
-- Element types: $P_1$ (linear) and $P_2$ (quadratic)
 
 
