@@ -80,7 +80,7 @@ $$
 |-----------|----------|-------------|--------------|---------------------|
 | SFEM $P_1$   | Solution u | $O(h^2)$     | ✅ 4.00     | Perfect            |
 | SFEM $P_1$   | Flux q     | $O(h)$      | ✅ 2.00     | Perfect            |
-| LSFEM $P_1$  | Solution u | $O(h^2)     | ✅ 4.00     | Perfect            |
+| LSFEM $P_1$  | Solution u | $O(h^2)$     | ✅ 4.00     | Perfect            |
 | **LSFEM $P_1$** | **Flux q** | **$O(h^2)$** | **✅ 4.00** | **Perfect ⭐** |
 | SFEM $P_2$   | Solution u | $O(h^3)$     | ⚠️ 7.31-7.69| Degrades          |
 | SFEM $P_2$   | Flux q     | $O(h^2)$     | ⚠️ 3.91-3.95| Degrades          |
