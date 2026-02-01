@@ -49,6 +49,16 @@ $${\cal F}(v_h,r_h) = w^2_1 (f, -r^\prime_h )_0$$
 
 ## 🔍 Summary
 
+This repository presents a comprehensive comparison of **Standard Galerkin FEM (SFEM)** and **Least-Squares FEM (LSFEM)** for solving the 1D Poisson equation. Two challenging test cases with sharp solution features are analyzed to validate convergence rates and demonstrate LSFEM's superior flux accuracy.
 
+### 📊 Test Cases
+
+**1. Boundary Layer Problem**
+
+
+**2. Interior Layer Problem**
+
+Mesh levels: ML4 (16 elements) to ML8 (256 elements)
+Element types: $P_1$ (linear) and $P_2$ (quadratic)
 
 
