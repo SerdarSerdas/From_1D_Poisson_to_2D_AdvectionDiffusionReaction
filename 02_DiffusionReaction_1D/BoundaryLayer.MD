@@ -11,16 +11,6 @@ This study compares the Standard Finite Element Method (SFEM) and Least-Squares 
 
 ## Methods Compared
 
-- **SFEM (Standard Galerkin FEM)**: Primal formulation with solution variable u
-- **LSFEM (Least-Squares FEM)**: Weighting factor $w_1 = 1$
-- **wLSFEM (weighted Least-Squares FEM)**: Weighting factor $w_1 = c^{-1/2}$
-
-- **Element Types:** $P_1$ (linear) and $P_2$ (quadratic)
-- **Mesh Types:** Regular (RG) and Perturbed (PG) Grids
-- **Mesh Levels:** ML4 (16 elements) to ML8 (256 elements)
-
-Methods Compared
-
 - **SFEM (Standard Galerkin FEM):** Primal formulation with solution variable u
 - **LSFEM (Least-Squares FEM):** First-order system with (u, q = -u') as unknowns
   - Weights: $w_1 = 1$
@@ -29,7 +19,9 @@ Methods Compared
   - **Balances diffusion and reaction terms in the functional**
 
 **Element Types:** $P_1$ (linear) and $P_2$ (quadratic)
+
 **Mesh Types:** Regular and perturbed grids
+
 **Mesh Levels:** ML4 (16 elements) to ML8 (256 elements)
 
 #
