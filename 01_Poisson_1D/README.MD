@@ -38,13 +38,13 @@ $${\cal J}(u,q;f) = \frac{1}{2} \parallel w_1 (-q^\prime - f) \parallel^2_0 + \f
 
 The discrete variational form seeks $(u_h, q_h) \in V_h \times Q_h$ satisfying
 
-$${\cal A}((u_h,q_h);(v_h,r_h)) = {\cal F}(v_h,r_h), \quad \forall (v_h,r_h) \in V_h \times Q_h$$
+$${\cal A}(u_h,q_h;v_h,r_h) = {\cal F}(v_h,r_h), \quad \forall (v_h,r_h) \in V_h \times Q_h$$
 
 with
 
-$${\cal A}((u_h,q_h);(v_h,r_h)) = w^2_1(-q^\prime_h , -r^\prime_h)_0 + w^2_2 (q_h - \nu u^\prime_h, r_h - v^\prime_h)_0$$
+$${\cal A}(u_h,q_h;v_h,r_h) = (-q^\prime_h , -r^\prime_h)_0 + (q_h - \nu u^\prime_h, r_h - v^\prime_h)_0$$
 
-$${\cal F}(v_h,r_h) = w^2_1 (f, -r^\prime_h )_0$$
+$${\cal F}(v_h,r_h) = (f, -r^\prime_h )_0$$
 
 
 ## 🔍 Summary
@@ -53,23 +53,20 @@ This repository presents a comprehensive comparison of **Standard Galerkin FEM (
 
 ### 📊 Test Cases
 
-**1. Boundary Layer Problem**
+**1. Boundary Layer Problem** ($\epsilon = 10^{-1}$)
 
 $$
 u(x) = x - (\exp((x - 1) / \epsilon) - \exp(-1 / \epsilon)) / (1 - \exp(-1 / \epsilon))
 $$
 
-with $\epsilon = 10^{-1}$.
-
-- Mesh levels: ML4 (16 elements) to ML8 (256 elements)
-- Element types: $P_1$ (linear) and $P_2$ (quadratic)
-
-
-**2. Interior Layer Problem**
+**2. Interior Layer Problem**  ($\epsilon = 10^{-3}$)
 
 $$
 u(x) = 4\left(\arctan\left(\frac{2(1/16-(x-1/2)^2)}{\pi\sqrt{\epsilon}}\right) + \frac{1}{2}\right)(1-x)x
 $$
+
+- Mesh levels: ML4 (16 elements) to ML8 (256 elements)
+- Element types: $P_1$ (linear) and $P_2$ (quadratic)
 
 #
 
@@ -133,8 +130,7 @@ $$
 | Interior Layer | $q$ | 7.69 🔴 | 8.01 ✅ | **LSFEM** |
 | Interior Layer | $q$ | 3.95 🔴 | 7.99 ✅ | **LSFEM** |
 
-**Observation:** SFEM shows degradation at finest mesh levels, while **LSFEM maintains perfect convergence rates** 
-(target: 8.00 for $O(h^3)$).
+**Observation:** SFEM shows degradation at finest mesh levels, while **LSFEM maintains perfect convergence rates** .
 
 
 ### ⚡ Computational Efficiency
