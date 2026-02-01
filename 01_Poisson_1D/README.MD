@@ -133,7 +133,8 @@ $$
 | Interior Layer | $q$ | 7.69 🔴 | 8.01 ✅ | **LSFEM** |
 | Interior Layer | $q$ | 3.95 🔴 | 7.99 ✅ | **LSFEM** |
 
-**Observation:** SFEM shows degradation at finest mesh levels, while **LSFEM maintains perfect convergence rates** (target: 8.00 for $O(h^3)$).
+**Observation:** SFEM shows degradation at finest mesh levels, while **LSFEM maintains perfect convergence rates** 
+(target: 8.00 for $O(h^3)$).
 
 
 ### ⚡ Computational Efficiency
@@ -170,7 +171,7 @@ $$
 
 #
 
-##📈 Mesh Perturbation Robustness
+## 📈 Mesh Perturbation Robustness
 
 Both methods tested on randomly perturbed grids:
 
