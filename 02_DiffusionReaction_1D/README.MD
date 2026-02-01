@@ -51,6 +51,8 @@ This repository presents a comprehensive comparison of **Standard Galerkin FEM (
 
 ### 📊 Test Cases
 
+**Analysis of reaction coefficient:** $c=10^{-4}$ and $c=10^{4}$
+
 **1. Boundary Layer Problem** ($\epsilon = 10^{-1}$)
 
 $$
@@ -65,7 +67,7 @@ $$
 
 - Mesh levels: ML4 (16 elements) to ML8 (256 elements)
 - Element types: $P_1$ (linear) and $P_2$ (quadratic)
-- *Analysis of reaction coefficient:** $c=10^{-4}$ and $c=10^{4}$
+
 
 #
 
