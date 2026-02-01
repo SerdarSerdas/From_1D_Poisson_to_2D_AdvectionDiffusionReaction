@@ -169,3 +169,25 @@ $$
 - 🚀 **5-11× iteration reduction** with AMG
 
 #
+
+##📈 Mesh Perturbation Robustness
+
+Both methods tested on randomly perturbed grids:
+
+| Element | Convergence Rate Impact | Error Magnitude Impact |
+|---------|-------------------------|------------------------|
+| $P_1$ | Maintained $(O(h^2)$ for u, $O(h)/O(h^2)$ for q   | +12-25% |
+| $P_2$ | Maintained $(O(h^3)$ for u, $O(h^2)/O(h^3)$ for q | +15-30% |
+
+**Conclusion:** Both SFEM and LSFEM are **robust to mesh irregularities**, maintaining optimal asymptotic convergence rates.
+
+#
+
+### 💡 Key Takeaways
+
+1. ✅ **Theory perfectly validated:** All convergence rates match theoretical predictions
+2. ✅ **LSFEM dominates for fluxes:** 50-200× more accurate for derivative quantities
+3. ✅ **Higher-order amplifies benefits:** $P_2$ + LSFEM achieves $O(h^3)$ for both u and q
+4. ✅ **AMG is essential:** Makes LSFEM practical with 5-11× iteration reduction
+5. ✅ **Robust across problem types:** Both boundary and interior layers handled well
+6. ✅ **LSFEM more stable:** Maintains convergence rates where SFEM degrades
