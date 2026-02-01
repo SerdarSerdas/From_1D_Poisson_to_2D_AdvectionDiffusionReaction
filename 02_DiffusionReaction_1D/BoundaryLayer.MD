@@ -1,10 +1,15 @@
-## 📊 Numerical Results for $\epsilon = 10^{-1}$
+## 📊 Problem statement for $\epsilon = 10^{-1}$
 
-This study compares the Standard Finite Element Method (SFEM) and Least-Squares Finite Element Method (LSFEM) for solving the 1D Poisson equation with parameter $\epsilon = 10^{-1}$. Both methods are tested on regular and perturbed grids across five mesh levels (ML4-ML8, corresponding to 16-256 elements).
+This study compares the Standard Finite Element Method (SFEM) and Least-Squares Finite Element Method (LSFEM) for solving the 1D Diffusion-Reaction Equation with the parameter $\epsilon = 10^{-1}$. Both methods are tested on regular and perturbed grids across five mesh levels (ML4-ML8, corresponding to 16-256 elements).
+
+**Reaction coefficient:** c determines the relative importance of diffusion vs reaction
+
+- $c = 10^{-4}$: Diffusion-dominated (nearly pure Poisson)
+- $c = 10^4$: Reaction-dominated (strong coupling)
 
 #
 
-### Methods Compared
+## Methods Compared
 
 - **SFEM (Standard Galerkin FEM)**: Primal formulation with solution variable u
 - **LSFEM (Least-Squares FEM)**: Weighting factor $w_1 = 1$
@@ -14,23 +19,35 @@ This study compares the Standard Finite Element Method (SFEM) and Least-Squares 
 - **Mesh Types:** Regular (RG) and Perturbed (PG) Grids
 - **Mesh Levels:** ML4 (16 elements) to ML8 (256 elements)
 
+Methods Compared
+
+- **SFEM (Standard Galerkin FEM):** Primal formulation with solution variable u
+- **LSFEM (Least-Squares FEM):** First-order system with (u, q = -u') as unknowns
+  - Weights: $w_1 = 1$
+- **wLSFEM (Weighted LSFEM):** Same formulation with parameter-dependent weights
+  - Weighting factor: $w_1 = c^{-1/2}$
+  - **Balances diffusion and reaction terms in the functional**
+
+**Element Types:** $P_1$ (linear) and $P_2$ (quadratic)
+**Mesh Types:** Regular and perturbed grids
+**Mesh Levels:** ML4 (16 elements) to ML8 (256 elements)
+
 #
 
 ## Main Results Summary
 
-🎯 **Key Finding: LSFEM's Superior Flux Accuracy**
+🎯 **Critical Discovery: Parameter Dependency in LSFEM!**
 
-**For $P_1$ elements at ML8:**
+**For $c = 10^{-4}$ (diffusion-dominated):**
 
-- Solution u: SFEM is 1.74× more accurate
-- **Flux q: LSFEM is 89× more accurate** ⭐
+- Standard LSFEM performs well
+- wLSFEM matches SFEM exactly
 
-**For $P_2$ elements at ML8:**
+**For $c = 10^4$ (reaction-dominated):**
 
-- Solution u: LSFEM is 1.09× more accurate (actually better!)
-- **Flux q: LSFEM is 203× more accurate** ⭐⭐⭐
-
-**The flux accuracy difference grows with mesh refinement due to higher convergence rates.**
+- **Standard LSFEM FAILS** - loses convergence, errors explode! 🔴
+- **wLSFEM rescues performance** - matches SFEM, maintains convergence ✅
+- **This demonstrates the critical importance of proper scaling!**
 
 #
 
@@ -80,12 +97,12 @@ Figure 1 depicts the solution $u$ at mesh level 5 (ML5 / 32 elements) and the $L
 | Method | ML 4 | ML 5 | ML 6 | ML 7 | ML 8 |
 |--------|------|------|------|------|------|
 | SFEM / RG    | 2.5682e-04 / 2.4985e-04 | 3.2647e-05 / 3.2458e-05 | 4.0983e-06 / 4.0938e-06 | 5.1283e-07 / 5.1271e-07 | 7.0115e-08 / 7.0111e-08 |
-| LSFEM / RG   |  /  |  /  |  /  |  /  |  /  |
-| wLSFEM / RG  |  /  |  /  |  /  |  /  |  /  |
+| LSFEM / RG   | 2.6312e-04 / 2.7427e-04 | 3.2849e-05 / 3.5876e-05 | 4.1047e-06 / 4.9456e-06 | 5.1303e-07 / 7.9975e-07 | 6.4128e-08 / 1.9392e-07 |
+| wLSFEM / RG  | 2.5682e-04 / 2.4985e-04 | 3.2647e-05 / 3.2458e-05 | 4.0983e-06 / 4.0938e-06 | 5.1284e-07 / 5.1271e-07 | 6.4122e-08 / 6.4118e-08 |
 |              |            |            |            |            |            |
 | SFEM / PG    | 3.9714e-04 / 3.3881e-04 | 3.4124e-05 / 3.2662e-05 | 5.3776e-06 / 5.2030e-06 | 7.1791e-07 / 7.0567e-07 | 8.1484e-08 / 8.1171e-08 |
-| LSFEM / PG   |  /  |  /  |  /  |  /  |  /  |
-| wLSFEM / PG  |  /  |  /  |  /  |  /  |  /  |
+| LSFEM / PG   | 4.1081e-04 / 4.2552e-04 | 3.4360e-05 / 3.4973e-05 | 5.3909e-06 / 6.6058e-06 | 7.2076e-07 / 1.1257e-06 | 8.0282e-08 / 2.1362e-07 |
+| wLSFEM / PG  | 3.9715e-04 / 3.3881e-04 | 3.4120e-05 / 3.2657e-05 | 5.3799e-06 / 5.2053e-06 | 7.2037e-07 / 7.0808e-07 | 8.0277e-08 / 7.9977e-08 |
 
 
 
@@ -93,13 +110,13 @@ Figure 1 depicts the solution $u$ at mesh level 5 (ML5 / 32 elements) and the $L
 
 | Method | ML4→5 | ML5→6 | ML6→7 | ML7→8 | Asymptotic |
 |--------|-------|-------|-------|-------|------------|
-| SFEM / RG   | 7.87 / 7.70 | 7.97 / 7.93 | 7.99 / 7.98 | 7.31 / 7.31 | 🔴 |
-| LSFEM / RG  |  /  |  /  |  /  |  /  | ✅ |
-| wLSFEM / RG |  /  |  /  |  /  |  /  | ✅ |
+| SFEM / RG   | 7.87 / 7.70 | 7.97 / 7.93 | 7.99 / 7.98 | 7.31 / 7.31 | 🔴 / 🔴 |
+| LSFEM / RG  | 8.01 / 7.65 | 8.00 / 7.25 | 8.00 / 6.18 | 8.00 / 4.12 | ✅ / 🔴 |
+| wLSFEM / RG | 7.87 / 7.70 | 7.97 / 7.93 | 7.99 / 7.98 | 8.00 / 8.00 | ✅ |
 |             |      |      |      |      |     |
 | SFEM / PG   | 11.64 / 10.37 | 6.35 / 6.28 | 7.49 / 7.37 | 8.81 / 8.69 | 🔴 |
-| LSFEM / PG  |  /  |  /  |  /  |  /  | ✅ |
-| wLSFEM / PG |  /  |  /  |  /  |  /  | ✅ |
+| LSFEM / PG  | 11.96 / 12.17 | 6.37 / 5.29 | 7.48 / 5.87 | 8.98 / 5.27 | ✅ / 🔴 |
+| wLSFEM / PG | 11.64 / 10.37 | 6.34 / 6.27 | 7.47 / 7.35 | 8.97 / 8.85 | ✅ |
 
 **Analysis:**
 
@@ -161,12 +178,12 @@ Figure 1 depicts the solution $u$ at mesh level 5 (ML5 / 32 elements) and the $L
 | Method | ML 4 | ML 5 | ML 6 | ML 7 | ML 8 |
 |--------|------|------|------|------|------|
 | SFEM / RG    | 3.1678e-02 / 3.1810e-02 | 8.0825e-03 / 8.0843e-03 | 2.0311e-03 / 2.0311e-03 | 5.0843e-04 / 5.0843e-04 | 1.3006e-04 / 1.3006e-04 |
-| LSFEM / RG   |  /  |  /  |  /  |  /  |  /  |
-| wLSFEM / RG  |  /  |  /  |  /  |  /  |  /  |
+| LSFEM / RG   | 2.5680e-03 / 2.5432e-02 | 3.2646e-04 / 1.6663e-03 | 4.0983e-05 / 1.2849e-04 | 5.1283e-06 / 2.0226e-05 | 6.4122e-07 / 1.8787e-05 |
+| wLSFEM / RG  | 2.5681e-03 / 1.9012e-03 | 3.2646e-04 / 2.9504e-04 | 4.0983e-05 / 3.9881e-05 | 5.1284e-06 / 5.0931e-06 | 6.5348e-07 / 6.4011e-07 |
 |              |            |            |            |            |            |
 | SFEM / PG    | 4.1298e-02 / 4.2518e-02 | 8.1191e-03 / 8.1396e-03 | 2.3646e-03 / 2.3662e-03 | 6.0959e-04 / 6.0968e-04 | 1.4309e-04 / 1.4309e-04 |
-| LSFEM / PG   |  /  |  /  |  /  |  /  |  /  |
-| wLSFEM / PG  |  /  |  /  |  /  |  /  |  /  |
+| LSFEM / PG   | 3.9709e-03 / 5.4266e-02 | 3.4119e-04 / 1.6742e-03 | 5.3799e-05 / 2.2609e-04 | 7.2036e-06 / 3.2472e-05 | 8.0272e-07 / 9.4121e-06 |
+| wLSFEM / PG  | 3.9711e-03 / 1.9329e-03 | 3.4120e-04 / 3.1126e-04 | 5.3799e-05 / 4.9718e-05 | 7.2038e-06 / 7.0154e-06 | 8.2631e-07 / 7.9855e-07 |
 
 
 
@@ -180,13 +197,13 @@ Figure 1 depicts the solution $u$ at mesh level 5 (ML5 / 32 elements) and the $L
 
 | Method | ML4→5 | ML5→6 | ML6→7 | ML7→8 | Asymptotic |
 |--------|-------|-------|-------|-------|------------|
-| SFEM / RG   | 3.92 / 3.93 | 3.98 / 3.98 | 3.99 / 3.99 | 3.91 / 3.91 | 🔴 |
-| LSFEM / RG  |  /  |  /  |  /  |  /  | ✅ |
-| wLSFEM / RG |  /  |  /  |  /  |  /  | ✅ |
+| SFEM / RG   | 3.92 / 3.93 | 3.98 / 3.98 | 3.99 / 3.99 | 3.91 / 3.91 | 🔴 / 🔴 |
+| LSFEM / RG  | 7.87 / 15.26 | 7.97 / 12.97 | 7.99 / 6.35 | 8.00 / 1.08 | ✅ / 🔴|
+| wLSFEM / RG | 7.87 /  6.44 | 7.97 /  7.40 | 7.99 / 7.83 | 7.85 / 7.96 | 🔴 / ✅ |
 |             |      |      |      |      |     |
-| SFEM / PG   | 5.09 / 5.22 | 3.43 / 3.44 | 3.88 / 3.88 | 4.26 / 4.26 | 🔴 |
-| LSFEM / PG  |  /  |  /  |  /  |  /  | ✅ |
-| wLSFEM / PG |  /  |  /  |  /  |  /  | ✅ |
+| SFEM / PG   |  5.09 /  5.22 | 3.43 / 3.44 | 3.88 / 3.88 | 4.26 / 4.26 | 🔴 |
+| LSFEM / PG  | 11.64 / 32.41 | 6.34 / 7.41 | 7.47 / 6.96 | 8.97 / 3.45 | ✅ |
+| wLSFEM / PG | 11.64 /  6.21 | 6.34 / 6.26 | 7.47 / 7.09 | 8.72 / 8.79 | ✅ |
 
 **Analysis:**
 
@@ -217,8 +234,6 @@ Figure 1 depicts the solution $u$ at mesh level 5 (ML5 / 32 elements) and the $L
 | ML6  |  64 | 130 |  952 /  75 |  64 / 11 |  5 / 1 |
 | ML7  | 128 | 258 | 3034 / 283 | 128 / 24 |  5 / 2 |
 | ML8  | 256 | 514 | 9013 / 910 | 256 / 49 | 35 / 6 |
-
-
 
 **Table 11: CG - iteration counts of $P_1$ elements on perturbed grid for LSFEM** $(c=10^{-4} / c=10^4)$
 | Mesh | Elements | DoF | CG | CG-JACOBI | CG-AMG |
@@ -253,23 +268,50 @@ Figure 1 depicts the solution $u$ at mesh level 5 (ML5 / 32 elements) and the $L
 - At ML8: 513 iterations (CG) vs 45 iterations (AMG)
 
 
-**Table 11: CG - iteration counts of $P_2$ elements on regular grid** $(c=10^{-4} / c=10^4)$
+**Table 13: CG - iteration counts of $P_2$ elements on regular grid for LSFEM** $(c=10^{-4} / c=10^4)$
 | Mesh | Elements | DoF | CG | CG-JACOBI | CG-AMG |
 |------|----------|-----|----|-----------|--------|
-| ML4  |  16 |  34 |  /  |  /  |  /  |
-| ML5  |  32 |  66 |  /  |  /  |  /  |
-| ML6  |  64 | 130 |  /  |  /  |  /  |
-| ML7  | 128 | 258 |  /  |  /  |  /  |
-| ML8  | 256 | 514 |  /  |  /  |  /  |
+| ML4  |  16 |  34 |   69 /   251 |   66 /   51 |  16 /  23 |
+| ML5  |  32 |  66 |  141 /   677 |  138 /   95 |  27 /  43 |
+| ML6  |  64 | 130 |  286 /  2029 |  283 /  320 |  42 /  70 |
+| ML7  | 128 | 258 |  578 /  6050 |  575 /  998 |  70 / 123 |
+| ML8  | 256 | 514 | 1162 / 17251 | 1163 / 2918 | 124 / 201 |
 
-**Table 12: CG - iteration counts of $P_2$ elements on perturbed grid** $(c=10^{-4} / c=10^4)$
+
+
+**Table 14: CG - iteration counts of $P_2$ elements on regular grid for wLSFEM** $(c=10^{-4} / c=10^4)$
 | Mesh | Elements | DoF | CG | CG-JACOBI | CG-AMG |
 |------|----------|-----|----|-----------|--------|
-| ML4  |  16 |  34 |  /  |  /  |  /  |
-| ML5  |  32 |  66 |  /  |  /  |  /  |
-| ML6  |  64 | 130 |  /  |  /  |  /  |
-| ML7  | 128 | 258 |  /  |  /  |  /  |
-| ML8  | 256 | 514 |  /  |  /  |  /  |
+| ML4  |  16 |  34 |   318 /   48 |  43 /   8 |  15 /  1 |
+| ML5  |  32 |  66 |  1048 /  114 |  92 /  15 |  26 /  2 |
+| ML6  |  64 | 130 |  3361 /  361 | 136 /  29 |  41 /  5 |
+| ML7  | 128 | 258 | 10179 / 1172 | 278 /  58 |  68 / 11 |
+| ML8  | 256 | 514 | 29027 / 3646 | 569 / 115 | 122 / 21 |
+
+
+
+**Table 15: CG - iteration counts of $P_2$ elements on perturbed grid for LSFEM** $(c=10^{-4} / c=10^4)$
+| Mesh | Elements | DoF | CG | CG-JACOBI | CG-AMG |
+|------|----------|-----|----|-----------|--------|
+| ML4  |  16 |  34 |   74 /   328 |   67 /   94 |  17 /  29 |
+| ML5  |  32 |  66 |  151 /   850 |  138 /  120 |  27 /  45 |
+| ML6  |  64 | 130 |  311 /  2543 |  285 /  334 |  43 /  80 |
+| ML7  | 128 | 258 |  638 /  7552 |  582 / 1005 |  71 / 145 |
+| ML8  | 256 | 514 | 1289 / 22456 | 1178 / 3009 | 126 / 258 |
+
+
+
+**Table 16: CG - iteration counts of $P_2$ elements on perturbed grid for wLSFEM** $(c=10^{-4} / c=10^4)$
+| Mesh | Elements | DoF | CG | CG-JACOBI | CG-AMG |
+|------|----------|-----|----|-----------|--------|
+| ML4  |  16 |  34 |   351 /   88 |   72 /  11 |  16 /  1 |
+| ML5  |  32 |  66 |  1212 /  154 |  146 /  20 |  27 /  3 |
+| ML6  |  64 | 130 |  3860 /  454 |  300 /  37 |  41 /  5 |
+| ML7  | 128 | 258 | 11948 / 1436 |  601 /  70 |  69 / 11 |
+| ML8  | 256 | 514 | 33515 / 4459 | 1209 / 136 | 123 / 22 |
+
+
+
 
 **Observations:**
 
