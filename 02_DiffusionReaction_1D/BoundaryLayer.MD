@@ -19,9 +19,7 @@ This study compares the Standard Finite Element Method (SFEM) and Least-Squares 
   - **Balances diffusion and reaction terms in the functional**
 
 **Element Types:** $P_1$ (linear) and $P_2$ (quadratic)
-
 **Mesh Types:** Regular and perturbed grids
-
 **Mesh Levels:** ML4 (16 elements) to ML8 (256 elements)
 
 #
