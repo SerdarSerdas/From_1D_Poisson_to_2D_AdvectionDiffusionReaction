@@ -49,7 +49,7 @@ $${\cal F}(v_h,r_h) = (f, -r^\prime_h )_0$$
 
 ## 🔍 Summary
 
-This repository presents a comprehensive comparison of **Standard Galerkin FEM (SFEM)** and **Least-Squares FEM (LSFEM)** for solving the 1D Poisson equation. Two challenging test cases with sharp solution features are analyzed to validate convergence rates and demonstrate LSFEM's superior flux accuracy.
+This repository presents a comprehensive comparison of **Standard Galerkin FEM (SFEM)** and **Least-Squares FEM (LSFEM)** for solving the 1D Poisson equation. Two challenging test cases are analyzed to validate convergence rates and demonstrate LSFEM's superior flux accuracy.
 
 ### 📊 Test Cases
 
