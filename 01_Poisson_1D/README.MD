@@ -22,7 +22,7 @@ $$
 u(x) = 4\left(\arctan\left(\frac{2(1/16-(x-1/2)^2)}{\pi\sqrt{\epsilon}}\right) + \frac{1}{2}\right)(1-x)x
 $$
 
-- Mesh levels: ML4 (16 elements) to ML8 (256 elements)
+- Mesh levels: ML5 (32 elements) to ML9 (512 elements)
 - Element types: $P_1$ (linear) and $P_2$ (quadratic)
 
 
@@ -120,7 +120,7 @@ Algebraic multigrid (AMG) preconditioning proves highly effective, reducing iter
 
 - **Flux Accuracy:** LSFEM provides superior flux approximation compared to SFEM
 - **Numerical Robustness:** LSFEM maintains optimal convergence rates even at fine meshes where SFEM begins to degrade, despite having worse conditioning
-- **Mesh Purturbation:** Both methods handle mesh perturbations well with minimal impact on accuracy
+- **Mesh Perturbation:** Both methods handle mesh perturbations well with minimal impact on accuracy
 - **Conditioning vs. Convergence:** Higher condition numbers don't necessarily imply worse convergence behavior—the problem formulation matters
 - **Preconditioning:** AMG is essential for LSFEM efficiency, dramatically reducing iteration counts and mitigating conditioning issues
 
