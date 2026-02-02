@@ -114,6 +114,8 @@ LSFEM requires significantly more iterations than would be needed for SFEM (not 
 
 Algebraic multigrid (AMG) preconditioning proves highly effective, reducing iteration counts by approximately 80-85% across all refinement levels. This is particularly important for LSFEM given its higher condition numbers.
 
+![Figure 2: 1D Poisson - Solver](Fig_Poisson1D_Solver.png)
+
 ## 💡 Key Takeaways
 
 - **Flux Accuracy:** LSFEM provides superior flux approximation compared to SFEM
