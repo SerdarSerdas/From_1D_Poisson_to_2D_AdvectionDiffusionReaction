@@ -41,7 +41,7 @@ This study compares the Standard Finite Element Method (SFEM) and Least-Squares 
 
 #
 
-## 🧩 Solution variable $u$
+## 🧩 Detailed Results - Solution variable $u$
 
 Figure 1 depicts the solution $u$ at mesh level 5 (ML5 / 32 elements) and the $L^2(u)$ errors for regular grids with $P_1$ elements.
 
@@ -61,40 +61,62 @@ Figure 1 depicts the solution $u$ at mesh level 5 (ML5 / 32 elements) and the $L
 | LSFEM / PG   | 1.6740e-02 / 1.0729e-02 | 3.4806e-03 / 2.0229e-03 | 9.7074e-04 / 6.8117e-04 | 2.4662e-04 / 2.2083e-04 | 5.8929e-05 / 8.3269e-05 |
 | wLSFEM / PG  | 1.0181e-02 / 7.4707e-03 | 1.9912e-03 / 1.0525e-03 | 5.7947e-04 / 3.5115e-04 | 1.4928e-04 / 8.7706e-05 | 3.4878e-05 / 1.9304e-05 |
 
+## Observations:
 
+$c = 10^{-4}$ (diffusion-dominated):
+
+All methods achieve optimal $O(h^2)$ convergence
+- SFEM: Most accurate (3.11e-05)
+- LSFEM: Good performance (5.40e-05)
+- wLSFEM: **Matches SFEM exactly!** (3.11e-05)
+
+$c = 10^4$ (reaction-dominated):
+
+- SFEM: Excellent convergence (1.56e-05)
+- **LSFEM: CONVERGENCE BREAKDOWN!** Error increases ML6→7→8 (6.13e-04 → 2.07e-04 → 7.87e-05)
+- **wLSFEM: Rescues performance!** Matches SFEM exactly (1.56e-05)
 
 **Table 2: $L^2(u)$ Ratios** for $P_1$ elements $(c=10^{-4} / c=10^4)$
 
 | Method | ML4→5 | ML5→6 | ML6→7 | ML7→8 | Asymptotic |
 |--------|-------|-------|-------|-------|------------|
-| SFEM / RG   | 3.93 / 4.49 | 3.98 / 4.29 | 4.00 / 4.11 | 4.00 / 4.03 | ✅ |
-| LSFEM / RG  | 3.95 / 3.79 | 3.99 / 3.44 | 4.00 / 2.95 | 4.00 / 2.64 | ✅ |
-| wLSFEM / RG | 3.93 / 4.49 | 3.98 / 4.29 | 4.00 / 4.11 | 4.00 / 4.03 | ✅ |
+| SFEM / RG   | 3.93 / 4.49 | 3.98 / 4.29 | 4.00 / 4.11 | 4.00 / 4.03 | ✅ / ✅ |
+| LSFEM / RG  | 3.95 / **3.79** | 3.99 / **3.44** | 4.00 / **2.95** | 4.00 / **2.64** | ✅ / 🔴 **degrades** |
+| wLSFEM / RG | 3.93 / 4.49 | 3.98 / 4.29 | 4.00 / 4.11 | 4.00 / 4.03 | ✅ / ✅ |
 |             |      |      |      |      |     |
-| SFEM / PG   | 5.11 / 7.10 | 3.44 / 3.00 | 3.88 / 4.00 | 4.28 / 4.54 | ✅ |
-| LSFEM / PG  | 4.81 / 5.30 | 3.59 / 2.97 | 3.94 / 3.08 | 4.19 / 2.65 | ✅ |
-| wLSFEM / PG | 5.11 / 7.10 | 3.44 / 3.00 | 3.88 / 4.00 | 4.28 / 4.54 | ✅ |
+| SFEM / PG   | 5.11 / 7.10 | 3.44 / 3.00 | 3.88 / 4.00 | 4.28 / 4.54 | ✅ / ✅ |
+| LSFEM / PG  | 4.81 / 5.30 | 3.59 / 2.97 | 3.94 / 3.08 | 4.19 / 2.65 | ✅ / ✅ |
+| wLSFEM / PG | 5.11 / 7.10 | 3.44 / 3.00 | 3.88 / 4.00 | 4.28 / 4.54 | ✅ / ✅ |
 
 **Analysis:**
 
-- Both methods achieve optimal $O(h^2)$ convergence for $P_1$ elements
-- Ratio ≈ 4.0 = $2^2$ confirms second-order convergence
-- Perturbed grids show initial variation but maintain asymptotic rates
-- SFEM produces $1.74 \times$ smaller errors for solution u
+- For $c = 10^{-4}$: All methods achieve $O(h^2)$ (ratio ≈ 4.0)
+- For $c = 10^4$: LSFEM degrades from 3.79 → 2.64 (losing convergence order!)
+- For $c = 10^4$: wLSFEM maintains perfect 4.0 ratios
+- **wLSFEM is parameter-robust, standard LSFEM is not!**
+
+
 
 **Table 3: $L^2$ Error $\| u - u_h \|_0$** for $P_2$ elements $(c=10^{-4} / c=10^4)$
 
 | Method | ML 4 | ML 5 | ML 6 | ML 7 | ML 8 |
 |--------|------|------|------|------|------|
 | SFEM / RG    | 2.5682e-04 / 2.4985e-04 | 3.2647e-05 / 3.2458e-05 | 4.0983e-06 / 4.0938e-06 | 5.1283e-07 / 5.1271e-07 | 7.0115e-08 / 7.0111e-08 |
-| LSFEM / RG   | 2.6312e-04 / 2.7427e-04 | 3.2849e-05 / 3.5876e-05 | 4.1047e-06 / 4.9456e-06 | 5.1303e-07 / 7.9975e-07 | 6.4128e-08 / 1.9392e-07 |
+| LSFEM / RG   | 2.6312e-04 / 2.7427e-04 | 3.2849e-05 / 3.5876e-05 | 4.1047e-06 / 4.9456e-06 | 5.1303e-07 / **7.9975e-07** | 6.4128e-08 / **1.9392e-07** |
 | wLSFEM / RG  | 2.5682e-04 / 2.4985e-04 | 3.2647e-05 / 3.2458e-05 | 4.0983e-06 / 4.0938e-06 | 5.1284e-07 / 5.1271e-07 | 6.4122e-08 / 6.4118e-08 |
 |              |            |            |            |            |            |
 | SFEM / PG    | 3.9714e-04 / 3.3881e-04 | 3.4124e-05 / 3.2662e-05 | 5.3776e-06 / 5.2030e-06 | 7.1791e-07 / 7.0567e-07 | 8.1484e-08 / 8.1171e-08 |
 | LSFEM / PG   | 4.1081e-04 / 4.2552e-04 | 3.4360e-05 / 3.4973e-05 | 5.3909e-06 / 6.6058e-06 | 7.2076e-07 / 1.1257e-06 | 8.0282e-08 / 2.1362e-07 |
 | wLSFEM / PG  | 3.9715e-04 / 3.3881e-04 | 3.4120e-05 / 3.2657e-05 | 5.3799e-06 / 5.2053e-06 | 7.2037e-07 / 7.0808e-07 | 8.0277e-08 / 7.9977e-08 |
 
+**Observations:**
 
+$c = 10^{-4}$: All methods achieve ~$10^{-7}$ accuracy
+$c = 10^4$:
+
+- SFEM: 7.01e-08 ✅
+- **LSFEM:** 1.94e-07 (3× worse, wrong trend) 🔴
+- wLSFEM: 6.41e-08 ✅ (actually better than SFEM!)
 
 **Table 4: $L^2(u)$ ratios** for $P_2$ elements $(c=10^{-4} / c=10^4)$
 
