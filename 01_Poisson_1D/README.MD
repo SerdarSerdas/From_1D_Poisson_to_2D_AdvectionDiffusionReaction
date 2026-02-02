@@ -65,8 +65,8 @@ $${\cal F}(v_h,r_h) = (f, -r^\prime_h )_0$$
 
 Both methods demonstrate excellent convergence behavior:
 
-- **SFEM:** Achieves optimal convergence rates with ratio ≈ 4.0 for $\parallel u-u_h \parallel_0$ and ratio ≈ 2.0 for ||q-q_h||₀
-- **LSFEM:** Similarly achieves ratio ≈ 4.0 for ||u-u_h||₀ and ratio ≈ 4.0 for ||q-q_h||₀
+- **SFEM:** Achieves optimal convergence rates with ratio ≈ 4.0 for $\parallel u-u_h \parallel_0$ and ratio ≈ 2.0 for $\parallel q-q_h \parallel_0$
+- **LSFEM:** Similarly achieves ratio ≈ 4.0 for $\parallel u-u_h \parallel_0$ and ratio ≈ 4.0 for $\parallel q-q_h \parallel_0$
 
 LSFEM shows notably better accuracy for the flux variable q, with errors approximately 6-7 times smaller than SFEM at comparable mesh refinements.
 
@@ -76,8 +76,8 @@ LSFEM shows notably better accuracy for the flux variable q, with errors approxi
 
 Both methods show higher-order convergence:
 
-- **SFEM:** Generally achieves ratio ≈ 8.0 for ||u-u_h||₀ and ratio ≈ 4.0 for ||q-q_h||₀
-- **LSFEM:** Achieves ratio ≈ 8.0 for both ||u-u_h||₀ and ||q-q_h||₀
+- **SFEM:** Generally achieves ratio ≈ 8.0 for $\parallel u-u_h \parallel_0$ and ratio ≈ 4.0 for $\parallel q-q_h \parallel_0$
+- **LSFEM:** Achieves ratio ≈ 8.0 for both $\parallel u-u_h \parallel_0$ and $\parallel q-q_h \parallel_0$
 
 **Important Note:** SFEM shows a convergence rate drop-off at ML9 (ratio drops to 3.77 for u and 2.78 for q), likely due to numerical precision effects. Interestingly, this occurs despite SFEM having a better condition number than LSFEM at ML9:
 
