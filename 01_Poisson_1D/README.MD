@@ -70,7 +70,7 @@ Both methods demonstrate excellent convergence behavior:
 
 LSFEM shows notably better accuracy for the flux variable q, with errors approximately 6-7 times smaller than SFEM at comparable mesh refinements.
 
-#
+![Figure 1: 1D Poisson - solution u](Fig_Poisson1D_Convergence.png)
 
 ### $P_2$ Elements
 
