@@ -96,7 +96,7 @@ Both methods demonstrate robustness to mesh perturbations, maintaining similar c
 
 ## Computational Efficiency
 
-### Iteration Counts
+**Iteration Counts**
 
 LSFEM requires significantly more iterations than would be needed for SFEM (not shown in tables), but responds very well to preconditioning:
 
