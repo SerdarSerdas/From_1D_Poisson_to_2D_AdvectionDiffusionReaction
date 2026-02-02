@@ -65,7 +65,7 @@ $${\cal F}(v_h,r_h) = (f, -r^\prime_h )_0$$
 
 Both methods demonstrate excellent convergence behavior:
 
-- **SFEM:** Achieves optimal convergence rates with ratio ≈ 4.0 for ||u-u_h||₀ and ratio ≈ 2.0 for ||q-q_h||₀
+- **SFEM:** Achieves optimal convergence rates with ratio ≈ 4.0 for $||u-u_h||_0$ and ratio ≈ 2.0 for ||q-q_h||₀
 - **LSFEM:** Similarly achieves ratio ≈ 4.0 for ||u-u_h||₀ and ratio ≈ 4.0 for ||q-q_h||₀
 
 LSFEM shows notably better accuracy for the flux variable q, with errors approximately 6-7 times smaller than SFEM at comparable mesh refinements.
