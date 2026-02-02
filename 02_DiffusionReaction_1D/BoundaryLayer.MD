@@ -280,15 +280,8 @@ $c = 10^4$:
 
 **Observations:**
 
-- **Unpreconditioned CG:** Iterations ≈ 2N (O(N) scaling) - impractical
-- **Jacobi preconditioning:** Saves ~1 iteration - negligible benefit
-- **AMG preconditioning:** ~45 iterations at ML8 → $11 \times$ reduction! 🚀
 
 **Scaling Analysis:**
-
-- CG: Doubles with each refinement (2N)
-- AMG: Sub-linear growth $(~N^{0.6})$
-- At ML8: 513 iterations (CG) vs 45 iterations (AMG)
 
 
 **Table 13: CG - iteration counts of $P_2$ elements on regular grid for LSFEM** $(c=10^{-4} / c=10^4)$
@@ -335,32 +328,7 @@ $c = 10^4$:
 
 
 
-
-**Observations:**
-
-- **Unpreconditioned CG:** 1162 iterations at ML8 - completely impractical
-- **Jacobi preconditioning:** Actually WORSE (1163 vs 1162) - useless!
-- **AMG preconditioning:** 124 iterations at ML8 → **9× reduction!** 🚀
-
-**Surprising Result:**
-
-- Jacobi preconditioner is counterproductive for $P_2$ elements
-- Highlights importance of sophisticated preconditioning (AMG)
-
-
 ## 🧩 Mesh Perturbation Robustness
 
-Both methods maintain optimal convergence rates on randomly perturbed grids:
 
-**$P_1$** Regular vs Perturbed:
-
-- Error magnitude increases ~12-20%
-- Convergence rates remain $O(h^2)$ for u, $O(h)/O(h^2)$ for q
-- Demonstrates numerical stability
-
-**$P_2$** Regular vs Perturbed:
-
-- Initial mesh shows larger variation due to geometric sensitivity
-- Asymptotic rates achieved by ML6-ML7
-- Both methods robust
 
