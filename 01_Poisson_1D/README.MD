@@ -88,15 +88,15 @@ This suggests LSFEM's formulation is more robust to numerical precision issues a
 
 #
 
-### Mesh Perturbation
+## 🎯 Mesh Perturbation
 
 Both methods demonstrate robustness to mesh perturbations, maintaining similar convergence rates and error levels on perturbed grids compared to regular grids.
 
 #
 
-## Computational Efficiency
+## 🎯 Computational Efficiency
 
-**Iteration Counts**
+### Iteration Counts
 
 LSFEM requires significantly more iterations than would be needed for SFEM (not shown in tables), but responds very well to preconditioning:
 
