@@ -33,9 +33,9 @@ The classical Galerkin finite element formulation seeks $u_h \in V_h \subset H^1
 
 $$(u^\prime_h, v^\prime_h)_0 + c(u_h, v_h)_0 = (f, v_h)_0 \quad \forall v_h \in V_h$$
 
-## Least Squares FEM (LSFEM)
+### 2. Least Squares FEM (LSFEM)
 
-### First-Order System
+**First-Order System**
 
 Define the diffusive flux $q = u^\prime$:
 
