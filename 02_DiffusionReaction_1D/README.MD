@@ -78,7 +78,7 @@ $${\cal F}(v_h,r_h) = w^2_1 (f, -r^\prime_h + c v_h)_0$$
 - **LSFEM:** Excellent! (ratio ≈ 8.0 for both $u$ and $q$), **no ML9 drop-off** ✅
 - **wLSFEM:** Matches SFEM for $u$, maintains ratio ≈ 8.0 for $q$ ✅
 
-![Figure 1: Convergence - Diffusion-Dominated](Fig_DiffusionReaction_Convergence_c1e-4.png)
+![Figure 1: Convergence - Diffusion-Dominated](Fig_DiffusionReaction1D_Convergence_c1e-4.png)
 
 ### Computational Efficiency
 
@@ -100,7 +100,7 @@ $${\cal F}(v_h,r_h) = w^2_1 (f, -r^\prime_h + c v_h)_0$$
 
 **Conclusion:** For diffusion-dominated problems, **LSFEM is the best choice**. wLSFEM requires mandatory preconditioning.
 
-![Figure 2: Solver Performance - Diffusion-Dominated](Fig_DiffusionReaction_Solver_c1e-4.png)
+![Figure 2: Solver Performance - Diffusion-Dominated](Fig_DiffusionReaction1D_Solver_c1e-4.png)
 
 ---
 
@@ -121,7 +121,7 @@ $${\cal F}(v_h,r_h) = w^2_1 (f, -r^\prime_h + c v_h)_0$$
 
 **Critical Finding:** wLSFEM **eliminates the SFEM ML9 drop-off** observed in both Poisson and diffusion-reaction problems!
 
-![Figure 3: Convergence - Reaction-Dominated](Fig_DiffusionReaction_Convergence_c1e4.png)
+![Figure 3: Convergence - Reaction-Dominated](Fig_DiffusionReaction1D_Convergence_c1e4.png)
 
 ### Computational Efficiency
 
@@ -141,7 +141,7 @@ $${\cal F}(v_h,r_h) = w^2_1 (f, -r^\prime_h + c v_h)_0$$
 
 **Conclusion:** For reaction-dominated problems, **wLSFEM is essential**. Standard LSFEM fails completely.
 
-![Figure 4: Solver Performance - Reaction-Dominated](Fig_DiffusionReaction_Solver_c1e4.png)
+![Figure 4: Solver Performance - Reaction-Dominated](Fig_DiffusionReaction1D_Solver_c1e4.png)
 
 ---
 
