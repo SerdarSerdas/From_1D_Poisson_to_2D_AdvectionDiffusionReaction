@@ -9,9 +9,25 @@ u(0) = u(1) &= 0 \quad &&\text{on } \partial{\cal B}_D
 \end{aligned}
 $$
 
-where $c \geq 0$ is the reaction coefficient.
+where $c \geq 0$ is the reaction coefficient. Two parameter regimes are investigated:
+- **Diffusion-dominated:** $c = 10^{-4}$ (diffusion >> reaction)
+- **Reaction-dominated:** $c = 10^{4}$ (reaction >> diffusion)
 
-## Standard Galerkin FEM (SFEM)
+Analytical solution with $\epsilon = 10^{-3}$:
+
+$$
+u(x) = 4\left(\arctan\left(\frac{2(1/16-(x-1/2)^2)}{\pi\sqrt{\epsilon}}\right) + \frac{1}{2}\right)(1-x)x
+$$
+
+**Test Configuration:**
+- Mesh levels: ML5 (32 elements) to ML9 (512 elements)
+- Element types: $P_1$ (linear) and $P_2$ (quadratic)
+- Mesh types: Regular and perturbed grids
+
+---
+## Methods Compared
+
+### 1. Standard Galerkin FEM (SFEM)
 
 The classical Galerkin finite element formulation seeks $u_h \in V_h \subset H^1_0({\cal B})$ such that
 
@@ -44,69 +60,6 @@ with
 $${\cal A}((u_h,q_h);(v_h,r_h)) = w^2_1 (-q^\prime_h + c u_h , -r^\prime_h + c v_h)_0 + (q_h - u^\prime_h, r_h - v^\prime_h)_0$$
 
 $${\cal F}(v_h,r_h) = w^2_1 (f, -r^\prime_h + c v_h)_0$$
-
-## 🔍 Summary
-
-This repository presents a comprehensive comparison of **Standard Galerkin FEM (SFEM)** and **Least-Squares FEM (LSFEM)** for solving the 1D Poisson equation. Two challenging test cases are analyzed to validate convergence rates and demonstrate LSFEM's superior flux accuracy.
-
-
-# 1D Diffusion-Reaction Equation: SFEM vs LSFEM vs wLSFEM
-
-## Strong Form
-
-$$
-\begin{aligned}
--u^{\prime\prime} + c \cdot u &= f \quad &&\text{in } {\cal B} = (0,1) \\
-u &= 0 \quad &&\text{on } \partial{\cal B}_D
-\end{aligned}
-$$
-
-where $c$ is the reaction coefficient. Two parameter regimes are investigated:
-- **Diffusion-dominated:** $c = 10^{-4}$ (diffusion >> reaction)
-- **Reaction-dominated:** $c = 10^{4}$ (reaction >> diffusion)
-
-Analytical solution with $\epsilon = 10^{-3}$:
-
-$$
-u(x) = 4\left(\arctan\left(\frac{2(1/16-(x-1/2)^2)}{\pi\sqrt{\epsilon}}\right) + \frac{1}{2}\right)(1-x)x
-$$
-
-**Test Configuration:**
-- Mesh levels: ML5 (32 elements) to ML9 (512 elements)
-- Element types: $P_1$ (linear) and $P_2$ (quadratic)
-- Mesh types: Regular and perturbed grids
-
----
-
-## Methods Compared
-
-### 1. Standard Galerkin FEM (SFEM)
-
-Classical Galerkin formulation seeking $u_h \in V_h \subset H^1_0({\cal B})$:
-
-$$(u^\prime_h, v^\prime_h)_0 + c(u_h, v_h)_0 = (f, v_h)_0 \quad \forall v_h \in V_h$$
-
-### 2. Least Squares FEM (LSFEM)
-
-**First-Order System:** Define flux $q = u^\prime$:
-
-$$-q^\prime + cu = f, \qquad q - u^\prime = 0$$
-
-**Functional (unweighted):**
-
-$${\cal J}(u,q;f) = \frac{1}{2} \| -q^\prime + cu - f \|^2_0 + \frac{1}{2} \| q - u^\prime \|^2_0$$
-
-### 3. Weighted Least Squares FEM (wLSFEM)
-
-**Functional with weighting factors:**
-
-$${\cal J}(u,q;f) = \frac{1}{2} \| w_1(-q^\prime + cu - f) \|^2_0 + \frac{1}{2} \| w_2(q - u^\prime) \|^2_0$$
-
-where $w_1 = 10^{-4}$ and $w_2 = 1$ to balance the norms based on the physics.
-
-**Variational Form:** Seek $(u_h, q_h) \in V_h \times Q_h$ satisfying:
-
-$${\cal A}(u_h,q_h;v_h,r_h) = {\cal F}(v_h,r_h), \quad \forall (v_h,r_h) \in V_h \times Q_h$$
 
 ---
 
