@@ -12,10 +12,10 @@ $$
 where $\nu \geq 0$ is the diffusion coefficient with the following parameters
 
 **Parameters:**
-- $\nu = 10^{-4}$ (**moderate diffusion**)
+- $\nu = \epsilon = 10^{-3}$ / $\nu = \epsilon = 10^{-5}$
 - $a = 1$ (**advection velocity**)
 
-Analytical solution with $\epsilon = 10^{-4}$:
+Analytical solution:
 
 $$
 u(x) = 4\left(\arctan\left(\frac{2(1/16-(x-1/2)^2)}{\pi\sqrt{\epsilon}}\right) + \frac{1}{2}\right)(1-x)x
