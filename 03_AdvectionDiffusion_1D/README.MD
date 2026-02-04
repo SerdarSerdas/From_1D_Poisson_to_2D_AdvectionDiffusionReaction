@@ -35,7 +35,8 @@ The classical Galerkin finite element formulation seeks $u_h \in V_h \subset H^1
 
 $$(\nu u^\prime_h, v^\prime_h)_0 + (a u^\prime_h, v_h)_0 = (f, v_h)_0 \quad \forall v_h \in V_h$$
 
-### 2. Least Squares FEM $(LSFEM^{(d)})$:
+
+### 2. Least Squares FEM - Diffusive Flux $(LSFEM^{(d)})$:
 
 **Flux:** $q = \nu u^\prime$  
 **Balance:** $-q^\prime + a u^\prime = f$  
@@ -45,50 +46,32 @@ $$(\nu u^\prime_h, v^\prime_h)_0 + (a u^\prime_h, v_h)_0 = (f, v_h)_0 \quad \for
 
 $${\cal J}^{(d)}(u,q;f) = \frac{1}{2} \parallel (-q^\prime + a u^\prime - f) \parallel^2_0 + \frac{1}{2} \parallel w_2 (q - \nu u^\prime) \parallel^2_0$$
 
-**Weighting analyzed:**
-- **$(LSFEM^{(d)})$**: $w_2 = 1$ 
-- **$(wLSFEM^{(d)})$**: $w_2 = \nu^{-1/2}$ 
-
-
-
-
-
-
-
-
 ### Variational Formulation
 
 The discrete variational form seeks $(u_h, q_h) \in V_h \times Q_h$ satisfying
 
-$${\cal A}((u_h,q_h);(v_h,r_h)) = {\cal F}(v_h,r_h), \quad \forall (v_h,r_h) \in V_h \times Q_h$$
+$${\cal A}(u_h,q_h;v_h,r_h) = {\cal F}(v_h,r_h), \quad \forall (v_h,r_h) \in V_h \times Q_h$$ .
 
 with
 
-$${\cal A}((u_h,q_h);(v_h,r_h)) = w^2_1 (-q^\prime_h + c u_h , -r^\prime_h + c v_h)_0 + (q_h - u^\prime_h, r_h - v^\prime_h)_0$$
+$${\cal A}^{(d)}(u_h,q_h);(v_h,r_h)) = (-q^\prime_h + a u^\prime_h , -r^\prime_h + a v^\prime_h)_0 + w^2_2 (q_h - \nu u^\prime_h, r_h - \nu v^\prime_h)_0$$
 
-$${\cal F}(v_h,r_h) = w^2_1 (f, -r^\prime_h + c v_h)_0$$
+$${\cal F}^{(d)}(v_h,r_h) = w_1 (f, -r^\prime_h + a v^\prime_h)_0$$
 
----
+**Weighting analyzed:**
+- **$LSFEM^{(d)}$**: $w_2 = 1$ 
+- **$wLSFEM^{(d)}$**: $w_2 = \nu^{-1/2}$ 
 
 
+### 3. Least Squares FEM - Total Flux $(LSFEM^{(t)})$:
 
-
-## Least Squares FEM 
-
-### First-Order System - Diffusive Flux 
-
-### First-Order System - Total Flux $(LSFEM^{(t)})$ :
-
-**Flux:** $q = \nu u^\prime - a u$  
+**Flux:** $q = \nu u^\prime - a u^\prime$  
 **Balance:** $-q^\prime = f$  
-**Constitutive:** $q - \nu u^\prime + a u = 0$
+**Constitutive:** $q - \nu u^\prime + a u^\prime = 0$
 
 ### Functionals
 
-
-
-$${\cal J}^{(t)}(u,q;f) = \frac{1}{2} \parallel w_1 (-q^\prime - f) \parallel^2_0 + \frac{1}{2} \parallel w_2 (q - \nu u^\prime + a u) \parallel^2_0$$
-
+$${\cal J}^{(t)}(u,q;f) = \frac{1}{2} \parallel (-q^\prime - f) \parallel^2_0 + \frac{1}{2} \parallel w_2 (q - \nu u^\prime + a u) \parallel^2_0$$
 
 ### Variational Formulation
 
@@ -96,23 +79,18 @@ The discrete variational form seeks $(u_h, q_h) \in V_h \times Q_h$ satisfying
 
 $${\cal A}(u_h,q_h;v_h,r_h) = {\cal F}(v_h,r_h), \quad \forall (v_h,r_h) \in V_h \times Q_h$$ .
 
-**Diffusive flux:**
+with
 
-$${\cal A}^{(d)}(u_h,q_h);(v_h,r_h)) = w^2_1 (-q^\prime_h + a u^\prime_h , -r^\prime_h + a v^\prime_h)_0 + w^2_2 (q_h - \nu u^\prime_h, r_h - \nu v^\prime_h)_0$$
-
-$${\cal F}^{(d)}(v_h,r_h) = w_1 (f, -r^\prime_h + a v^\prime_h)_0$$
-
-**Total flux:**
-
-$${\cal A}^{(t)}(u_h,q_h);(v_h,r_h)) = w^2_1 (-q^\prime_h, -r^\prime_h)_0 + w^2_2 (q_h - \nu u^\prime_h + a u^\prime_h, r_h - \nu v^\prime_h + a v^\prime_h)_0$$
+$${\cal A}^{(t)}(u_h,q_h);(v_h,r_h)) = (-q^\prime_h, -r^\prime_h)_0 + w^2_2 (q_h - \nu u^\prime_h + a u^\prime_h, r_h - \nu v^\prime_h + a v^\prime_h)_0$$
 
 $${\cal F}^{(t)}(v_h,r_h) = w_1 (f, -r^\prime_h)_0$$
 
 
-## Weighting factor
 **Weighting analyzed:**
-- **Unweighted**: $w_1 = 1$, $w_2 = 1$ 
-- **Weighted**: $w_1 = 1$, $w_2 = \nu^{-1/2}$ 
+- **$LSFEM^{(t)}$**: $w_2 = 1$ 
+- **$wLSFEM^{(t)}$**: $w_2 = \nu^{-1/2}$ 
+
+---
 
 
 
