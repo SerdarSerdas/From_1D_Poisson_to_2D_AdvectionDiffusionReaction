@@ -54,9 +54,9 @@ $${\cal A}(u_h,q_h;v_h,r_h) = {\cal F}(v_h,r_h), \quad \forall (v_h,r_h) \in V_h
 
 with
 
-$${\cal A}^{(d)}(u_h,q_h);(v_h,r_h)) = (-q^\prime_h + a u^\prime_h , -r^\prime_h + a v^\prime_h)_0 + w^2_2 (q_h - \nu u^\prime_h, r_h - \nu v^\prime_h)_0$$
+$${\cal A}^{(d)}(u_h,q_h;v_h,r_h) = (-q^\prime_h + a u^\prime_h , -r^\prime_h + a v^\prime_h)_0 + w^2_2 (q_h - \nu u^\prime_h, r_h - \nu v^\prime_h)_0$$
 
-$${\cal F}^{(d)}(v_h,r_h) = w_1 (f, -r^\prime_h + a v^\prime_h)_0$$
+$${\cal F}^{(d)}(v_h,r_h) = (f, -r^\prime_h + a v^\prime_h)_0$$
 
 **Weighting analyzed:**
 - **$LSFEM^{(d)}$**: $w_2 = 1$ 
@@ -81,9 +81,9 @@ $${\cal A}(u_h,q_h;v_h,r_h) = {\cal F}(v_h,r_h), \quad \forall (v_h,r_h) \in V_h
 
 with
 
-$${\cal A}^{(t)}(u_h,q_h);(v_h,r_h)) = (-q^\prime_h, -r^\prime_h)_0 + w^2_2 (q_h - \nu u^\prime_h + a u^\prime_h, r_h - \nu v^\prime_h + a v^\prime_h)_0$$
+$${\cal A}^{(t)}(u_h,q_h;v_h,r_h) = (-q^\prime_h, -r^\prime_h)_0 + w^2_2 (q_h - \nu u^\prime_h + a u^\prime_h, r_h - \nu v^\prime_h + a v^\prime_h)_0$$
 
-$${\cal F}^{(t)}(v_h,r_h) = w_1 (f, -r^\prime_h)_0$$
+$${\cal F}^{(t)}(v_h,r_h) = (f, -r^\prime_h)_0$$
 
 
 **Weighting analyzed:**
