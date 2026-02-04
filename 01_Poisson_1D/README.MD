@@ -77,5 +77,5 @@ AMG preconditioning reduces LSFEM iterations by **80-93%** compared to unprecond
 
 ## 💡 Key Takeaways
 
-LSFEM achieves higher-order flux convergence (O(h³) vs O(h²)) while maintaining excellent solver efficiency with AMG.
+LSFEM achieves higher-order flux convergence $(O(h^3) vs O(h^2))$ while maintaining excellent solver efficiency with AMG.
 
