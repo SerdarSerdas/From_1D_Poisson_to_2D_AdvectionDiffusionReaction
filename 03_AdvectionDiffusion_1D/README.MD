@@ -50,7 +50,7 @@ $${\cal J}^{(d)}(u,q;f) = \frac{1}{2} \parallel (-q^\prime + a u^\prime - f) \pa
 
 The discrete variational form seeks $(u_h, q_h) \in V_h \times Q_h$ satisfying
 
-$${\cal A}(u_h,q_h;v_h,r_h) = {\cal F}(v_h,r_h), \quad \forall (v_h,r_h) \in V_h \times Q_h$$ .
+$${\cal A}(u_h,q_h;v_h,r_h) = {\cal F}(v_h,r_h), \quad \forall (v_h,r_h) \in V_h \times Q_h$$
 
 with
 
@@ -77,7 +77,7 @@ $${\cal J}^{(t)}(u,q;f) = \frac{1}{2} \parallel (-q^\prime - f) \parallel^2_0 + 
 
 The discrete variational form seeks $(u_h, q_h) \in V_h \times Q_h$ satisfying
 
-$${\cal A}(u_h,q_h;v_h,r_h) = {\cal F}(v_h,r_h), \quad \forall (v_h,r_h) \in V_h \times Q_h$$ .
+$${\cal A}(u_h,q_h;v_h,r_h) = {\cal F}(v_h,r_h), \quad \forall (v_h,r_h) \in V_h \times Q_h$$
 
 with
 
