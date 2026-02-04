@@ -35,21 +35,19 @@ The classical Galerkin finite element formulation seeks $u_h \in V_h \subset H^1
 
 $$(\nu u^\prime_h, v^\prime_h)_0 + (a u^\prime_h, v_h)_0 = (f, v_h)_0 \quad \forall v_h \in V_h$$
 
-### 2. Least Squares FEM (LSFEM$^{(d)}$)
+### 2. Least Squares FEM $(LSFEM^{(d)})$:
 
-**First-Order System**
-
-Define the diffusive flux $q = u^\prime$:
-
-$$-q^\prime + cu = f, \qquad q - u^\prime = 0$$
+**Flux:** $q = \nu u^\prime$  
+**Balance:** $-q^\prime + a u^\prime = f$  
+**Constitutive:** $q - \nu u^\prime = 0$
 
 ### Functional
 
-$${\cal J}(u,q;f) = \frac{1}{2} \parallel w_1 (-q^\prime + cu - f) \parallel^2_0 + \frac{1}{2} \parallel q - u^\prime \parallel^2_0$$
+$${\cal J}^{(d)}(u,q;f) = \frac{1}{2} \parallel (-q^\prime + a u^\prime - f) \parallel^2_0 + \frac{1}{2} \parallel w_2 (q - \nu u^\prime) \parallel^2_0$$
 
 **Weighting analyzed:**
-- **LSFEM**: $w_1 = 1$ (unweighted)
-- **wLSFEM**: $w_1 = c^{-1/2}$ (balanced scaling)
+- **$(LSFEM^{(d)})$**: $w_2 = 1$ 
+- **$(wLSFEM^{(d)})$**: $w_2 = \nu^{-1/2}$ 
 
 
 
@@ -77,11 +75,7 @@ $${\cal F}(v_h,r_h) = w^2_1 (f, -r^\prime_h + c v_h)_0$$
 
 ## Least Squares FEM 
 
-### First-Order System - Diffusive Flux $(LSFEM^{(d)})$ :
-
-**Flux:** $q = \nu u^\prime$  
-**Balance:** $-q^\prime + a u^\prime = f$  
-**Constitutive:** $q - \nu u^\prime = 0$
+### First-Order System - Diffusive Flux 
 
 ### First-Order System - Total Flux $(LSFEM^{(t)})$ :
 
@@ -91,7 +85,7 @@ $${\cal F}(v_h,r_h) = w^2_1 (f, -r^\prime_h + c v_h)_0$$
 
 ### Functionals
 
-$${\cal J}^{(d)}(u,q;f) = \frac{1}{2} \parallel w_1 (-q^\prime + a u^\prime - f) \parallel^2_0 + \frac{1}{2} \parallel w_2 (q - \nu u^\prime) \parallel^2_0$$
+
 
 $${\cal J}^{(t)}(u,q;f) = \frac{1}{2} \parallel w_1 (-q^\prime - f) \parallel^2_0 + \frac{1}{2} \parallel w_2 (q - \nu u^\prime + a u) \parallel^2_0$$
 
