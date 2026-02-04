@@ -35,6 +35,7 @@ The classical Galerkin finite element formulation seeks $u_h \in V_h \subset H^1
 
 $$(\nu u^\prime_h, v^\prime_h)_0 + (a u^\prime_h, v_h)_0 = (f, v_h)_0 \quad \forall v_h \in V_h$$
 
+#
 
 ### 2. Least Squares FEM - Diffusive Flux $(LSFEM^{(d)})$:
 
@@ -62,6 +63,7 @@ $${\cal F}^{(d)}(v_h,r_h) = (f, -r^\prime_h + a v^\prime_h)_0$$
 - **$LSFEM^{(d)}$**: $w_2 = 1$ 
 - **$wLSFEM^{(d)}$**: $w_2 = \nu^{-1/2}$ 
 
+#
 
 ### 3. Least Squares FEM - Total Flux $(LSFEM^{(t)})$:
 
