@@ -94,6 +94,27 @@ $${\cal F}^{(t)}(v_h,r_h) = (f, -r^\prime_h)_0$$
 
 ---
 
+## 🎯 Results: ($\nu = 10^{-3}$)
+
+### Convergence Behavior
+
+
+
+### Computational Efficiency
+
+
+---
+
+## 🎯 Results: ($\nu = 10^{-5}$)
+
+### Convergence Behavior
+
+
+
+### Computational Efficiency
+
+
+
 
 
 
