@@ -33,9 +33,9 @@ $$
 
 The classical Galerkin finite element formulation seeks $u_h \in V_h \subset H^1_0({\cal B})$ such that
 
-$$(u^\prime_h, v^\prime_h)_0 + c(u_h, v_h)_0 = (f, v_h)_0 \quad \forall v_h \in V_h$$
+$$(\nu u^\prime_h, v^\prime_h)_0 + (a u^\prime_h, v_h)_0 = (f, v_h)_0 \quad \forall v_h \in V_h$$
 
-### 2. Least Squares FEM (LSFEM)
+### 2. Least Squares FEM (LSFEM$^{(d)}$)
 
 **First-Order System**
 
@@ -51,9 +51,7 @@ $${\cal J}(u,q;f) = \frac{1}{2} \parallel w_1 (-q^\prime + cu - f) \parallel^2_0
 - **LSFEM**: $w_1 = 1$ (unweighted)
 - **wLSFEM**: $w_1 = c^{-1/2}$ (balanced scaling)
 
-The classical Galerkin finite element formulation seeks $u_h \in V_h \subset H^1_0({\cal B})$ such that
 
-$$(\nu u^\prime_h, v^\prime_h)_0 + (a u^\prime_h, v_h)_0 = (f, v_h)_0 \quad \forall v_h \in V_h$$
 
 
 
