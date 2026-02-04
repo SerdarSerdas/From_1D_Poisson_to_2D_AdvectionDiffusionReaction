@@ -9,11 +9,11 @@ u(0) = u(1) &= 0 \quad &&\text{on } \partial{\cal B}_D
 \end{aligned}
 $$
 
-where $\nu \geq 0$ is the diffusion coefficient with the following parameters
+where $\nu \geq 0$ is the diffusion coefficient and $a$ is the advection velocity with the following parameters
 
 **Parameters:**
 - $\nu = \epsilon = 10^{-3}$ / $\nu = \epsilon = 10^{-5}$
-- $a = 1$ (**advection velocity**)
+- $a = 1$ 
 
 Analytical solution:
 
