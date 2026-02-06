@@ -63,6 +63,8 @@ $${\cal F}(v_h,r_h) = (f, -r^\prime_h )_0$$
 
 LSFEM shows notably better accuracy for the flux variable q, with errors approximately 6-7 times smaller than SFEM at comparable mesh refinements.
 
+![Figure 1: 1D Poisson - solution](Fig_Poisson1D_P1.png)
+
 ![Figure 1: 1D Poisson - solution u](Fig_Poisson1D_Convergence.png)
 
 LSFEM provides superior flux accuracy: **47× more accurate** than SFEM for $P_2$ elements at ML9.
