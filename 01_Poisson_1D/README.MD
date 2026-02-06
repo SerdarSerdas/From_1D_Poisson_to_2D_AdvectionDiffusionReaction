@@ -59,7 +59,7 @@ $${\cal F}(v_h,r_h) = (f, -r^\prime_h )_0$$
 
 #
 
-## 🎯 Accuracy and Convergence
+## 🎯 Accuracy and Solver Performance
 
 LSFEM shows notably better accuracy for the flux variable q, with errors approximately 6-7 times smaller than SFEM at comparable mesh refinements.
 
