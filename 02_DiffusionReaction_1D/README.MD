@@ -13,7 +13,7 @@ where $c \geq 0$ is the reaction coefficient. Two parameter regimes are investig
 - **Diffusion-dominated:** $c = 10^{-4}$ (diffusion >> reaction)
 - **Reaction-dominated:** $c = 10^{4}$ (reaction >> diffusion)
 
-Analytical solution with $\epsilon = 10^{-3}$:
+Analytical solution with $\epsilon = 10^{-4}$:
 
 $$
 u(x) = 4\left(\arctan\left(\frac{2(1/16-(x-1/2)^2)}{\pi\sqrt{\epsilon}}\right) + \frac{1}{2}\right)(1-x)x
@@ -65,37 +65,32 @@ $${\cal F}(v_h,r_h) = w^2_1 (f, -r^\prime_h + c v_h)_0$$
 
 ## 🎯 Results: Diffusion-Dominated ($c = 10^{-4}$)
 
-### Accuracy and Solver Performance for $$\epsilon = 10^{-4}$$
+### Accuracy and Solver Performance
 
 **P1 Elements (Linear)**
 
-**Figure 1** compares Standard FEM (SFEM) and Least-Squares FEM (LSFEM) using P1 elements:
+**Figure 1** compares Standard FEM (SFEM), Least-Squares FEM (LSFEM), and weighted LSFEM (wLSFEM) using P1 elements:
 
-- Solution accuracy ($L^2$ norm of u): Both methods achieve second-order convergence $(O(h^2))$, with SFEM being 1.9× more accurate at the finest mesh level (ML9).
-- Flux accuracy ($L^2$ norm of q): LSFEM significantly outperforms SFEM, achieving second-order convergence $(O(h^2))$ compared to SFEM's first-order convergence $(O(h))$. LSFEM is 30× more accurate for flux computation.
-- AMG preconditioning: LSFEM demonstrates excellent preconditioning efficiency with 92.5% iteration reduction using AMG, achieving a 13.4× speedup on perturbed grids (PG) compared to regular grids (RG).
+- **Solution accuracy ($L^2$ norm of u):** SFEM and wLSFEM achieve identical second-order convergence $(O(h²))$ with the same error at ML9. LSFEM is slightly less accurate (2× worse) but maintains second-order convergence.
+- **Flux accuracy ($L^2$ norm of q):** Both LSFEM and wLSFEM significantly outperform SFEM, achieving second-order convergence $(O(h²))$ compared to SFEM's first-order convergence $(O(h))$. Both methods are **30× more accurate** for flux computation with identical performance.
+- **AMG preconditioning:** LSFEM shows excellent preconditioning with a **13.4× speedup** on perturbed grids. Remarkably, wLSFEM demonstrates even more dramatic improvements with a **432.1×** speedup on perturbed grids, though it requires more iterations than LSFEM without preconditioning.
 
-![Figure 1: 1D Poisson - solution](figures/Fig_Poisson1D_P1.png)
+![Figure 1: 1D Poisson - solution](figures/Fig_DiffusionReaction1D_P1_c_1e_4.png)
 
 **P2 Elements (Quadratic)**
 
-**Figure 2** compares the same methods using P2 elements:
+*Figure 2 compares the same methods using P2 elements:
 
-- Solution accuracy (($L^2$ norm of u): Both methods achieve nearly identical third-order convergence $(O(h^3))$, with comparable accuracy at ML9.
-- Flux accuracy (($L^2$ norm of q): LSFEM again excels, maintaining third-order convergence $(O(h^3))$ while SFEM drops to second-order $(O(h^2))$. LSFEM is 45.9× more accurate for flux computation.
-- AMG preconditioning: LSFEM shows 91.0% iteration reduction with AMG and an 11.1× speedup on perturbed grids.
+- **Solution accuracy ($L^2$ norm of u):** All three methods achieve nearly identical third-order convergence $(O(h^3))$, with comparable accuracy at ML9.
+- **Flux accuracy ($L^2$ norm of q):** Both LSFEM and wLSFEM excel equally, maintaining third-order convergence $(O(h^3))$ while SFEM shows second-order $(O(h^2))$. LSFEM and wLSFEM are **45.9× more** accurate for flux computation.
+- **AMG preconditioning: LSFEM shows an **11.2× speedup** on perturbed grids with AMG. wLSFEM again demonstrates exceptional preconditioning effectiveness with a **381× speedup** on perturbed grids, despite requiring significantly more iterations without preconditioning.
 
-![Figure 2: 1D Poisson - solution](figures/Fig_Poisson1D_P2.png)
+![Figure 2: 1D Poisson - solution](figures/Fig_DiffusionReaction1D_P2_c_1e_4.png)
 
 
 ## 💡 Key Takeaways
 
-- LSFEM provides **superior** flux accuracy for both element types, maintaining one order higher convergence than SFEM
-- Solution accuracy is comparable between methods
-- LSFEM exhibits excellent AMG preconditioning properties, especially on distorted meshes
-
-### Computational Cost Summary
-
-For practical applications with preconditioning (CG-AMG):
-- **Diffusion-dominated:** LSFEM and wLSFEM comparable (~80-230 iterations)
-- **Reaction-dominated:** wLSFEM significantly better (11-40 iterations vs. 103-281 for LSFEM)
+- **wLSFEM matches SFEM's solution accuracy** while maintaining LSFEM's superior flux accuracy
+- Both LSFEM variants provide **one order higher flux convergence** than SFEM
+- **wLSFEM shows exceptional AMG preconditioning benefits** (30-40× better than LSFEM), making it highly effective for diffusion-dominated problems on distorted meshes
+- The weighted formulation addresses conditioning issues without sacrificing accuracy
