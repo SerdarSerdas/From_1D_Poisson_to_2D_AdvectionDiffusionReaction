@@ -98,7 +98,7 @@ $${\cal F}(v_h,r_h) = w^2_1 (f, -r^\prime_h + c v_h)_0$$
 
 ---
 
-## 🎯 Results: Diffusion-Dominated ($c = 10^{4}$)
+## 🎯 Results: Reaction-Dominated ($c = 10^{4}$)
 
 ### Accuracy and Solver Performance
 
