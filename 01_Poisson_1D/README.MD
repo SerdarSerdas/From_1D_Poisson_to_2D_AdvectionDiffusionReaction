@@ -61,23 +61,29 @@ $${\cal F}(v_h,r_h) = (f, -r^\prime_h )_0$$
 
 ## 🎯 Accuracy and Solver Performance for $$\epsilon = 10^{-4}$$
 
-LSFEM shows notably better accuracy for the flux variable q, with errors approximately 6-7 times smaller than SFEM at comparable mesh refinements.
+**P1 Elements (Linear)**
 
-![Figure 1: 1D Poisson - solution](Fig_Poisson1D_P1.png)
+**Figure 1** compares Standard FEM (SFEM) and Least-Squares FEM (LSFEM) using P1 elements:
 
-![Figure 1: 1D Poisson - solution u](Fig_Poisson1D_Convergence.png)
+- (a) Solution accuracy ($L^2$ norm of u): Both methods achieve second-order convergence $(O(h^2))$, with SFEM being 1.9× more accurate at the finest mesh level (ML9).
+- (b) Flux accuracy ($L^2$ norm of q): LSFEM significantly outperforms SFEM, achieving second-order convergence $(O(h^2))$ compared to SFEM's first-order convergence $(O(h))$. LSFEM is 30× more accurate for flux computation.
+- (c) AMG preconditioning: LSFEM demonstrates excellent preconditioning efficiency with 92.5% iteration reduction using AMG, achieving a 13.4× speedup on perturbed grids (PG) compared to regular grids (RG).
 
-LSFEM provides superior flux accuracy: **47× more accurate** than SFEM for $P_2$ elements at ML9.
+![Figure 1: 1D Poisson - solution](figures/Fig_Poisson1D_P1.png)
 
-#
+**P2 Elements (Quadratic)**
 
-## 🎯 Solver Performance
+**Figure 2** compares the same methods using P2 elements:
 
-![Figure 2: 1D Poisson - Solver](Fig_Poisson1D_Solver.png)
+(a) Solution accuracy (($L^2$ norm of u): Both methods achieve nearly identical third-order convergence $(O(h^3))$, with comparable accuracy at ML9.
+(b) Flux accuracy (($L^2$ norm of q): LSFEM again excels, maintaining third-order convergence $(O(h^3))$ while SFEM drops to second-order $(O(h^2))$. LSFEM is 45.9× more accurate for flux computation.
+(c) AMG preconditioning: LSFEM shows 91.0% iteration reduction with AMG and an 11.1× speedup on perturbed grids.
 
-AMG preconditioning reduces LSFEM iterations by **80-93%** compared to unpreconditioned CG.
+![Figure 2: 1D Poisson - solution](figures/Fig_Poisson1D_P2.png)
+
 
 ## 💡 Key Takeaways
 
-LSFEM achieves higher-order flux convergence $(O(h^3)$  vs $O(h^2))$ while maintaining excellent solver efficiency with AMG.
-
+- LSFEM provides **superior** flux accuracy for both element types, maintaining one order higher convergence than SFEM
+- Solution accuracy is comparable between methods
+- LSFEM exhibits excellent AMG preconditioning properties, especially on distorted meshes
