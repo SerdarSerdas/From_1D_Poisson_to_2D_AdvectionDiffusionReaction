@@ -65,9 +65,9 @@ $${\cal F}(v_h,r_h) = (f, -r^\prime_h )_0$$
 
 **Figure 1** compares Standard FEM (SFEM) and Least-Squares FEM (LSFEM) using P1 elements:
 
-- (a) Solution accuracy ($L^2$ norm of u): Both methods achieve second-order convergence $(O(h^2))$, with SFEM being 1.9× more accurate at the finest mesh level (ML9).
-- (b) Flux accuracy ($L^2$ norm of q): LSFEM significantly outperforms SFEM, achieving second-order convergence $(O(h^2))$ compared to SFEM's first-order convergence $(O(h))$. LSFEM is 30× more accurate for flux computation.
-- (c) AMG preconditioning: LSFEM demonstrates excellent preconditioning efficiency with 92.5% iteration reduction using AMG, achieving a 13.4× speedup on perturbed grids (PG) compared to regular grids (RG).
+- Solution accuracy ($L^2$ norm of u): Both methods achieve second-order convergence $(O(h^2))$, with SFEM being 1.9× more accurate at the finest mesh level (ML9).
+- Flux accuracy ($L^2$ norm of q): LSFEM significantly outperforms SFEM, achieving second-order convergence $(O(h^2))$ compared to SFEM's first-order convergence $(O(h))$. LSFEM is 30× more accurate for flux computation.
+- AMG preconditioning: LSFEM demonstrates excellent preconditioning efficiency with 92.5% iteration reduction using AMG, achieving a 13.4× speedup on perturbed grids (PG) compared to regular grids (RG).
 
 ![Figure 1: 1D Poisson - solution](figures/Fig_Poisson1D_P1.png)
 
@@ -75,9 +75,9 @@ $${\cal F}(v_h,r_h) = (f, -r^\prime_h )_0$$
 
 **Figure 2** compares the same methods using P2 elements:
 
-(a) Solution accuracy (($L^2$ norm of u): Both methods achieve nearly identical third-order convergence $(O(h^3))$, with comparable accuracy at ML9.
-(b) Flux accuracy (($L^2$ norm of q): LSFEM again excels, maintaining third-order convergence $(O(h^3))$ while SFEM drops to second-order $(O(h^2))$. LSFEM is 45.9× more accurate for flux computation.
-(c) AMG preconditioning: LSFEM shows 91.0% iteration reduction with AMG and an 11.1× speedup on perturbed grids.
+- Solution accuracy (($L^2$ norm of u): Both methods achieve nearly identical third-order convergence $(O(h^3))$, with comparable accuracy at ML9.
+- Flux accuracy (($L^2$ norm of q): LSFEM again excels, maintaining third-order convergence $(O(h^3))$ while SFEM drops to second-order $(O(h^2))$. LSFEM is 45.9× more accurate for flux computation.
+- AMG preconditioning: LSFEM shows 91.0% iteration reduction with AMG and an 11.1× speedup on perturbed grids.
 
 ![Figure 2: 1D Poisson - solution](figures/Fig_Poisson1D_P2.png)
 
